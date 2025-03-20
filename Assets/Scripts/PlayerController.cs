@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
@@ -12,18 +13,39 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 8f; // 移动速度
     public float jumpForce = 16f; // 跳跃力度
 
+    public float upGravity;//跳跃时重力大小
+    public float downGravity;//下落时重力大小
+
     [Header("状态")]
     public bool isGround;
+
+    [Header("主角行动状态")]
+    private string state_type = "isMoveAble";//isMoveAble,cantMoveAble
+
+    #region 以下为私有属性
+    private SpriteRenderer spriteRenderer;
+    #endregion
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        Move();
-        Jump();
+
+
+        switch (state_type)
+        {
+            case "isMoveAble":
+                Move();
+                Jump();
+                break;
+            case "cantMoveAble":
+                break;
+        }
+
     }
 
     public void Move()
@@ -35,6 +57,15 @@ public class PlayerController : MonoBehaviour
         // 移动玩家
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
+        if (moveInput < 0) //根据输入翻转玩家
+        {
+           spriteRenderer.flipX = true;
+        }
+        else if (moveInput > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
     }
 
     public void Jump()
@@ -43,6 +74,19 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+
+
+        //根据下降改变重力
+        
+        if(rb.velocity.y>0.1f)
+        {
+            rb.gravityScale = upGravity;
+        }
+        else if(rb.velocity.y < -0.1f)//&&!isfloating)
+        {
+            rb.gravityScale = downGravity;
+        }
+        
     }
     private void OnDrawGizmosSelected()
     {
