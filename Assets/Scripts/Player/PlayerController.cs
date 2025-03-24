@@ -4,11 +4,16 @@ using System.Diagnostics;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    
     //地面检测
     public LayerMask groundLayer; // 地面层，用于检测是否在地面上
     public Transform groundCheck; // 地面检测点
     public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//地面检测范围
+    //声波预设
+    public GameObject bulletPrefab;//声波预设体
+    public float shootForce = 5.0f;//射击力度
+    public float keepTime = 2.0f;//声波持续时间
+
     [Header("属性")]
     public float moveSpeed = 8f; // 移动速度
     public float jumpForce = 16f; // 跳跃力度
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     #region 以下为私有属性
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
     #endregion
 
     void Start()
@@ -41,6 +47,7 @@ public class PlayerController : MonoBehaviour
             case "isMoveAble":
                 Move();
                 Jump();
+                Shoot();
                 break;
             case "cantMoveAble":
                 break;
@@ -87,6 +94,26 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = downGravity;
         }
         
+    }
+    public void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //获取鼠标坐标
+            Vector2 mousePosition = Input.mousePosition;
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
+            Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
+            //实例化声波
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            BattleWave battleWave = bullet.GetComponent<BattleWave>();
+            battleWave.Initialize(keepTime);
+            //声波方向
+            Vector2 direction = (worldPosition - position2D).normalized;
+            bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            //发射声波
+            rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
+        }
     }
     private void OnDrawGizmosSelected()
     {
