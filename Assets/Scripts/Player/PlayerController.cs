@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour
     public float keepTime = 2.0f;//声波持续时间
 
     [Header("属性")]
+    public int health = 3; //生命值
     public float moveSpeed = 8f; // 移动速度
     public float jumpForce = 16f; // 跳跃力度
+    
 
     public float upGravity;//跳跃时重力大小
     public float downGravity;//下落时重力大小
@@ -114,6 +116,21 @@ public class PlayerController : MonoBehaviour
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
         }
+    }
+
+    public void TakeDamage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+        UnityEngine.Debug.Log("玩家死亡");
     }
     private void OnDrawGizmosSelected()
     {
