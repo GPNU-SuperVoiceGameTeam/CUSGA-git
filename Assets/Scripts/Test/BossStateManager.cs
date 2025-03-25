@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum BossState
 {
-    Airborne,
-    Ground,
-    Underground,
-    Attacking,
-    TakingDamage,
-    Dying
+    Airborne,//空中
+    Ground,//地面
+    Underground,//地下
+    Attacking,//攻击
+    TakingDamage,//受击
+    Dying//死亡
 }
 public class BossStateManager : MonoBehaviour
 {
@@ -21,6 +21,9 @@ public class BossStateManager : MonoBehaviour
     public float moveSpeed = 5f;//移动速度
     public float slowDownDistance = 2f; // 开始减速的距离
     public float stopDistance = 0.5f; // 停止移动的距离
+    private float airTime = 5.0f;//空中时间
+
+    public Sprite spritePrefab;
 
     void Start()
     {
@@ -109,16 +112,35 @@ public class BossStateManager : MonoBehaviour
     }
     void AirborneBehavior()
     {
+        
         this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
         bossPosition = this.transform;
         attackManager.FallingFruitsAttack();
+        airTime -= Time.deltaTime;
+        if(airTime <= 0)
+        {
+            attackManager.timeBetweenFruits = 1f;
+        }
+        //添加条件后有bug
+        //if (bossStates.isHit)
+        //{
+        //    currentState = BossState.Ground;
+        //}
         // 实现空中状态逻辑
         // 检查是否需要切换到其他状态
     }
 
     void GroundBehavior()
     {
-        // 实现地面状态逻辑
+        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
+        bossStates.canTakeDamage = true;
+        if (bossStates.isHit)
+        {
+            bossStates.isHit = false;
+            currentState = BossState.Underground;
+        }
+        // 实现地面状态逻辑0
         // 检查是否需要切换到其他状态
     }
 

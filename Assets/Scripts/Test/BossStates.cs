@@ -5,16 +5,29 @@ using UnityEngine;
 public class BossStates : MonoBehaviour
 {
     public int maxHP = 5;
-    private int currentHP;
+    public int currentHP;
+    public bool canTakeDamage;
+    public bool isHit = false;
 
     void Start()
     {
         currentHP = maxHP;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wave"))
+        {
+            isHit = true;
+        }
+    }
     public void TakeDamage(int damage)
     {
-        currentHP -= damage;
+        if (canTakeDamage)
+        {
+            currentHP -= damage;
+            isHit = true;
+        }
         if (currentHP <= 0)
         {
             Die();
@@ -23,6 +36,6 @@ public class BossStates : MonoBehaviour
 
     void Die()
     {
-        // 触发死亡动画和效果
+        Destroy(gameObject);
     }
 }

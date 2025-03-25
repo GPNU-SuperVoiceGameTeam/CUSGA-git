@@ -34,7 +34,7 @@ public class FruitBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            player.TakeDamage();
+            player.TakeDamage(1);
 
         }
     }

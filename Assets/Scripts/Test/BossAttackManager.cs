@@ -9,9 +9,9 @@ public class BossAttackManager : MonoBehaviour
     public GameObject giantFruitPrefab;
     public GameObject leafProjectilePrefab;
     //FallingFruitsAttack
-    public float fallingFruitsAttackInterval = 1f; // 攻击间隔时间
+    public float fallingFruitsAttackInterval = 0.5f; // 攻击间隔时间
     public float fallingFruitsAttackDuration = 5f; // 攻击持续时间
-    public float timeBetweenFruits = 0.5f; // 每次丢水果的时间间隔
+    public float timeBetweenFruits = 0.3f; // 每次丢水果的时间间隔
     public float fallingSpeed = 10f; // 水果下落速度
     public Transform fruitSpawnPoint; // 水果生成位置
     private float fallingFruitsAttackTimer; // 丢水果计时器

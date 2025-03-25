@@ -5,10 +5,12 @@ using UnityEngine;
 public class BossCollisionDetector : MonoBehaviour
 {
     private BossStateManager stateManager;
+    private BossStates bossStates;
 
     void Start()
     {
         stateManager = GetComponent<BossStateManager>();
+        bossStates = GetComponent<BossStates>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -19,6 +21,13 @@ public class BossCollisionDetector : MonoBehaviour
             if (stateManager.currentState == BossState.Ground)
             {
                 stateManager.currentState = BossState.TakingDamage;
+            }
+        }
+        if (collision.gameObject.CompareTag("Wave"))
+        {
+            if (bossStates.canTakeDamage)
+            {
+                bossStates.TakeDamage(1);
             }
         }
     }

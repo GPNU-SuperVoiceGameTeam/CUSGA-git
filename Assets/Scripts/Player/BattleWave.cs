@@ -12,11 +12,11 @@ public class BattleWave : MonoBehaviour
         Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
         if (collision.CompareTag("Enemy"))
         {
-
             Vector3 direction = (this.transform.position - collision.transform.position).normalized;
             rb.AddForce(-direction * pulseForce, ForceMode2D.Impulse);
         }
     }
+
     public void Initialize(float baseLifetime)
     {
         currentLifetime = baseLifetime;
