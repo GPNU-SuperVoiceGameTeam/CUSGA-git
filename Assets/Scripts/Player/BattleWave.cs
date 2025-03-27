@@ -14,6 +14,7 @@ public class BattleWave : MonoBehaviour
         {
             Vector3 direction = (this.transform.position - collision.transform.position).normalized;
             rb.AddForce(-direction * pulseForce, ForceMode2D.Impulse);
+            Destroy(gameObject);
         }
     }
 

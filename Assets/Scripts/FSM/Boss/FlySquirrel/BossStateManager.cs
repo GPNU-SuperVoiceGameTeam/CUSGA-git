@@ -1,215 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using Unity.VisualScripting;
-//using UnityEngine;
-//public enum BossState
-//{
-//    Airborne,//空中
-//    Ground,//地面
-//    Underground,//地下
-//    Attacking,//攻击
-//    TakingDamage,//受击
-//    Dying//死亡
-//}
-//public class BossStateManager : MonoBehaviour
-//{
-//    public LayerMask groundLayer; // 地面层，用于检测是否在地面上
-//    public Transform groundCheck; // 地面检测点
-//    public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//地面检测范围
-//    public float upGravity;//跳跃时重力大小
-//    public float downGravity;//下落时重力大小
-
-//    public BossState currentState;//当前状态
-//    private BossStates bossStates;//获取生命值系统
-//    private Animator animator;
-//    private Rigidbody2D rb;
-//    private BossAttackManager attackManager;//获取攻击系统
-//    public Transform bossPosition;//boss位置
-//    public Transform playerPosition;//获取玩家位置
-//    public float moveSpeed = 5f;//移动速度
-//    public float slowDownDistance = 2f; // 开始减速的距离
-//    public float stopDistance = 0.5f; // 停止移动的距离
-//    private float airTime = 5.0f;//空中时间
-//    public float jumpForce = 10f;//跳跃力度
-//    public float jumpInterval = 2.0f;//跳跃间隔
-//    public bool isGround;
-
-//    public Sprite flyLeaf;
-
-//    void Start()
-//    {
-//        currentState = BossState.Airborne;//初始化状态
-//        bossStates = GetComponent<BossStates>();
-//        rb = GetComponent<Rigidbody2D>();
-//        //animator = GetComponent<Animator>();
-//        playerPosition = GameObject.FindGameObjectWithTag("Player").transform; // 获取玩家对象的Transform组件
-//        attackManager = GetComponent<BossAttackManager>();
-//    }
-
-//    void Update()
-//    {
-//        switch (currentState)
-//        {
-//            case BossState.Airborne:
-//                AirborneBehavior();
-//                FollowPlayerXAxis();
-//                break;
-//            case BossState.Ground:
-//                GroundBehavior();
-//                break;
-//            case BossState.Underground:
-//                UndergroundBehavior();
-//                break;
-//            case BossState.Attacking:
-//                AttackBehavior();
-//                break;
-//            case BossState.TakingDamage:
-//                TakeDamageBehavior();
-//                break;
-//            case BossState.Dying:
-//                DieBehavior();
-//                break;
-//        }
-
-
-//    }
-//    //boss跟随
-//    void FollowPlayerXAxis()
-//    {
-//        if (playerPosition != null)
-//        {
-//            float playerX = playerPosition.position.x;
-//            float bossX = transform.position.x;
-//            float distanceToPlayer = Mathf.Abs(playerX - bossX);
-
-//            // 计算移动方向
-//            float direction = Mathf.Sign(playerX - bossX);
-
-//            // 如果距离玩家较远，正常移动
-//            if (distanceToPlayer > slowDownDistance)
-//            {
-//                transform.position = new Vector3(
-//                    transform.position.x + direction * moveSpeed * Time.deltaTime,
-//                    transform.position.y,
-//                    transform.position.z
-//                );
-//            }
-//            // 如果距离玩家较近，减速移动
-//            else if (distanceToPlayer > stopDistance)
-//            {
-//                float slowSpeed = moveSpeed * (distanceToPlayer / slowDownDistance);
-//                transform.position = new Vector3(
-//                    transform.position.x + direction * slowSpeed * Time.deltaTime,
-//                    transform.position.y,
-//                    transform.position.z
-//                );
-//            }
-//            // 如果距离玩家非常近，停止移动
-//            else
-//            {
-//                // 可以在这里添加其他逻辑，比如攻击玩家
-//            }
-
-//            // 检查是否超过玩家位置并调整
-//            if ((direction > 0 && bossX > playerX) || (direction < 0 && bossX < playerX))
-//            {
-//                // 如果超过玩家位置，开始减速并返回
-//                float returnSpeed = moveSpeed * 0.5f; // 返回速度
-//                transform.position = new Vector3(
-//                    transform.position.x - direction * returnSpeed * Time.deltaTime,
-//                    transform.position.y,
-//                    transform.position.z
-//                );
-//            }
-//        }
-//    }
-//    void AirborneBehavior()
-//    {
-
-//        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-//        bossPosition = this.transform;
-//        attackManager.FallingFruitsAttack();
-//        airTime -= Time.deltaTime;
-//        if(airTime <= 0)
-//            attackManager.timeBetweenFruits = 1f;
-//        if (bossStates.isHit && currentState == BossState.Airborne)
-//        {
-//            currentState = BossState.Ground;
-//            bossStates.isHit = false;
-//        }
-
-//    }
-
-//    void GroundBehavior()
-//    {
-//        this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-//        this.GetComponent<BoxCollider2D>().isTrigger = false;
-//        isGround = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
-//        bossStates.canTakeDamage = true;
-//        if (bossStates.isHit && currentState == BossState.Ground)
-//        {
-//            bossStates.isHit = false;
-//            currentState = BossState.Underground;
-//        }
-//        InvokeRepeating("Jump", 0f, jumpInterval);
-//    }
-
-//    void UndergroundBehavior()
-//    { 
-//        // 将Boss的位置设置到地下
-//        float undergroundY = -10f; // 地下的Y轴位置，可以根据实际需求调整
-//        transform.position = new Vector3(transform.position.x, undergroundY, transform.position.z);
-
-//        // 启用飞叶技能
-//        InvokeRepeating("FlyingLeavesAttack", 0f, 2f);
-//        // 实现地下状态逻辑
-//        // 检查是否需要切换到其他状态
-//    }
-
-//    void AttackBehavior()
-//    {
-//        // 实现攻击状态逻辑
-//        // 检查是否需要切换到其他状态
-//    }
-
-//    void TakeDamageBehavior()
-//    {
-//        // 实现受伤状态逻辑
-//        // 检查是否需要切换到其他状态
-//    }
-
-//    void DieBehavior()
-//    {
-//        // 实现死亡状态逻辑
-//        // 检查是否需要切换到其他状态
-//    }
-
-//    public void ChangeState(BossState newState)
-//    {
-//        currentState = newState;
-//    }
-//    // 跳跃方法
-//    void Jump()
-//    {
-//        float playerX = playerPosition.position.x;
-//        float bossX = transform.position.x;
-//        float direction = Mathf.Sign(playerX - bossX); // 方向：如果玩家在右边，为1；在左边，为-1
-//        // 计算水平力的大小
-//        float horizontalForce = jumpForce * 0.5f; // 可以调整这个比例以控制水平力的大小
-//        // 合成跳跃力
-//        Vector2 jumpVector = new Vector2(direction * horizontalForce, jumpForce);
-//        // 应用力
-//        rb.AddForce(jumpVector, ForceMode2D.Impulse);
-//        if (rb.velocity.y > 0.1f)
-//        {
-//            rb.gravityScale = upGravity;
-//        }
-//        else if (rb.velocity.y < -0.1f)//&&!isfloating)
-//        {
-//            rb.gravityScale = downGravity;
-//        }
-//    }
-//}
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -249,11 +37,16 @@ public class BossStateManager : MonoBehaviour
     public float jumpForce = 10f; // 跳跃力度
     public float jumpInterval = 3.0f; // 跳跃间隔
     #endregion
+    public bool isGround;//是否地面
     bool CanJump;
     float jumpTimer;
     bool StartLeafAttack = false;
-
-    public bool isGround;
+    public float undergroundTimer; // 地下状态持续时间
+    [Header("无敌")]
+    public bool invincible = true;
+    public float invincibleInterval = 5.0f;
+    public float invincibleTime;
+    
 
     public Sprite flyLeaf;
 
@@ -264,32 +57,36 @@ public class BossStateManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform; // 获取玩家对象的Transform组件
         attackManager = GetComponent<BossAttackManager>();
+
     }
 
     void Update()
     {
-        switch (currentState)
-        {
-            case BossState.Airborne:
-                AirborneBehavior();
-                FollowPlayerXAxis();
-                break;
-            case BossState.Ground:
-                GroundBehavior();
-                break;
-            case BossState.Underground:
-                UndergroundBehavior();
-                break;
-            case BossState.Attacking:
-                AttackBehavior();
-                break;
-            case BossState.TakingDamage:
-                TakeDamageBehavior();
-                break;
-            case BossState.Dying:
-                DieBehavior();
-                break;
+        if(bossStates.currentHP > 0){
+            switch (currentState)
+            {
+                case BossState.Airborne:
+                    AirborneBehavior();
+                    FollowPlayerXAxis();
+                    break;
+                case BossState.Ground:
+                    GroundBehavior();
+                    break;
+                case BossState.Underground:
+                    UndergroundBehavior();
+                    break;
+                case BossState.Attacking:
+                    AttackBehavior();
+                    break;
+                case BossState.TakingDamage:
+                    TakeDamageBehavior();
+                    break;
+                case BossState.Dying:
+                    DieBehavior();
+                    break;
+            }
         }
+        
     }
 
     // boss跟随
@@ -301,7 +98,7 @@ public class BossStateManager : MonoBehaviour
             float bossX = transform.position.x;
             float distanceToPlayer = Mathf.Abs(playerX - bossX);
 
-            // 计算移动方向
+            
             float direction = Mathf.Sign(playerX - bossX);
 
             // 如果距离玩家较远，正常移动
@@ -372,6 +169,7 @@ public class BossStateManager : MonoBehaviour
         if (bossStates.isHit && currentState == BossState.Ground)
         {
             bossStates.isHit = false;
+            bossStates.TakeDamage(1); // 受到1点伤害
             ChangeState(BossState.Underground); // 受击后切换到地下状态
         }
 
@@ -399,18 +197,23 @@ public class BossStateManager : MonoBehaviour
 
     void UndergroundBehavior()
     {
+        bossStates.canTakeDamage = false;
         // 将Boss的位置设置到地下
         float undergroundY = -10f; // 地下的Y轴位置，可以根据实际需求调整
-        transform.position = new Vector3(transform.position.x, undergroundY, transform.position.z);
+        transform.position = new Vector2(transform.position.x, undergroundY);
 
         // 启用飞叶技能
-        if (!StartLeafAttack)
+        if (!StartLeafAttack && undergroundTimer <= 5f)
         {
-        StartCoroutine(FlyingLeavesAttackRoutine());
-        StartLeafAttack = true;
+            StartCoroutine(FlyingLeavesAttackRoutine());
+            StartLeafAttack = true;
+        } 
+        undergroundTimer += Time.deltaTime;
+        if(undergroundTimer >= 7f){
+            attackManager.GiantFruitsAttack();
+            transform.position = new Vector2(attackManager.playerX, 11f);
+            currentState = BossState.Airborne;
         }
-        // 实现地下状态逻辑
-        // 检查是否需要切换到其他状态
     }
 
     void AttackBehavior()
@@ -472,7 +275,7 @@ public class BossStateManager : MonoBehaviour
         while (currentState == BossState.Underground)
         {
             attackManager.FlyingLeavesAttack();
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2.0f);
         }
     }
 }

@@ -23,5 +23,5 @@ public class BossAnimationController : MonoBehaviour
         effectParticleSystem.Play();
     }
 
-    // ÆäËû¶¯»­ºÍÌØÐ§¿ØÖÆ·½·¨...
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½...
 }

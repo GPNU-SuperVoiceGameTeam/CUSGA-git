@@ -21,24 +21,24 @@ public class BossAttackManager : MonoBehaviour
     public float leafSpeed = 5f; // 飞叶的速度
     public float spawnInterval = 3f; // 发射间隔时间
     private Transform playerTransform; // 玩家的Transform组件
-    private float playerY; // 玩家的Y轴位置
+    public float playerY; // 玩家的Y轴位置
+    public float playerX; // 玩家的X轴位置
     private Vector2 leftSpawnPoint; // 左侧发射点
     private Vector2 rightSpawnPoint; // 右侧发射点
-
+    #region 巨大水果攻击
+    public Transform giantFruitSpawnPoint; // 巨大水果生成位置
+    #endregion
     private BossStateManager stateManager;
 
     void Start()
     {
         stateManager = GetComponent<BossStateManager>();
-
-        
-
-        
     }
-    private void Update()
+    public void Update()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         playerY = playerTransform.position.y;
+        playerX = playerTransform.position.x;
         leftSpawnPoint = new Vector2(-Camera.main.orthographicSize * 2, playerY-1);
         rightSpawnPoint = new Vector2(Camera.main.orthographicSize * 2, playerY+1);
     }
@@ -91,7 +91,9 @@ public class BossAttackManager : MonoBehaviour
 
     public void GiantFruitsAttack()
     {
-        // 实现巨大水果攻击逻辑
+        Vector2 giantFruitSpawnPoint = new Vector2(playerX, playerY + 20f); // 修改生成位置的y坐标为playerY + 20f
+        GameObject giantFruit = Instantiate(giantFruitPrefab, giantFruitSpawnPoint, Quaternion.identity);
+        giantFruit.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -5f); // 修改下落速度为5
     }
 
     public void FlyingLeavesAttack()
@@ -104,6 +106,7 @@ public class BossAttackManager : MonoBehaviour
         GameObject leftLeaf = Instantiate(leafProjectilePrefab, leftSpawnPoint, Quaternion.identity);
         Rigidbody2D leftRigidbody = leftLeaf.GetComponent<Rigidbody2D>();
         leftRigidbody.velocity = new Vector2(leafSpeed, 0); // 向右移动
+        
 
         // 从右侧发射飞叶
         GameObject rightLeaf = Instantiate(leafProjectilePrefab, rightSpawnPoint, Quaternion.identity);
