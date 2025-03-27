@@ -32,12 +32,14 @@ public class PlayerController : MonoBehaviour
     #region 以下为私有属性
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private VoiceController voiceBar;
     #endregion
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
     }
 
     void Update()
@@ -115,6 +117,8 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
+            //增加过载
+            voiceBar.AddVoice();
         }
     }
 
