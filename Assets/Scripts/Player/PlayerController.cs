@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck; // 地面检测点
     public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//地面检测范围
     //声波预设
-    public GameObject bulletPrefab;//声波预设体
+    public GameObject bulletPrefab;//声波预设体\
+    public bool canShoot = true;
     public float shootForce = 5.0f;//射击力度
     public float keepTime = 2.0f;//声波持续时间
 
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
             //获取鼠标坐标
             Vector2 mousePosition = Input.mousePosition;

@@ -12,14 +12,24 @@ public class VoiceController : MonoBehaviour
     public float lastAttackTime; // 上一次攻击的时间
     public bool isDecaying = false; // 是否正在衰减
     public float decayRate = 80;
+    public PlayerController playerController;
 
     private void Start()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         lastAttackTime = Time.time; // 初始化为当前时间
     }
     void Update()
     {
         changeVoice();
+        if(voice >= 100)
+        {
+            playerController.canShoot = false;
+        }
+        else
+        {
+            playerController.canShoot = true;
+        }
         if (Time.time - lastAttackTime > decayInterval)
         {
             if (!isDecaying)

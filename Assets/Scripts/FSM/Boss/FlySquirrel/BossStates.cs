@@ -20,6 +20,10 @@ public class BossStates : MonoBehaviour
         {
             isHit = true;
         }
+        else
+        {
+            isHit = false;
+        }
     }
     public void TakeDamage(int damage)
     {

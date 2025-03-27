@@ -4,10 +4,11 @@ using UnityEngine;
 //攻击系统
 public class BossAttackManager : MonoBehaviour
 {
+
     public GameObject fallingFruitPrefab;// 水果预制体
-    public GameObject explosiveFruitPrefab;
-    public GameObject giantFruitPrefab;
-    public GameObject leafProjectilePrefab;
+    public GameObject explosiveFruitPrefab;//爆炸水果预制体
+    public GameObject giantFruitPrefab;//巨大水果预制体
+    public GameObject leafProjectilePrefab;//飞叶预制体
     //FallingFruitsAttack
     public float fallingFruitsAttackInterval = 0.5f; // 攻击间隔时间
     public float fallingFruitsAttackDuration = 5f; // 攻击持续时间
@@ -16,12 +17,30 @@ public class BossAttackManager : MonoBehaviour
     public Transform fruitSpawnPoint; // 水果生成位置
     private float fallingFruitsAttackTimer; // 丢水果计时器
     private float fallingFruitsAttackDurationTimer; // 攻击持续时间计时器
+    //FlyingLeavesAttack
+    public float leafSpeed = 5f; // 飞叶的速度
+    public float spawnInterval = 3f; // 发射间隔时间
+    private Transform playerTransform; // 玩家的Transform组件
+    private float playerY; // 玩家的Y轴位置
+    private Vector2 leftSpawnPoint; // 左侧发射点
+    private Vector2 rightSpawnPoint; // 右侧发射点
 
     private BossStateManager stateManager;
 
     void Start()
     {
         stateManager = GetComponent<BossStateManager>();
+
+        
+
+        
+    }
+    private void Update()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerY = playerTransform.position.y;
+        leftSpawnPoint = new Vector2(-Camera.main.orthographicSize * 2, playerY-1);
+        rightSpawnPoint = new Vector2(Camera.main.orthographicSize * 2, playerY+1);
     }
 
     public void FallingFruitsAttack()
@@ -77,7 +96,18 @@ public class BossAttackManager : MonoBehaviour
 
     public void FlyingLeavesAttack()
     {
-        // 实现飞叶攻击逻辑
-        // 从屏幕两侧发射叶子
+        SpawnLeaf();
+    }
+    void SpawnLeaf()
+    {
+        // 从左侧发射飞叶
+        GameObject leftLeaf = Instantiate(leafProjectilePrefab, leftSpawnPoint, Quaternion.identity);
+        Rigidbody2D leftRigidbody = leftLeaf.GetComponent<Rigidbody2D>();
+        leftRigidbody.velocity = new Vector2(leafSpeed, 0); // 向右移动
+
+        // 从右侧发射飞叶
+        GameObject rightLeaf = Instantiate(leafProjectilePrefab, rightSpawnPoint, Quaternion.identity);
+        Rigidbody2D rightRigidbody = rightLeaf.GetComponent<Rigidbody2D>();
+        rightRigidbody.velocity = new Vector2(-leafSpeed, 0); // 向左移动
     }
 }
