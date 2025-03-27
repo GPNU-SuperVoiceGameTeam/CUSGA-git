@@ -233,6 +233,7 @@ public class BossStateManager : MonoBehaviour
     public float upGravity; // 跳跃时重力大小
     public float downGravity; // 下落时重力大小
 
+    
     public BossState currentState; // 当前状态
     private BossStates bossStates; // 获取生命值系统
     private Animator animator;
@@ -240,12 +241,18 @@ public class BossStateManager : MonoBehaviour
     private BossAttackManager attackManager; // 获取攻击系统
     public Transform bossPosition; // boss位置
     public Transform playerPosition; // 获取玩家位置
+    #region 可调参数
     public float moveSpeed = 5f; // 移动速度
     public float slowDownDistance = 2f; // 开始减速的距离
     public float stopDistance = 0.5f; // 停止移动的距离
     private float airTime = 5.0f; // 空中时间
     public float jumpForce = 10f; // 跳跃力度
-    public float jumpInterval = 2.0f; // 跳跃间隔
+    public float jumpInterval = 3.0f; // 跳跃间隔
+    #endregion
+    bool CanJump;
+    float jumpTimer;
+    bool StartLeafAttack = false;
+
     public bool isGround;
 
     public Sprite flyLeaf;
@@ -350,6 +357,7 @@ public class BossStateManager : MonoBehaviour
 
     void GroundBehavior()
     {
+
         // 设置物理约束
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         GetComponent<BoxCollider2D>().isTrigger = false;
@@ -368,10 +376,24 @@ public class BossStateManager : MonoBehaviour
         }
 
         // 如果已经在地面上，开始跳跃
-        if (isGround)
+        if (isGround&&CanJump)
         {
             //StartCoroutine(JumpRoutine());
-            InvokeRepeating("Jump", 0f, jumpInterval);
+            //InvokeRepeating("Jump", 0f, jumpInterval);
+            Jump();
+            CanJump = false;
+        }
+
+        if (!CanJump)
+        {
+            jumpTimer +=Time.deltaTime;
+            if   (jumpTimer>=jumpInterval)
+            {
+                CanJump = true;
+                jumpTimer = 0;
+            }
+
+
         }
     }
 
@@ -382,7 +404,11 @@ public class BossStateManager : MonoBehaviour
         transform.position = new Vector3(transform.position.x, undergroundY, transform.position.z);
 
         // 启用飞叶技能
+        if (!StartLeafAttack)
+        {
         StartCoroutine(FlyingLeavesAttackRoutine());
+        StartLeafAttack = true;
+        }
         // 实现地下状态逻辑
         // 检查是否需要切换到其他状态
     }
