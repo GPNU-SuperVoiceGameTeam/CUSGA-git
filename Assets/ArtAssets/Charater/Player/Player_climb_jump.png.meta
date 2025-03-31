@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 415540faefd643f4396355eba8938679
+guid: d31f8528d48a66f47a0a5ce44f0e282a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 360
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_0
+      name: Player_climb_jump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -105,20 +105,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8477f6bd0cdefa429dbcc86966c18c9
-      internalID: -1594025356
+      spriteID: df0925d0fc4b62d45a3a9224f6032e3f
+      internalID: -486554096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_1
+      name: Player_climb_jump_1
       rect:
         serializedVersion: 2
         x: 960
@@ -126,20 +126,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dffaec43f3890ea47add39136760baa6
-      internalID: -650192381
+      spriteID: bf96818ddd85c30439291ec4a6ea54f5
+      internalID: -1729567425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_2
+      name: Player_climb_jump_2
       rect:
         serializedVersion: 2
         x: 1920
@@ -147,20 +147,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 312b3a120f06b94439ca180658f2b183
-      internalID: -1235461715
+      spriteID: f94f97ba5dd631049b14f27b2b30c036
+      internalID: -1771515655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_3
+      name: Player_climb_jump_3
       rect:
         serializedVersion: 2
         x: 2880
@@ -168,20 +168,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9425a7357df601543a01a9d039b5d1dd
-      internalID: -615669482
+      spriteID: d92ff6295a12d2842967796e0c0cbe14
+      internalID: 1503539558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_4
+      name: Player_climb_jump_4
       rect:
         serializedVersion: 2
         x: 3840
@@ -189,20 +189,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7574e74bc3def1942a25504ef31b9097
-      internalID: 548358026
+      spriteID: e973847ae6c1d9f4fb4034528f4c3da5
+      internalID: -1869582093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_5
+      name: Player_climb_jump_5
       rect:
         serializedVersion: 2
         x: 4800
@@ -210,62 +210,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10c7d58cc5d54e0408b913667b68936e
-      internalID: 446771406
+      spriteID: 4aaa53725f400b34ba918509153d5830
+      internalID: 1497079327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_6
-      rect:
-        serializedVersion: 2
-        x: 5760
-        y: 5760
-        width: 960
-        height: 1440
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9023f235a40823e409d1bb5e09fbf2f7
-      internalID: 1152306519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_7
-      rect:
-        serializedVersion: 2
-        x: 6720
-        y: 5760
-        width: 960
-        height: 1440
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d42c6fb6f76a09b4eab7eb36a3d70c3c
-      internalID: 990254026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_8
+      name: Player_climb_jump_6
       rect:
         serializedVersion: 2
         x: 0
@@ -273,20 +231,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55215bc05e38d1e4db4598f2a64b1008
-      internalID: -667679569
+      spriteID: 8358f5f527eca244788b90c8e48add09
+      internalID: -1177291473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_9
+      name: Player_climb_jump_7
       rect:
         serializedVersion: 2
         x: 960
@@ -294,20 +252,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f79d9fc21fafc544af716c031aa9891
-      internalID: 537028501
+      spriteID: 9cfd3be681b600a4a8adda2aef6bbe7b
+      internalID: 1714570137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_10
+      name: Player_climb_jump_8
       rect:
         serializedVersion: 2
         x: 1920
@@ -315,20 +273,20 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd82d13ca09b2454b928c2f6113f712b
-      internalID: -1881059443
+      spriteID: 17321467fe36db6408c78842823eb88a
+      internalID: 1829011466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_11
+      name: Player_climb_jump_9
       rect:
         serializedVersion: 2
         x: 2880
@@ -336,140 +294,182 @@ TextureImporter:
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06849b67a8e7e7f4d928060728ced696
-      internalID: -966837263
+      spriteID: 30f5d2ef29521ab4e998ce0839760f7b
+      internalID: -295286800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_16
+      name: Player_climb_jump_10
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 4320
+        width: 960
+        height: 1440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc40e63cde3c5ad4da981f89875e41b5
+      internalID: -732887064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_climb_jump_11
+      rect:
+        serializedVersion: 2
+        x: 4800
+        y: 4320
+        width: 960
+        height: 1440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c55642ae80347446b79c5f33af2bfbd
+      internalID: 2067661795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_climb_jump_12
       rect:
         serializedVersion: 2
         x: 0
         y: 2880
         width: 960
-        height: 1430
+        height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ceaf02380448db4c89e907b6e9ff36d
-      internalID: 1437740198
+      spriteID: 226a4fbe370c58f4ba0dad99fa61618f
+      internalID: -525202135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_17
+      name: Player_climb_jump_13
       rect:
         serializedVersion: 2
         x: 960
         y: 2880
         width: 960
-        height: 1430
+        height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c8c497b5d41e044ea298abdec4d1d6d
-      internalID: -1754323897
+      spriteID: 54a11bb4f0d3e5a4cb76f63e5f4713e6
+      internalID: -303551113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_18
+      name: Player_climb_jump_14
       rect:
         serializedVersion: 2
         x: 1920
         y: 2880
         width: 960
-        height: 1430
+        height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6774a29c0dbd85f4fb9ff1dddf072db2
-      internalID: 1736550824
+      spriteID: 6967867e056dc1c4aaaf1abfe6e32ee2
+      internalID: -423749566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_19
+      name: Player_climb_jump_15
       rect:
         serializedVersion: 2
         x: 2880
         y: 2880
         width: 960
-        height: 1430
+        height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5332d90226376ae4d88ce9f046cb8535
-      internalID: 1991591830
+      spriteID: 65ebc9bc227fd5b4cb8ac1728ccd247a
+      internalID: 135738616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_20
+      name: Player_climb_jump_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1440
+        x: 3840
+        y: 2880
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca8de2fe05a95224ca6d754a9c782c19
-      internalID: -73214759
+      spriteID: 5e875c43ca006bc45a82a82a54047e98
+      internalID: 2122764249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_21
+      name: Player_climb_jump_17
       rect:
         serializedVersion: 2
-        x: 960
-        y: 1440
+        x: 4800
+        y: 2880
         width: 960
         height: 1440
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7a86a542802b8745815df6d5df0cbc7
-      internalID: -1434165241
+      spriteID: 29158f4bee33df3478473f1e6e3f0b25
+      internalID: 818120945
       vertices: []
       indices: 
       edges: []
@@ -485,31 +485,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_0: -1594025356
-      player_1: -650192381
-      player_10: -1881059443
-      player_11: -966837263
-      player_12: 615243425
-      player_13: -843439093
-      player_14: -2121819567
-      player_15: -704671304
-      player_16: 1437740198
-      player_17: -1754323897
-      player_18: 1736550824
-      player_19: 1991591830
-      player_2: -1235461715
-      player_20: -73214759
-      player_21: -1434165241
-      player_22: -852829443
-      player_23: -823368781
-      player_24: -1051283504
-      player_3: -615669482
-      player_4: 548358026
-      player_5: 446771406
-      player_6: 1152306519
-      player_7: 990254026
-      player_8: -667679569
-      player_9: 537028501
+      Player_climb_jump_0: -486554096
+      Player_climb_jump_1: -1729567425
+      Player_climb_jump_10: -732887064
+      Player_climb_jump_11: 2067661795
+      Player_climb_jump_12: -525202135
+      Player_climb_jump_13: -303551113
+      Player_climb_jump_14: -423749566
+      Player_climb_jump_15: 135738616
+      Player_climb_jump_16: 2122764249
+      Player_climb_jump_17: 818120945
+      Player_climb_jump_18: 1641823415
+      Player_climb_jump_19: 994825997
+      Player_climb_jump_2: -1771515655
+      Player_climb_jump_20: 673625076
+      Player_climb_jump_21: -1223555996
+      Player_climb_jump_3: 1503539558
+      Player_climb_jump_4: -1869582093
+      Player_climb_jump_5: 1497079327
+      Player_climb_jump_6: -1177291473
+      Player_climb_jump_7: 1714570137
+      Player_climb_jump_8: 1829011466
+      Player_climb_jump_9: -295286800
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
