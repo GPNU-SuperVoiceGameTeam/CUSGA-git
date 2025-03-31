@@ -5,32 +5,34 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    //µØÃæ¼ì²â
-    public LayerMask groundLayer; // µØÃæ²ã£¬ÓÃÓÚ¼ì²âÊÇ·ñÔÚµØÃæÉÏ
-    public Transform groundCheck; // µØÃæ¼ì²âµã
-    public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//µØÃæ¼ì²â·¶Î§
-    //Éù²¨Ô¤Éè
-    public GameObject bulletPrefab;//Éù²¨Ô¤ÉèÌå\
+    //åœ°é¢æ£€æµ‹
+    public LayerMask groundLayer; // åœ°é¢å±‚ï¼Œç”¨äºæ£€æµ‹æ˜¯å¦åœ¨åœ°é¢ä¸Š
+    public Transform groundCheck; // åœ°é¢æ£€æµ‹ç‚¹
+    public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//åœ°é¢æ£€æµ‹èŒƒå›´
+    [Header("å£°æ³¢")]
+    public GameObject bulletPrefab;//å£°æ³¢é¢„è®¾ä½“
     public bool canShoot = true;
-    public float shootForce = 5.0f;//Éä»÷Á¦¶È
-    public float keepTime = 2.0f;//Éù²¨³ÖĞøÊ±¼ä
+    public float shootForce = 5.0f;//å°„å‡»åŠ›åº¦
+    public float keepTime = 2.0f;//å£°æ³¢æŒç»­æ—¶é—´
 
-    [Header("ÊôĞÔ")]
-    public int health = 3; //ÉúÃüÖµ
-    public float moveSpeed = 8f; // ÒÆ¶¯ËÙ¶È
-    public float jumpForce = 16f; // ÌøÔ¾Á¦¶È
+    [Header("å±æ€§")]
+    public int health = 3; //ç”Ÿå‘½å€¼
+    public float moveSpeed = 8f; // ç§»åŠ¨é€Ÿåº¦
+    public float jumpForce = 16f; // è·³è·ƒåŠ›åº¦
     
 
-    public float upGravity;//ÌøÔ¾Ê±ÖØÁ¦´óĞ¡
-    public float downGravity;//ÏÂÂäÊ±ÖØÁ¦´óĞ¡
+    public float upGravity;//è·³è·ƒæ—¶é‡åŠ›å¤§å°
+    public float downGravity;//ä¸‹è½æ—¶é‡åŠ›å¤§å°
 
-    [Header("×´Ì¬")]
+    [Header("çŠ¶æ€")]
     public bool isGround;
+    public bool isAttack;
+    public bool isDead;
 
-    [Header("Ö÷½ÇĞĞ¶¯×´Ì¬")]
+    [Header("ä¸»è§’è¡ŒåŠ¨çŠ¶æ€")]
     private string state_type = "isMoveAble";//isMoveAble,cantMoveAble
 
-    #region ÒÔÏÂÎªË½ÓĞÊôĞÔ
+    #region ä»¥ä¸‹ä¸ºç§æœ‰å±æ€§
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private VoiceController voiceBar;
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
             case "isMoveAble":
                 Move();
                 Jump();
-                Shoot();
+                Attack();
                 break;
             case "cantMoveAble":
                 break;
@@ -62,14 +64,14 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        // ¼ì²âÍæ¼ÒÊÇ·ñÔÚµØÃæÉÏ
+        // æ£€æµ‹ç©å®¶æ˜¯å¦åœ¨åœ°é¢ä¸Š
         isGround = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
-        // »ñÈ¡ÊäÈë
+        // è·å–è¾“å…¥
         float moveInput = Input.GetAxis("Horizontal");
-        // ÒÆ¶¯Íæ¼Ò
+        // ç§»åŠ¨ç©å®¶
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        if (moveInput < 0) //¸ù¾İÊäÈë·­×ªÍæ¼Ò
+        if (moveInput < 0) //æ ¹æ®è¾“å…¥ç¿»è½¬ç©å®¶
         {
            spriteRenderer.flipX = true;
         }
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //¸ù¾İÏÂ½µ¸Ä±äÖØÁ¦
+        //æ ¹æ®ä¸‹é™æ”¹å˜é‡åŠ›
         
         if(rb.velocity.y>0.1f)
         {
@@ -100,26 +102,29 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    public void Shoot()
+    public void Attack()
     {
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            //»ñÈ¡Êó±ê×ø±ê
+            isAttack = true;
+            //è·å–é¼ æ ‡åæ ‡
             Vector2 mousePosition = Input.mousePosition;
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
             Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
-            //ÊµÀı»¯Éù²¨
+            //å®ä¾‹åŒ–å£°æ³¢
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             BattleWave battleWave = bullet.GetComponent<BattleWave>();
             battleWave.Initialize(keepTime);
-            //Éù²¨·½Ïò
+            //å£°æ³¢æ–¹å‘
             Vector2 direction = (worldPosition - position2D).normalized;
             bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            //·¢ÉäÉù²¨
+            //å‘å°„å£°æ³¢
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
-            //Ôö¼Ó¹ıÔØ
+            //å¢åŠ è¿‡è½½
             voiceBar.AddVoice();
+        }else{
+            isAttack = false;
         }
     }
 
@@ -134,8 +139,17 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         Destroy(gameObject);
-        UnityEngine.Debug.Log("Íæ¼ÒËÀÍö");
+        UnityEngine.Debug.Log("ç©å®¶æ­»äº¡");
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enmey"){
+            TakeDamage(1);
+        }
+
     }
     private void OnDrawGizmosSelected()
     {

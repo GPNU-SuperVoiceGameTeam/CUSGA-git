@@ -1,32 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//¹¥»÷ÏµÍ³
+//æ”»å‡»ç³»ç»Ÿ
 public class BossAttackManager : MonoBehaviour
 {
 
-    public GameObject fallingFruitPrefab;// Ë®¹ûÔ¤ÖÆÌå
-    public GameObject explosiveFruitPrefab;//±¬Õ¨Ë®¹ûÔ¤ÖÆÌå
-    public GameObject giantFruitPrefab;//¾Ş´óË®¹ûÔ¤ÖÆÌå
-    public GameObject leafProjectilePrefab;//·ÉÒ¶Ô¤ÖÆÌå
+    public GameObject fallingFruitPrefab;// æ°´æœé¢„åˆ¶ä½“
+    public GameObject explosiveFruitPrefab;//çˆ†ç‚¸æ°´æœé¢„åˆ¶ä½“
+    public GameObject giantFruitPrefab;//å·¨å¤§æ°´æœé¢„åˆ¶ä½“
+    public GameObject leafProjectilePrefab;//é£å¶é¢„åˆ¶ä½“
     //FallingFruitsAttack
-    public float fallingFruitsAttackInterval = 0.5f; // ¹¥»÷¼ä¸ôÊ±¼ä
-    public float fallingFruitsAttackDuration = 5f; // ¹¥»÷³ÖĞøÊ±¼ä
-    public float timeBetweenFruits = 0.3f; // Ã¿´Î¶ªË®¹ûµÄÊ±¼ä¼ä¸ô
-    public float fallingSpeed = 10f; // Ë®¹ûÏÂÂäËÙ¶È
-    public Transform fruitSpawnPoint; // Ë®¹ûÉú³ÉÎ»ÖÃ
-    private float fallingFruitsAttackTimer; // ¶ªË®¹û¼ÆÊ±Æ÷
-    private float fallingFruitsAttackDurationTimer; // ¹¥»÷³ÖĞøÊ±¼ä¼ÆÊ±Æ÷
+    public float fallingFruitsAttackInterval = 0.5f; // æ”»å‡»é—´éš”æ—¶é—´
+    public float fallingFruitsAttackDuration = 5f; // æ”»å‡»æŒç»­æ—¶é—´
+    public float timeBetweenFruits = 0.3f; // æ¯æ¬¡ä¸¢æ°´æœçš„æ—¶é—´é—´éš”
+    public float fallingSpeed = 10f; // æ°´æœä¸‹è½é€Ÿåº¦
+    public Transform fruitSpawnPoint; // æ°´æœç”Ÿæˆä½ç½®
+    private float fallingFruitsAttackTimer; // ä¸¢æ°´æœè®¡æ—¶å™¨
+    private float fallingFruitsAttackDurationTimer; // æ”»å‡»æŒç»­æ—¶é—´è®¡æ—¶å™¨
     //FlyingLeavesAttack
-    public float leafSpeed = 5f; // ·ÉÒ¶µÄËÙ¶È
-    public float spawnInterval = 3f; // ·¢Éä¼ä¸ôÊ±¼ä
-    private Transform playerTransform; // Íæ¼ÒµÄTransform×é¼ş
-    public float playerY; // Íæ¼ÒµÄYÖáÎ»ÖÃ
-    public float playerX; // Íæ¼ÒµÄXÖáÎ»ÖÃ
-    private Vector2 leftSpawnPoint; // ×ó²à·¢Éäµã
-    private Vector2 rightSpawnPoint; // ÓÒ²à·¢Éäµã
-    #region ¾Ş´óË®¹û¹¥»÷
-    public Transform giantFruitSpawnPoint; // ¾Ş´óË®¹ûÉú³ÉÎ»ÖÃ
+    public float leafSpeed = 5f; // é£å¶çš„é€Ÿåº¦
+    public float spawnInterval = 3f; // å‘å°„é—´éš”æ—¶é—´
+    private Transform playerTransform; // ç©å®¶çš„Transformç»„ä»¶
+    public float playerY; // ç©å®¶çš„Yè½´ä½ç½®
+    public float playerX; // ç©å®¶çš„Xè½´ä½ç½®
+    private Vector2 leftSpawnPoint; // å·¦ä¾§å‘å°„ç‚¹
+    private Vector2 rightSpawnPoint; // å³ä¾§å‘å°„ç‚¹
+    #region å·¨å¤§æ°´æœæ”»å‡»
+    public Transform giantFruitSpawnPoint; // å·¨å¤§æ°´æœç”Ÿæˆä½ç½®
     #endregion
     private BossStateManager stateManager;
 
@@ -45,32 +45,32 @@ public class BossAttackManager : MonoBehaviour
 
     public void FallingFruitsAttack()
     {
-        // ²¥·Å¹¥»÷¶¯»­ºÍÒôĞ§
+        // æ’­æ”¾æ”»å‡»åŠ¨ç”»å’ŒéŸ³æ•ˆ
         /*
         animator.SetTrigger("FallingFruitsAttack");
         audioSource.PlayOneShot(fallingFruitsAttackSound);
         */
-        // ¹¥»÷³ÖĞøÊ±¼ä¼ÆÊ±Æ÷
+        // æ”»å‡»æŒç»­æ—¶é—´è®¡æ—¶å™¨
         if (fallingFruitsAttackDuration <= 0)
         {
-            // ¹¥»÷½áÊø£¬ÖØÖÃ¼ÆÊ±Æ÷
+            // æ”»å‡»ç»“æŸï¼Œé‡ç½®è®¡æ—¶å™¨
             fallingFruitsAttackDuration = fallingFruitsAttackInterval;
-            // ¿ÉÒÔÔÚÕâÀïÌí¼Ó¹¥»÷½áÊøºóµÄÂß¼­£¬±ÈÈçÇĞ»»»Ø¿ÕÖĞ×´Ì¬
+            // å¯ä»¥åœ¨è¿™é‡Œæ·»åŠ æ”»å‡»ç»“æŸåçš„é€»è¾‘ï¼Œæ¯”å¦‚åˆ‡æ¢å›ç©ºä¸­çŠ¶æ€
             return;
         }
 
-        // ÔÚ¹¥»÷³ÖĞøÊ±¼äÄÚ£¬°´ÕÕÉè¶¨µÄÊ±¼ä¼ä¸ô¶ªË®¹û
+        // åœ¨æ”»å‡»æŒç»­æ—¶é—´å†…ï¼ŒæŒ‰ç…§è®¾å®šçš„æ—¶é—´é—´éš”ä¸¢æ°´æœ
         if (fallingFruitsAttackTimer <= 0)
         {
-            // Éú³ÉË®¹û
+            // ç”Ÿæˆæ°´æœ
             fruitSpawnPoint = stateManager.bossPosition;
             GameObject fruit = Instantiate(fallingFruitPrefab, fruitSpawnPoint.position, Quaternion.identity);
-            // ÉèÖÃË®¹ûµÄÏÂÂäËÙ¶È
+            // è®¾ç½®æ°´æœçš„ä¸‹è½é€Ÿåº¦
             fruit.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -fallingSpeed);
-            // ÉèÖÃË®¹û²»¿É´©¹ıÆ½Ì¨µÄÂß¼­
+            // è®¾ç½®æ°´æœä¸å¯ç©¿è¿‡å¹³å°çš„é€»è¾‘
             fruit.GetComponent<FruitBehavior>().canPassThroughPlatforms = false;
 
-            // ÖØÖÃ¶ªË®¹û¼ÆÊ±Æ÷
+            // é‡ç½®ä¸¢æ°´æœè®¡æ—¶å™¨
             fallingFruitsAttackTimer = timeBetweenFruits;
         }
         else
@@ -78,22 +78,22 @@ public class BossAttackManager : MonoBehaviour
             fallingFruitsAttackTimer -= Time.deltaTime;
         }
 
-        // ¼õÉÙ¹¥»÷³ÖĞøÊ±¼ä¼ÆÊ±Æ÷
+        // å‡å°‘æ”»å‡»æŒç»­æ—¶é—´è®¡æ—¶å™¨
         fallingFruitsAttackDuration -= Time.deltaTime;
-        // ÊµÏÖ·è¿ñ¶ªË®¹û¹¥»÷Âß¼­
-        // ¶¨Ê±Éú³ÉË®¹û²¢ÏòÏÂÅ×ÖÀ
+        // å®ç°ç–¯ç‹‚ä¸¢æ°´æœæ”»å‡»é€»è¾‘
+        // å®šæ—¶ç”Ÿæˆæ°´æœå¹¶å‘ä¸‹æŠ›æ·
     }
 
     public void ExplosiveFruitsAttack()
     {
-        // ÊµÏÖ±¬Õ¨Ë®¹û¹¥»÷Âß¼­
+        // å®ç°çˆ†ç‚¸æ°´æœæ”»å‡»é€»è¾‘
     }
 
     public void GiantFruitsAttack()
     {
-        Vector2 giantFruitSpawnPoint = new Vector2(playerX, playerY + 20f); // ĞŞ¸ÄÉú³ÉÎ»ÖÃµÄy×ø±êÎªplayerY + 20f
+        Vector2 giantFruitSpawnPoint = new Vector2(playerX, playerY + 20f); // ä¿®æ”¹ç”Ÿæˆä½ç½®çš„yåæ ‡ä¸ºplayerY + 20f
         GameObject giantFruit = Instantiate(giantFruitPrefab, giantFruitSpawnPoint, Quaternion.identity);
-        giantFruit.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -5f); // ĞŞ¸ÄÏÂÂäËÙ¶ÈÎª5
+        giantFruit.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -5f); // ä¿®æ”¹ä¸‹è½é€Ÿåº¦ä¸º5
     }
 
     public void FlyingLeavesAttack()
@@ -102,15 +102,15 @@ public class BossAttackManager : MonoBehaviour
     }
     void SpawnLeaf()
     {
-        // ´Ó×ó²à·¢Éä·ÉÒ¶
+        // ä»å·¦ä¾§å‘å°„é£å¶
         GameObject leftLeaf = Instantiate(leafProjectilePrefab, leftSpawnPoint, Quaternion.identity);
         Rigidbody2D leftRigidbody = leftLeaf.GetComponent<Rigidbody2D>();
-        leftRigidbody.velocity = new Vector2(leafSpeed, 0); // ÏòÓÒÒÆ¶¯
+        leftRigidbody.velocity = new Vector2(leafSpeed, 0); // å‘å³ç§»åŠ¨
         
 
-        // ´ÓÓÒ²à·¢Éä·ÉÒ¶
+        // ä»å³ä¾§å‘å°„é£å¶
         GameObject rightLeaf = Instantiate(leafProjectilePrefab, rightSpawnPoint, Quaternion.identity);
         Rigidbody2D rightRigidbody = rightLeaf.GetComponent<Rigidbody2D>();
-        rightRigidbody.velocity = new Vector2(-leafSpeed, 0); // Ïò×óÒÆ¶¯
+        rightRigidbody.velocity = new Vector2(-leafSpeed, 0); // å‘å·¦ç§»åŠ¨
     }
 }

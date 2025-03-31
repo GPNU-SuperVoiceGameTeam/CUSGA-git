@@ -5,44 +5,44 @@ using UnityEngine;
 
 public enum BossState
 {
-    Airborne, // ¿ÕÖĞ
-    Ground, // µØÃæ
-    Underground, // µØÏÂ
-    Attacking, // ¹¥»÷
-    TakingDamage, // ÊÜ»÷
-    Dying // ËÀÍö
+    Airborne, // ç©ºä¸­
+    Ground, // åœ°é¢
+    Underground, // åœ°ä¸‹
+    Attacking, // æ”»å‡»
+    TakingDamage, // å—å‡»
+    Dying // æ­»äº¡
 }
 
 public class BossStateManager : MonoBehaviour
 {
-    public LayerMask groundLayer; // µØÃæ²ã£¬ÓÃÓÚ¼ì²âÊÇ·ñÔÚµØÃæÉÏ
-    public Transform groundCheck; // µØÃæ¼ì²âµã
-    public Vector2 groundCheckSize = new Vector2(1f, 0.1f); // µØÃæ¼ì²â·¶Î§
-    public float upGravity; // ÌøÔ¾Ê±ÖØÁ¦´óĞ¡
-    public float downGravity; // ÏÂÂäÊ±ÖØÁ¦´óĞ¡
+    public LayerMask groundLayer; // åœ°é¢å±‚ï¼Œç”¨äºæ£€æµ‹æ˜¯å¦åœ¨åœ°é¢ä¸Š
+    public Transform groundCheck; // åœ°é¢æ£€æµ‹ç‚¹
+    public Vector2 groundCheckSize = new Vector2(1f, 0.1f); // åœ°é¢æ£€æµ‹èŒƒå›´
+    public float upGravity; // è·³è·ƒæ—¶é‡åŠ›å¤§å°
+    public float downGravity; // ä¸‹è½æ—¶é‡åŠ›å¤§å°
 
     
-    public BossState currentState; // µ±Ç°×´Ì¬
-    private BossStates bossStates; // »ñÈ¡ÉúÃüÖµÏµÍ³
+    public BossState currentState; // å½“å‰çŠ¶æ€
+    private BossStates bossStates; // è·å–ç”Ÿå‘½å€¼ç³»ç»Ÿ
     private Animator animator;
     private Rigidbody2D rb;
-    private BossAttackManager attackManager; // »ñÈ¡¹¥»÷ÏµÍ³
-    public Transform bossPosition; // bossÎ»ÖÃ
-    public Transform playerPosition; // »ñÈ¡Íæ¼ÒÎ»ÖÃ
-    #region ¿Éµ÷²ÎÊı
-    public float moveSpeed = 5f; // ÒÆ¶¯ËÙ¶È
-    public float slowDownDistance = 2f; // ¿ªÊ¼¼õËÙµÄ¾àÀë
-    public float stopDistance = 0.5f; // Í£Ö¹ÒÆ¶¯µÄ¾àÀë
-    private float airTime = 5.0f; // ¿ÕÖĞÊ±¼ä
-    public float jumpForce = 10f; // ÌøÔ¾Á¦¶È
-    public float jumpInterval = 3.0f; // ÌøÔ¾¼ä¸ô
+    private BossAttackManager attackManager; // è·å–æ”»å‡»ç³»ç»Ÿ
+    public Transform bossPosition; // bossä½ç½®
+    public Transform playerPosition; // è·å–ç©å®¶ä½ç½®
+    #region å¯è°ƒå‚æ•°
+    public float moveSpeed = 5f; // ç§»åŠ¨é€Ÿåº¦
+    public float slowDownDistance = 2f; // å¼€å§‹å‡é€Ÿçš„è·ç¦»
+    public float stopDistance = 0.5f; // åœæ­¢ç§»åŠ¨çš„è·ç¦»
+    private float airTime = 5.0f; // ç©ºä¸­æ—¶é—´
+    public float jumpForce = 10f; // è·³è·ƒåŠ›åº¦
+    public float jumpInterval = 3.0f; // è·³è·ƒé—´éš”
     #endregion
-    public bool isGround;//ÊÇ·ñµØÃæ
+    public bool isGround;//æ˜¯å¦åœ°é¢
     bool CanJump;
     float jumpTimer;
     bool StartLeafAttack = false;
-    public float undergroundTimer; // µØÏÂ×´Ì¬³ÖĞøÊ±¼ä
-    [Header("ÎŞµĞ")]
+    public float undergroundTimer; // åœ°ä¸‹çŠ¶æ€æŒç»­æ—¶é—´
+    [Header("æ— æ•Œ")]
     public bool invincible = true;
     public float invincibleInterval = 5.0f;
     public float invincibleTime;
@@ -52,10 +52,10 @@ public class BossStateManager : MonoBehaviour
 
     void Start()
     {
-        currentState = BossState.Airborne; // ³õÊ¼»¯×´Ì¬
+        currentState = BossState.Airborne; // åˆå§‹åŒ–çŠ¶æ€
         bossStates = GetComponent<BossStates>();
         rb = GetComponent<Rigidbody2D>();
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform; // »ñÈ¡Íæ¼Ò¶ÔÏóµÄTransform×é¼ş
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform; // è·å–ç©å®¶å¯¹è±¡çš„Transformç»„ä»¶
         attackManager = GetComponent<BossAttackManager>();
 
     }
@@ -89,7 +89,7 @@ public class BossStateManager : MonoBehaviour
         
     }
 
-    // boss¸úËæ
+    // bossè·Ÿéš
     void FollowPlayerXAxis()
     {
         if (playerPosition != null)
@@ -101,28 +101,28 @@ public class BossStateManager : MonoBehaviour
             
             float direction = Mathf.Sign(playerX - bossX);
 
-            // Èç¹û¾àÀëÍæ¼Ò½ÏÔ¶£¬Õı³£ÒÆ¶¯
+            // å¦‚æœè·ç¦»ç©å®¶è¾ƒè¿œï¼Œæ­£å¸¸ç§»åŠ¨
             if (distanceToPlayer > slowDownDistance)
             {
                 MoveTowardsPlayer(direction, moveSpeed);
             }
-            // Èç¹û¾àÀëÍæ¼Ò½Ï½ü£¬¼õËÙÒÆ¶¯
+            // å¦‚æœè·ç¦»ç©å®¶è¾ƒè¿‘ï¼Œå‡é€Ÿç§»åŠ¨
             else if (distanceToPlayer > stopDistance)
             {
                 float slowSpeed = moveSpeed * (distanceToPlayer / slowDownDistance);
                 MoveTowardsPlayer(direction, slowSpeed);
             }
-            // Èç¹û¾àÀëÍæ¼Ò·Ç³£½ü£¬Í£Ö¹ÒÆ¶¯
+            // å¦‚æœè·ç¦»ç©å®¶éå¸¸è¿‘ï¼Œåœæ­¢ç§»åŠ¨
             else
             {
-                // ¿ÉÒÔÔÚÕâÀïÌí¼ÓÆäËûÂß¼­£¬±ÈÈç¹¥»÷Íæ¼Ò
+                // å¯ä»¥åœ¨è¿™é‡Œæ·»åŠ å…¶ä»–é€»è¾‘ï¼Œæ¯”å¦‚æ”»å‡»ç©å®¶
             }
 
-            // ¼ì²éÊÇ·ñ³¬¹ıÍæ¼ÒÎ»ÖÃ²¢µ÷Õû
+            // æ£€æŸ¥æ˜¯å¦è¶…è¿‡ç©å®¶ä½ç½®å¹¶è°ƒæ•´
             if ((direction > 0 && bossX > playerX) || (direction < 0 && bossX < playerX))
             {
-                // Èç¹û³¬¹ıÍæ¼ÒÎ»ÖÃ£¬¿ªÊ¼¼õËÙ²¢·µ»Ø
-                float returnSpeed = moveSpeed * 0.5f; // ·µ»ØËÙ¶È
+                // å¦‚æœè¶…è¿‡ç©å®¶ä½ç½®ï¼Œå¼€å§‹å‡é€Ÿå¹¶è¿”å›
+                float returnSpeed = moveSpeed * 0.5f; // è¿”å›é€Ÿåº¦
                 MoveTowardsPlayer(-direction, returnSpeed);
             }
         }
@@ -136,10 +136,10 @@ public class BossStateManager : MonoBehaviour
             transform.position.z
         );
     }
-
+    #region ç©ºä¸­
     void AirborneBehavior()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         bossPosition = transform;
         attackManager.FallingFruitsAttack();
         airTime -= Time.deltaTime;
@@ -151,29 +151,30 @@ public class BossStateManager : MonoBehaviour
             bossStates.isHit = false;
         }
     }
-
+    #endregion
+    #region åœ°é¢
     void GroundBehavior()
     {
 
-        // ÉèÖÃÎïÀíÔ¼Êø
+        // è®¾ç½®ç‰©ç†çº¦æŸ
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         GetComponent<BoxCollider2D>().isTrigger = false;
 
-        // ¼ì²âÊÇ·ñÔÚµØÃæÉÏ
+        // æ£€æµ‹æ˜¯å¦åœ¨åœ°é¢ä¸Š
         isGround = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
 
-        // ÔÊĞíBossÊÜµ½ÉËº¦
+        // å…è®¸Bosså—åˆ°ä¼¤å®³
         bossStates.canTakeDamage = true;
 
-        // ¼ì²éÊÇ·ñÊÜµ½¹¥»÷
+        // æ£€æŸ¥æ˜¯å¦å—åˆ°æ”»å‡»
         if (bossStates.isHit && currentState == BossState.Ground)
         {
             bossStates.isHit = false;
-            bossStates.TakeDamage(1); // ÊÜµ½1µãÉËº¦
-            ChangeState(BossState.Underground); // ÊÜ»÷ºóÇĞ»»µ½µØÏÂ×´Ì¬
+            bossStates.TakeDamage(1); // å—åˆ°1ç‚¹ä¼¤å®³
+            ChangeState(BossState.Underground); // å—å‡»ååˆ‡æ¢åˆ°åœ°ä¸‹çŠ¶æ€
         }
 
-        // Èç¹ûÒÑ¾­ÔÚµØÃæÉÏ£¬¿ªÊ¼ÌøÔ¾
+        // å¦‚æœå·²ç»åœ¨åœ°é¢ä¸Šï¼Œå¼€å§‹è·³è·ƒ
         if (isGround&&CanJump)
         {
             //StartCoroutine(JumpRoutine());
@@ -194,15 +195,16 @@ public class BossStateManager : MonoBehaviour
 
         }
     }
-
+    #endregion
+    #region åœ°ä¸‹
     void UndergroundBehavior()
     {
         bossStates.canTakeDamage = false;
-        // ½«BossµÄÎ»ÖÃÉèÖÃµ½µØÏÂ
-        float undergroundY = -10f; // µØÏÂµÄYÖáÎ»ÖÃ£¬¿ÉÒÔ¸ù¾İÊµ¼ÊĞèÇóµ÷Õû
+        // å°†Bossçš„ä½ç½®è®¾ç½®åˆ°åœ°ä¸‹
+        float undergroundY = -10f; // åœ°ä¸‹çš„Yè½´ä½ç½®ï¼Œå¯ä»¥æ ¹æ®å®é™…éœ€æ±‚è°ƒæ•´
         transform.position = new Vector2(transform.position.x, undergroundY);
 
-        // ÆôÓÃ·ÉÒ¶¼¼ÄÜ
+        // å¯ç”¨é£å¶æŠ€èƒ½
         if (!StartLeafAttack && undergroundTimer <= 5f)
         {
             StartCoroutine(FlyingLeavesAttackRoutine());
@@ -211,27 +213,32 @@ public class BossStateManager : MonoBehaviour
         undergroundTimer += Time.deltaTime;
         if(undergroundTimer >= 7f){
             attackManager.GiantFruitsAttack();
-            transform.position = new Vector2(attackManager.playerX, 11f);
+            transform.position = new Vector2(attackManager.playerX, 10.5f);
+            
+            undergroundTimer = 0f;
+            StartLeafAttack = false;
+            airTime = 5.0f; // é‡ç½®ç©ºä¸­æ—¶é—´
             currentState = BossState.Airborne;
         }
     }
+     #endregion
 
     void AttackBehavior()
     {
-        // ÊµÏÖ¹¥»÷×´Ì¬Âß¼­
-        // ¼ì²éÊÇ·ñĞèÒªÇĞ»»µ½ÆäËû×´Ì¬
+        // å®ç°æ”»å‡»çŠ¶æ€é€»è¾‘
+        // æ£€æŸ¥æ˜¯å¦éœ€è¦åˆ‡æ¢åˆ°å…¶ä»–çŠ¶æ€
     }
 
     void TakeDamageBehavior()
     {
-        // ÊµÏÖÊÜÉË×´Ì¬Âß¼­
-        // ¼ì²éÊÇ·ñĞèÒªÇĞ»»µ½ÆäËû×´Ì¬
+        // å®ç°å—ä¼¤çŠ¶æ€é€»è¾‘
+        // æ£€æŸ¥æ˜¯å¦éœ€è¦åˆ‡æ¢åˆ°å…¶ä»–çŠ¶æ€
     }
 
     void DieBehavior()
     {
-        // ÊµÏÖËÀÍö×´Ì¬Âß¼­
-        // ¼ì²éÊÇ·ñĞèÒªÇĞ»»µ½ÆäËû×´Ì¬
+        // å®ç°æ­»äº¡çŠ¶æ€é€»è¾‘
+        // æ£€æŸ¥æ˜¯å¦éœ€è¦åˆ‡æ¢åˆ°å…¶ä»–çŠ¶æ€
     }
 
     public void ChangeState(BossState newState)
@@ -239,17 +246,17 @@ public class BossStateManager : MonoBehaviour
         currentState = newState;
     }
 
-    // ÌøÔ¾·½·¨
+    // è·³è·ƒæ–¹æ³•
     void Jump()
     {
         float playerX = playerPosition.position.x;
         float bossX = transform.position.x;
-        float direction = Mathf.Sign(playerX - bossX); // ·½Ïò£ºÈç¹ûÍæ¼ÒÔÚÓÒ±ß£¬Îª1£»ÔÚ×ó±ß£¬Îª-1
-        // ¼ÆËãË®Æ½Á¦µÄ´óĞ¡
-        float horizontalForce = jumpForce * 0.5f; // ¿ÉÒÔµ÷ÕûÕâ¸ö±ÈÀıÒÔ¿ØÖÆË®Æ½Á¦µÄ´óĞ¡
-        // ºÏ³ÉÌøÔ¾Á¦
+        float direction = Mathf.Sign(playerX - bossX); // æ–¹å‘ï¼šå¦‚æœç©å®¶åœ¨å³è¾¹ï¼Œä¸º1ï¼›åœ¨å·¦è¾¹ï¼Œä¸º-1
+        // è®¡ç®—æ°´å¹³åŠ›çš„å¤§å°
+        float horizontalForce = jumpForce * 0.5f; // å¯ä»¥è°ƒæ•´è¿™ä¸ªæ¯”ä¾‹ä»¥æ§åˆ¶æ°´å¹³åŠ›çš„å¤§å°
+        // åˆæˆè·³è·ƒåŠ›
         Vector2 jumpVector = new Vector2(direction * horizontalForce, jumpForce);
-        // Ó¦ÓÃÁ¦
+        // åº”ç”¨åŠ›
         rb.AddForce(jumpVector, ForceMode2D.Impulse);
         if (rb.velocity.y > 0.1f)
         {

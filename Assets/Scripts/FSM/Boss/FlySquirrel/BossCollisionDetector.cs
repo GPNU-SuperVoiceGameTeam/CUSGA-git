@@ -17,7 +17,7 @@ public class BossCollisionDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ´¦ÀíÓëÍæ¼ÒµÄÅö×²
+            // å¤„ç†ä¸ç©å®¶çš„ç¢°æ’
             if (stateManager.currentState == BossState.Ground)
             {
                 stateManager.currentState = BossState.TakingDamage;
@@ -32,5 +32,5 @@ public class BossCollisionDetector : MonoBehaviour
         }
     }
 
-    // ÆäËûÅö×²¼ì²âÂß¼­...
+    // å…¶ä»–ç¢°æ’æ£€æµ‹é€»è¾‘...
 }

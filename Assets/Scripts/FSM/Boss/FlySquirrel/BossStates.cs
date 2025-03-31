@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//生命值系统
+//锟斤拷锟斤拷值系统
 public class BossStates : MonoBehaviour
 {
     public int maxHP = 5;
@@ -19,6 +19,7 @@ public class BossStates : MonoBehaviour
         if (collision.gameObject.CompareTag("Wave"))
         {
             isHit = true;
+            Destroy(collision);
         }
         else
         {
@@ -31,6 +32,7 @@ public class BossStates : MonoBehaviour
         {
             currentHP -= damage;
             isHit = true;
+            canTakeDamage = false;
         }
         if (currentHP <= 0)
         {

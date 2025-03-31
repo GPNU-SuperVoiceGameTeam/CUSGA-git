@@ -8,16 +8,16 @@ public class VoiceController : MonoBehaviour
     public Image image;
     public float voice;
     public float maxVoice = 100;
-    public float decayInterval = 3f; // Ë¥¼õ¼ä¸ôÊ±¼ä£¨Ãë£©
-    public float lastAttackTime; // ÉÏÒ»´Î¹¥»÷µÄÊ±¼ä
-    public bool isDecaying = false; // ÊÇ·ñÕýÔÚË¥¼õ
+    public float decayInterval = 3f; // ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½4ï¿½4ï¿½1ï¿½7ï¿½0ï¿½0
+    public float lastAttackTime; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½5ï¿½1ï¿½7ï¿½É„1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
+    public bool isDecaying = false; // ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
     public float decayRate = 80;
     public PlayerController playerController;
 
     private void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        lastAttackTime = Time.time; // ³õÊ¼»¯Îªµ±Ç°Ê±¼ä
+        lastAttackTime = Time.time; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½3ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
     }
     void Update()
     {
@@ -34,15 +34,15 @@ public class VoiceController : MonoBehaviour
         {
             if (!isDecaying)
             {
-                isDecaying = true; // ¿ªÊ¼Ë¥¼õ
+                isDecaying = true; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½3ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
             }
             else
             {
-                isDecaying = false; // ÖØÖÃË¥¼õ×´Ì¬
+                isDecaying = false; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0
             }
             if (isDecaying)
             {
-                voice -= decayRate * Time.deltaTime; // Ã¿Ö¡Ë¥¼õ
+                voice -= decayRate * Time.deltaTime; // ï¿½0ï¿½7ï¿½0ï¿½5ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
                 if (voice < 0)
                 {
                     voice = 0;
@@ -62,8 +62,8 @@ public class VoiceController : MonoBehaviour
         {
             voice = maxVoice;
         }
-        lastAttackTime = Time.time; // ÖØÖÃË¥¼õ¼ÆÊ±Æ÷
-        isDecaying = false; // ÖØÖÃË¥¼õ×´Ì¬
+        lastAttackTime = Time.time; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
+        isDecaying = false; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0
     }
 
     public void ReduceVoice()

@@ -5,20 +5,23 @@ using UnityEngine.UI;
 
 public class WheelController : MonoBehaviour
 {
-    public GameObject wheelUI; // бжел UI ╣дрЩсц
-    public Button[] options; // бжелжп╣дкд╦Жя║тЯоН
-    private bool isWheelActive = false; // йг╥Яотй╬бжел
-    public int selectedOption = 0; // ╣╠г╟я║жп╣дя║оНкВрЩ
+    public GameObject wheelUI; // О©╫О©╫О©╫О©╫ UI О©╫О©╫О©╫О©╫О©╫О©╫
+    public Button[] options; // О©╫О©╫О©╫О©╫О©╫Е≤≤?О©╫?О©╫О©╫О©╫О©╫
+    private bool isWheelActive = false; // О©╫?О©╫О©╫О©╫?О©╫О©╫О©╫О©╫
+    public int selectedOption = 0; // О©╫О©╫??О©╫О©╫?О©╫О©╫О©╫О©╫О©╫О©╫
     public float timeSpeed = 0.2f;
-
+    void Start()
+    {
+        
+    }
     void Update()
     {
-        // ╪Л╡БйС╠Йср╪Эйг╥Я╠╩╟╢об
-        if (Input.GetMouseButton(1)) // йС╠Йср╪Э╣д╟╢е╔кВрЩйг 1
+        // О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫???О©╫О©╫О©╫
+        if (Input.GetMouseButton(1)) // О©╫О©╫О©╫О©╫?О©╫О©╫?О©╫?О©╫О©╫О©╫О©╫О©╫О©╫ 1
         {
             if (!isWheelActive)
             {
-                ShowWheel(); // отй╬бжел
+                ShowWheel(); // О©╫О©╫?О©╫О©╫О©╫О©╫
                 Time.timeScale = timeSpeed;
             }
         }
@@ -26,47 +29,47 @@ public class WheelController : MonoBehaviour
         {
             if (isWheelActive)
             {
-                HideWheel(); // рЧ╡ьбжел
+                HideWheel(); // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
                 Time.timeScale = 1;
             }
         }
 
-        // хГ╧Шбжел╢╕сз╪╓╩Нв╢л╛ё╛╦Эпбя║жп╣дя║оН
+        // О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫?О©╫О©╫О©╫??О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫?О©╫О©╫
         if (isWheelActive)
         {
             UpdateSelectedOption();
         }
 
-        // ╪Л╡БйС╠ЙвС╪Э╣Ц╩В
-        if (isWheelActive && Input.GetMouseButtonDown(0)) // йС╠ЙвС╪Э╣д╟╢е╔кВрЩйг 0
+        // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+        if (isWheelActive && Input.GetMouseButtonDown(0)) // О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫?О©╫О©╫О©╫О©╫О©╫О©╫ 0
         {
             ConfirmSelection();
         }
     }
 
-    // отй╬бжел╣д╥╫╥╗
+    // О©╫О©╫?О©╫О©╫О©╫??О©╫О©╫О©╫
     private void ShowWheel()
     {
-        wheelUI.SetActive(true); // ╪╓╩Нбжел UI
-        isWheelActive = true; // иХжцбжелн╙╪╓╩Нв╢л╛
-        UpdateSelectedOption(); // ЁУй╪╩╞я║жп╣зр╩╦Жя║оН
+        wheelUI.SetActive(true); // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ UI
+        isWheelActive = true; // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫О©╫О©╫??
+        UpdateSelectedOption(); // О©╫О©╫?О©╫О©╫?О©╫О©╫?О©╫О©╫?О©╫О©╫
 
     }
 
-    // рЧ╡ьбжел╣д╥╫╥╗
+    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫??О©╫О©╫О©╫
     private void HideWheel()
     {
-        wheelUI.SetActive(false); // ╫Шсцбжел UI
-        isWheelActive = false; // иХжцбжелн╙н╢╪╓╩Нв╢л╛
+        wheelUI.SetActive(false); // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ UI
+        isWheelActive = false; // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫??О©╫О©╫О©╫О©╫??
     }
 
-    // ╦Эпбя║жп╣дя║оН
+    // О©╫О©╫О©╫О©╫?О©╫О©╫?О©╫О©╫
     private void UpdateSelectedOption()
     {
         Vector2 mousePosition = Input.mousePosition;
         int newSelectedOption = -1;
 
-        // ╠ИюЗкЫспя║оНё╛╪Л╡ИйС╠Ййг╥ЯтздЁ╦Жя║оНио
+        // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫?О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫О©╫?О©╫О©╫?О©╫О©╫О©╫О©╫
         for (int i = 0; i < options.Length; i++)
         {
             RectTransform optionRectTransform = options[i].GetComponent<RectTransform>();
@@ -77,7 +80,7 @@ public class WheelController : MonoBehaviour
             }
         }
 
-        // хГ╧Шя║жп╣дя║оН╥╒иЗ╠Д╩╞ё╛╦Эпбя║жпв╢л╛
+        // О©╫О©╫О©╫?О©╫О©╫?О©╫?О©╫О©╫О©╫?О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫??
         if (newSelectedOption != selectedOption)
         {
             selectedOption = newSelectedOption;
@@ -85,36 +88,36 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    // ╦ъааотй╬╣╠г╟я║жп╣дя║оН
+    // О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫??О©╫О©╫?О©╫О©╫
     private void HighlightSelectedOption()
     {
-        // х║оШж╝г╟╣д╦ъаа
+        // ?О©╫О©╫??О©╫?О©╫О©╫О©╫
         foreach (Button option in options)
         {
-            option.GetComponent<Image>().color = Color.white; // д╛хояуи╚
+            option.GetComponent<Image>().color = Color.white; // ?О©╫О©╫О©╫О©╫?
         }
 
-        // ╦ъаа╣╠г╟я║жп╣дя║оН
+        // О©╫О©╫О©╫О©╫О©╫О©╫??О©╫О©╫?О©╫О©╫
         if (selectedOption >= 0 && selectedOption < options.Length)
         {
-            options[selectedOption].GetComponent<Image>().color = Color.yellow; // ╦ъааяуи╚
+            options[selectedOption].GetComponent<Image>().color = Color.yellow; // О©╫О©╫О©╫О©╫О©╫О©╫?
         }
     }
 
-    // х╥хоя║тЯ
+    // ?О©╫О©╫?О©╫О©╫
     private void ConfirmSelection()
     {
         if (!isWheelActive) return;
 
         if (selectedOption >= 0 && selectedOption < options.Length)
         {
-            Debug.Log("я║жпакя║оН: " + options[selectedOption].name);
-            // тзуБюО©иртлМ╪ся║жпя║оН╨С╣дбъ╪╜
-            HideWheel(); // рЧ╡ьбжел
+            Debug.Log("?О©╫О©╫О©╫О©╫?О©╫О©╫: " + options[selectedOption].name);
+            // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫?О©╫О©╫О©╫О©╫О©╫?О©╫
+            HideWheel(); // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
         }
     }
 
-    // ╪Л╡ИйС╠Ййг╥ЯтздЁ╦Ж RectTransform дз
+    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫?О©╫О©╫О©╫?О©╫О©╫ RectTransform О©╫О©╫
     private bool RectTransformOverlap(Vector2 mousePosition, RectTransform rectTransform)
     {
         Vector2 localPoint;
