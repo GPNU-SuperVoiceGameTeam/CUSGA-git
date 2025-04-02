@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/begin.unity
     guid: dd15ae3323d362a48a7239a821c872bf
+  - enabled: 1
+    path: Assets/Scenes/fallStreet.unity
+    guid: ce0177cbff7411b4698b45158dd6eece
   m_configObjects: {}

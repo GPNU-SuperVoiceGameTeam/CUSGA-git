@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//地面检测范围
     [Header("声波")]
     public GameObject bulletPrefab;//声波预设体
-    public bool canShoot = true;
+    
     public float shootForce = 5.0f;//射击力度
     public float keepTime = 2.0f;//声波持续时间
 
@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public bool isGround;
     public bool isAttack;
     public bool isDead;
+    public bool canMove = true;
+    public bool canAttack;
+    public bool canShoot = true;
 
     [Header("主角行动状态")]
     private string state_type = "isMoveAble";//isMoveAble,cantMoveAble
@@ -47,19 +50,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-
-        switch (state_type)
-        {
-            case "isMoveAble":
-                Move();
-                Jump();
-                Attack();
-                break;
-            case "cantMoveAble":
-                break;
+        if(canMove){
+            switch (state_type)
+            {
+                case "isMoveAble":
+                    Move();
+                    Jump();
+                    Attack();
+                    break;
+                case "cantMoveAble":
+                    break;
+            }
         }
-
     }
 
     public void Move()
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-        if (Input.GetMouseButtonDown(0) && canShoot)
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
             isAttack = true;
             //获取鼠标坐标
