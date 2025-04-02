@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - Wave
   - flyLeaf
+  - Ladder
   layers:
   - Default
   - TransparentFX
