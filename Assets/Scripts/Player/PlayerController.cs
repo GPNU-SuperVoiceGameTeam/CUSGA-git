@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
+    public Animator anim;
     
     //地面检测
     public LayerMask groundLayer; // 地面层，用于检测是否在地面上
@@ -45,7 +46,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
+        anim = GetComponent<Animator>();
+        //voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
     }
 
     void Update()
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
         if (isGround && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            anim.Play("PlayerJump");
         }
 
 
