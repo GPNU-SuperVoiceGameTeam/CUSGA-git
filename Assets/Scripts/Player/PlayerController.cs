@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public float upGravity;//跳跃时重力大小
     public float downGravity;//下落时重力大小
+    public GameObject battleWavePrefab;
 
     [Header("状态")]
     public bool isGround;
@@ -39,13 +40,14 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private VoiceController voiceBar;
+    private SpriteRenderer battelWaveRenderer;
     #endregion
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
+        // voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
     }
 
     void Update()
@@ -76,10 +78,12 @@ public class PlayerController : MonoBehaviour
         if (moveInput < 0) //根据输入翻转玩家
         {
            spriteRenderer.flipX = true;
+           battelWaveRenderer.flipX = true;
         }
         else if (moveInput > 0)
         {
             spriteRenderer.flipX = false;
+            battelWaveRenderer.flipX = false;
         }
 
     }
