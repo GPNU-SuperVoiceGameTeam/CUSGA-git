@@ -10,6 +10,7 @@ TagManager:
   - Wave
   - flyLeaf
   - Ladder
+  - Trap
   layers:
   - Default
   - TransparentFX
