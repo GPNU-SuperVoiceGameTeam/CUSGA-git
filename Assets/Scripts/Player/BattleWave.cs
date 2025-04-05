@@ -12,8 +12,9 @@ public class BattleWave : MonoBehaviour
         Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
         if (collision.CompareTag("Enemy"))
         {
-            Vector3 direction = (this.transform.position - collision.transform.position).normalized;
-            rb.AddForce(-direction * pulseForce, ForceMode2D.Impulse);
+            // Vector3 direction = (this.transform.position - collision.transform.position).normalized;
+            // rb.AddForce(-direction * pulseForce, ForceMode2D.Impulse);
+            collision.GetComponent<Health>().TakeDamage(1);
             Destroy(gameObject);
         }
     }

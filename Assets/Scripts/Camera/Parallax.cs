@@ -8,11 +8,11 @@ public class Parallax : MonoBehaviour
     private Vector2 lastPos;
     private Transform cam;
 
-    [Tooltip("Ô¶¾°ÒÆ¶¯ËÙ¶È±ÈÀı (0-1)")]
+    [Tooltip("è¿œæ™¯ç§»åŠ¨é€Ÿåº¦æ¯”ä¾‹ (0-1)")]
     public float farParallaxFactor = 0.5f;
-    [Tooltip("ÖĞ¾°ÒÆ¶¯ËÙ¶È±ÈÀı (0-1)")]
+    [Tooltip("ä¸­æ™¯ç§»åŠ¨é€Ÿåº¦æ¯”ä¾‹ (0-1)")]
     public float middleParallaxFactor = 0.7f;
-    [Tooltip("Ç°¾°ÒÆ¶¯ËÙ¶È±ÈÀı (0-1)")]
+    [Tooltip("å‰æ™¯ç§»åŠ¨é€Ÿåº¦æ¯”ä¾‹ (0-1)")]
     public float frontParallaxFactor = 0.9f;
 
     void Start()
@@ -25,15 +25,15 @@ public class Parallax : MonoBehaviour
     {
         Vector2 positionChange = (Vector2)cam.position - lastPos;
 
-        // Ô¶¾°ÒÆ¶¯×îÂı
+        // è¿œæ™¯ç§»åŠ¨æœ€æ…¢
         if (far != null)
             far.position += (Vector3)(positionChange * farParallaxFactor);
 
-        // ÖĞ¾°ÒÆ¶¯ÖĞµÈËÙ¶È
+        // ä¸­æ™¯ç§»åŠ¨ä¸­ç­‰é€Ÿåº¦
         if (middle != null)
             middle.position += (Vector3)(positionChange * middleParallaxFactor);
 
-        // Ç°¾°ÒÆ¶¯×î¿ì
+        // å‰æ™¯ç§»åŠ¨æœ€å¿«
         if (front != null)
             front.position += (Vector3)(positionChange * frontParallaxFactor);
 

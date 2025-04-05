@@ -23,7 +23,7 @@ public class BossStateManager : MonoBehaviour
 
     
     public BossState currentState; // 当前状态
-    private BossStates bossStates; // 获取生命值系统
+    private Health bossStates; // 获取生命值系统
     private Animator animator;
     private Rigidbody2D rb;
     private BossAttackManager attackManager; // 获取攻击系统
@@ -53,7 +53,7 @@ public class BossStateManager : MonoBehaviour
     void Start()
     {
         currentState = BossState.Airborne; // 初始化状态
-        bossStates = GetComponent<BossStates>();
+        bossStates = GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform; // 获取玩家对象的Transform组件
         attackManager = GetComponent<BossAttackManager>();

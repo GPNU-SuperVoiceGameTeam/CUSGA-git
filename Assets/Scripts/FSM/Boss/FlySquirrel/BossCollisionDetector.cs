@@ -5,12 +5,12 @@ using UnityEngine;
 public class BossCollisionDetector : MonoBehaviour
 {
     private BossStateManager stateManager;
-    private BossStates bossStates;
+    private Health bossStates;
 
     void Start()
     {
         stateManager = GetComponent<BossStateManager>();
-        bossStates = GetComponent<BossStates>();
+        bossStates = GetComponent<Health>();
     }
 
     void OnCollisionEnter(Collision collision)

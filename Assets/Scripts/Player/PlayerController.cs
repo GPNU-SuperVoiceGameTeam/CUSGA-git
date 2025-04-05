@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (isGround && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            anim.Play("PlayerJump");
+            anim.Play("PlayerJump", 0, 0f);
         }
 
 
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
             //增加过载
-            voiceBar.AddVoice();
+            // voiceBar.AddVoice();
         }else{
             isAttack = false;
         }

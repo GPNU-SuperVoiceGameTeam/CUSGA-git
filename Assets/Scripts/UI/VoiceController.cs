@@ -8,16 +8,16 @@ public class VoiceController : MonoBehaviour
     public Image image;
     public float voice;
     public float maxVoice = 100;
-    public float decayInterval = 3f; // ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½4ï¿½4ï¿½1ï¿½7ï¿½0ï¿½0
-    public float lastAttackTime; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½5ï¿½1ï¿½7ï¿½É„1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
-    public bool isDecaying = false; // ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
+    public float decayInterval = 3f; // ž0ž9ž1ž7ž1ž7ž1ž7ž1ž7ž1ž7ž0ž2ž1ž7ž4ž4ž1ž7ž0ž0
+    public float lastAttackTime; // ž1ž7ž1ž7ž0ž5ž1ž7ž?1ž7ž1ž7ž1ž7ž1ž7ž1ž7ž0ž2ž1ž7ž1ž7
+    public bool isDecaying = false; // ž1ž7ž0ž9ž1ž7ž1ž7ž1ž7ž1ž7ž1ž7ž0ž9ž1ž7ž1ž7
     public float decayRate = 80;
     public PlayerController playerController;
 
     private void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        lastAttackTime = Time.time; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½3ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
+        lastAttackTime = Time.time; // ž1ž7ž1ž7ž0ž3ž1ž7ž1ž7ž0ž2ž1ž7ž1ž7ž0ž2ž0ž2ž1ž7ž1ž7
     }
     void Update()
     {
@@ -34,15 +34,15 @@ public class VoiceController : MonoBehaviour
         {
             if (!isDecaying)
             {
-                isDecaying = true; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½3ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
+                isDecaying = true; // ž1ž7ž1ž7ž0ž3ž0ž9ž1ž7ž1ž7
             }
             else
             {
-                isDecaying = false; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0
+                isDecaying = false; // ž1ž7ž1ž7ž1ž7ž1ž7ž0ž9ž1ž7ž1ž7ž0ž8ž0ž0
             }
             if (isDecaying)
             {
-                voice -= decayRate * Time.deltaTime; // ï¿½0ï¿½7ï¿½0ï¿½5ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7
+                voice -= decayRate * Time.deltaTime; // ž0ž7ž0ž5ž0ž9ž1ž7ž1ž7
                 if (voice < 0)
                 {
                     voice = 0;
@@ -62,8 +62,8 @@ public class VoiceController : MonoBehaviour
         {
             voice = maxVoice;
         }
-        lastAttackTime = Time.time; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½2ï¿½1ï¿½7ï¿½1ï¿½7
-        isDecaying = false; // ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½9ï¿½1ï¿½7ï¿½1ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0
+        lastAttackTime = Time.time; // ž1ž7ž1ž7ž1ž7ž1ž7ž0ž9ž1ž7ž1ž7ž1ž7ž1ž7ž0ž2ž1ž7ž1ž7
+        isDecaying = false; // ž1ž7ž1ž7ž1ž7ž1ž7ž0ž9ž1ž7ž1ž7ž0ž8ž0ž0
     }
 
     public void ReduceVoice()

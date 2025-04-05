@@ -7,29 +7,30 @@ public class FruitBehavior : MonoBehaviour
     public bool canPassThroughPlatforms = false;
     private Rigidbody2D rb;
     private PlayerController player;
-
+    private float destroyTime = 3f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        StartCoroutine(DestroyAfterTime());
     }
 
     void Update()
     {
-        // Èç¹ûË®¹û¿ÉÒÔ´©¹ıÆ½Ì¨£¬Ôòµ÷ÕûÆäÅö×²¼ì²âÂß¼­
+        // å¦‚æœæ°´æœå¯ä»¥ç©¿è¿‡å¹³å°ï¼Œåˆ™è°ƒæ•´å…¶ç¢°æ’æ£€æµ‹é€»è¾‘
         if (canPassThroughPlatforms)
         {
-            // ÊµÏÖË®¹û¿ÉÒÔ´©¹ıÆ½Ì¨µÄÂß¼­
+            // å®ç°æ°´æœå¯ä»¥ç©¿è¿‡å¹³å°çš„é€»è¾‘
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // ´¦ÀíË®¹ûÓëÆ½Ì¨µÄÅö×²Âß¼­
+        // å¤„ç†æ°´æœä¸å¹³å°çš„ç¢°æ’é€»è¾‘
         if (collision.gameObject.CompareTag("Platform") && !canPassThroughPlatforms)
         {
             Destroy(gameObject);
-            // Ë®¹ûÅöµ½Æ½Ì¨ºóµÄ´¦Àí£¬ÀıÈç·´µ¯»òÏú»Ù
+            // æ°´æœç¢°åˆ°å¹³å°åçš„å¤„ç†ï¼Œä¾‹å¦‚åå¼¹æˆ–é”€æ¯
         }
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -37,5 +38,12 @@ public class FruitBehavior : MonoBehaviour
             player.TakeDamage(1);
 
         }
+    }
+    IEnumerator DestroyAfterTime()
+    {
+        // ç­‰å¾…ä¸‰ç§’
+        yield return new WaitForSeconds(destroyTime);
+        // é”€æ¯æ¾æœ
+        Destroy(gameObject);
     }
 }

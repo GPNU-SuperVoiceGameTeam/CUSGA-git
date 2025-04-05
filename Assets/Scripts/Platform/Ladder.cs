@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    private float vertical;//´¹Ö±ÊäÈë
-    private float speed = 3f;//ÅÀÌİ×ÓËÙ¶È
-    private bool isLadder;//ÊÇ·ñÕ¾ÔÚÌİ×ÓÉÏ
-    private bool isClimbing;//ÊÇ·ñÔÚÅÀÌİ×ÓµÄ×´Ì¬
+    private float vertical;//å‚ç›´è¾“å…¥
+    private float speed = 3f;//çˆ¬æ¢¯å­é€Ÿåº¦
+    private bool isLadder;//æ˜¯å¦ç«™åœ¨æ¢¯å­ä¸Š
+    private bool isClimbing;//æ˜¯å¦åœ¨çˆ¬æ¢¯å­çš„çŠ¶æ€
      private PlayerController playerController;
     [SerializeField] private Rigidbody2D rb;
    

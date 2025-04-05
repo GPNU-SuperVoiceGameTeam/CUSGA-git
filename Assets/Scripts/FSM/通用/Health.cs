@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //����ֵϵͳ
-public class BossStates : MonoBehaviour
+public class Health: MonoBehaviour
 {
-    public int maxHP = 5;
+    public int maxHP = 3;
     public int currentHP;
     public bool canTakeDamage;
     public bool isHit = false;

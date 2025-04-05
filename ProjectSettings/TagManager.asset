@@ -11,6 +11,7 @@ TagManager:
   - flyLeaf
   - Ladder
   - Trap
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - Ground
   - Board
-  - 
+  - Player
   - 
   - 
   - 
