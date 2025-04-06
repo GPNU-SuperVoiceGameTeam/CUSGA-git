@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1749,12 +1750,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!81 &722117310
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2805,7 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c8c5afe3db5aa40882db2ddea5598c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}
   playerSpriteRenderer: {fileID: 0}
   offsetRight: {x: 2.3, y: 1.5, z: -10}
   offsetLeft: {x: -2.3, y: 1.5, z: -10}
@@ -2852,12 +2853,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!81 &1323155635
 AudioListener:
   m_ObjectHideFlags: 0
@@ -36804,6 +36805,54 @@ PrefabInstance:
     - target: {fileID: 6320247970152814986, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.43546566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15361151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000030994415
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.07371504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9972794
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973475368933211511, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 171.545
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712509425410452675, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712509425410452675, guid: 0d8844aca9d52504a8f05e84fd4b6e43, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

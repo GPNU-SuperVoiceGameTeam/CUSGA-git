@@ -27,6 +27,15 @@ public class GunAim : MonoBehaviour
 
         // 计算枪的旋转角度
         float angle = Mathf.Atan2(relativePosition.y, relativePosition.x) * Mathf.Rad2Deg;
+        if (Mathf.Abs(angle) < 90f)
+        {
+            gunBone.localScale = new Vector3(-1, 1, 1); // 镜像翻转
+            angle = angle+180f; // 修正角度
+        }
+        else
+        {
+            gunBone.localScale = new Vector3(1, 1, 1); // 恢复正常
+        }
 
         // 平滑旋转枪的骨骼
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
