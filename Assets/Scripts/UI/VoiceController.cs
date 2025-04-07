@@ -8,41 +8,40 @@ public class VoiceController : MonoBehaviour
     public Image image;
     public float voice;
     public float maxVoice = 100;
-    public float decayInterval = 3f; // 𻈻𻜥𻜥𻜥𻜥𻜥𻈴𻜥𼗦𻜥𻈲
-    public float lastAttackTime; // 𻜥𻜥𻈷𻜥�?1𽒧𽒧𽒧𽒧𽒦𻰋𽒧�7
-    public bool isDecaying = false; // 𻜥𻈻𻜥𻜥𻜥𻜥𻜥𻈻𻜥𻜥
-    public float decayRate = 80;
+    public float decayInterval = 3f; //琛板噺闂撮殧
+    public float lastAttackTime; //涓婃鏀诲嚮鏃堕棿
+    public bool isDecaying = false;
+    public float decayRate = 80; //琛板噺閫熺巼
     public PlayerController playerController;
 
     private void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        lastAttackTime = Time.time; // 𻜥𻜥𻈵𻜥𻜥𻈴𻜥𻜥𻈴𻈴𻜥𻜥
+        lastAttackTime = Time.time;
     }
     void Update()
     {
         changeVoice();
         if(voice >= 100)
         {
-            playerController.canShoot = false;
+            playerController.canAttack = false; 
         }
         else
         {
-            playerController.canShoot = true;
+            playerController.canAttack = true;
         }
         if (Time.time - lastAttackTime > decayInterval)
         {
             if (!isDecaying)
             {
-                isDecaying = true; // 𻜥𻜥𻈵𻈻𻜥𻜥
+                isDecaying = true; 
             }
             else
             {
-                isDecaying = false; // 𻜥𻜥𻜥𻜥𻈻𻜥𻜥𻈺𻈲
+                isDecaying = false; 
             }
             if (isDecaying)
             {
-                voice -= decayRate * Time.deltaTime; // 𻈹𻈷𻈻𻜥𻜥
+                voice -= decayRate * Time.deltaTime;
                 if (voice < 0)
                 {
                     voice = 0;
@@ -62,16 +61,7 @@ public class VoiceController : MonoBehaviour
         {
             voice = maxVoice;
         }
-        lastAttackTime = Time.time; // 𻜥𻜥𻜥𻜥𻈻𻜥𻜥𻜥𻜥𻈴𻜥𻜥
-        isDecaying = false; // 𻜥𻜥𻜥𻜥𻈻𻜥𻜥𻈺𻈲
-    }
-
-    public void ReduceVoice()
-    {
-        voice -= 10;
-        if (voice < 0)
-        {
-            voice = 0;
-        }
+        lastAttackTime = Time.time; 
+        isDecaying = false; 
     }
 }

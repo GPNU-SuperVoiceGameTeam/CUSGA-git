@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class WheelController : MonoBehaviour
 {
-    public GameObject wheelUI; // ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    public Button[] options; // ï¿½ï¿½ï¿½ï¿½ï¿½å˜˜?ï¿½?ï¿½ï¿½ï¿½ï¿½
-    private bool isWheelActive = false; // ï¿½?ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½
-    public int selectedOption = 0; // ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject wheelUI; // ¥¥¥¥ UI ¥¥¥¥¥¥
+    public Button[] options; // ¥¥¥¥¥??¥?¥¥¥¥
+    private bool isWheelActive = false; // ¥?¥¥¥?¥¥¥¥
+    public int selectedOption = 0; // ¥¥??¥¥?¥¥¥¥¥¥
     public float timeSpeed = 0.2f;
     void Start()
     {
@@ -16,12 +16,12 @@ public class WheelController : MonoBehaviour
     }
     void Update()
     {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½???ï¿½ï¿½ï¿½
-        if (Input.GetMouseButton(1)) // ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1
+        // ¥¥¥¥¥¥¥?¥¥???¥¥¥
+        if (Input.GetMouseButton(1)) // ¥¥¥¥?¥¥?¥?¥¥¥¥¥¥ 1
         {
             if (!isWheelActive)
             {
-                ShowWheel(); // ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½
+                ShowWheel(); // ¥¥?¥¥¥¥
                 Time.timeScale = timeSpeed;
             }
         }
@@ -29,47 +29,47 @@ public class WheelController : MonoBehaviour
         {
             if (isWheelActive)
             {
-                HideWheel(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                HideWheel(); // ¥¥¥¥¥¥¥¥
                 Time.timeScale = 1;
             }
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
+        // ¥¥¥¥¥¥?¥¥?¥¥¥??¥¥¥¥¥¥?¥¥?¥¥
         if (isWheelActive)
         {
             UpdateSelectedOption();
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        if (isWheelActive && Input.GetMouseButtonDown(0)) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0
+        // ¥¥¥¥¥¥¥¥¥¥¥¥
+        if (isWheelActive && Input.GetMouseButtonDown(0)) // ¥¥¥¥¥¥¥?¥?¥¥¥¥¥¥ 0
         {
             ConfirmSelection();
         }
     }
 
-    // ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½
+    // ¥¥?¥¥¥??¥¥¥
     private void ShowWheel()
     {
-        wheelUI.SetActive(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI
-        isWheelActive = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½??
-        UpdateSelectedOption(); // ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
+        wheelUI.SetActive(true); // ¥¥¥¥¥¥¥¥ UI
+        isWheelActive = true; // ¥¥¥¥¥¥¥¥?¥¥¥¥??
+        UpdateSelectedOption(); // ¥¥?¥¥?¥¥?¥¥?¥¥
 
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½
+    // ¥¥¥¥¥¥¥??¥¥¥
     private void HideWheel()
     {
-        wheelUI.SetActive(false); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI
-        isWheelActive = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½??
+        wheelUI.SetActive(false); // ¥¥¥¥¥¥¥¥ UI
+        isWheelActive = false; // ¥¥¥¥¥¥¥¥??¥¥¥¥??
     }
 
-    // ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
+    // ¥¥¥¥?¥¥?¥¥
     private void UpdateSelectedOption()
     {
         Vector2 mousePosition = Input.mousePosition;
         int newSelectedOption = -1;
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½
+        // ¥¥¥¥¥¥¥¥?¥?¥¥¥¥¥¥¥?¥¥¥?¥¥?¥¥¥¥
         for (int i = 0; i < options.Length; i++)
         {
             RectTransform optionRectTransform = options[i].GetComponent<RectTransform>();
@@ -80,7 +80,7 @@ public class WheelController : MonoBehaviour
             }
         }
 
-        // ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½?ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½??
+        // ¥¥¥?¥¥?¥?¥¥¥?¥¥¥¥¥¥?¥¥??
         if (newSelectedOption != selectedOption)
         {
             selectedOption = newSelectedOption;
@@ -88,36 +88,36 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½
+    // ¥¥¥¥¥¥?¥¥??¥¥?¥¥
     private void HighlightSelectedOption()
     {
-        // ?ï¿½ï¿½??ï¿½?ï¿½ï¿½ï¿½
+        // ?¥¥??¥?¥¥¥
         foreach (Button option in options)
         {
-            option.GetComponent<Image>().color = Color.white; // ?ï¿½ï¿½ï¿½ï¿½?
+            option.GetComponent<Image>().color = Color.white; // ?¥¥¥¥?
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½
+        // ¥¥¥¥¥¥??¥¥?¥¥
         if (selectedOption >= 0 && selectedOption < options.Length)
         {
-            options[selectedOption].GetComponent<Image>().color = Color.yellow; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+            options[selectedOption].GetComponent<Image>().color = Color.yellow; // ¥¥¥¥¥¥?
         }
     }
 
-    // ?ï¿½ï¿½?ï¿½ï¿½
+    // ?¥¥?¥¥
     private void ConfirmSelection()
     {
         if (!isWheelActive) return;
 
         if (selectedOption >= 0 && selectedOption < options.Length)
         {
-            Debug.Log("?ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½: " + options[selectedOption].name);
-            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½
-            HideWheel(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Debug.Log("?¥¥¥¥?¥¥: " + options[selectedOption].name);
+            // ¥¥¥¥¥¥¥¥¥¥¥¥¥?¥¥?¥¥¥¥¥?¥
+            HideWheel(); // ¥¥¥¥¥¥¥¥
         }
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½ï¿½ RectTransform ï¿½ï¿½
+    // ¥¥¥¥¥¥¥?¥¥¥?¥¥ RectTransform ¥¥
     private bool RectTransformOverlap(Vector2 mousePosition, RectTransform rectTransform)
     {
         Vector2 localPoint;

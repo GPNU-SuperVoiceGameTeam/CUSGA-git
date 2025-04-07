@@ -177,9 +177,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 100525980}
-  selectedCommands:
-  - {fileID: 100525979}
+  - {fileID: 100525966}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -2014,7 +2013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c8c5afe3db5aa40882db2ddea5598c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}
   playerSpriteRenderer: {fileID: 0}
   offsetRight: {x: 2.3, y: 1.5, z: -10}
   offsetLeft: {x: -2.3, y: 1.5, z: -10}
@@ -3185,18 +3184,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: -0.75}
+  m_Offset: {x: -0.050000638, y: -0.02823019}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6571429, y: 3.6160505}
+    oldSize: {x: 2.1333334, y: 2.1093628}
     newSize: {x: 2.56, y: 2.5312352}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 2.5}
+  m_Size: {x: 1.0706003, y: 2.1415367}
   m_EdgeRadius: 0
 --- !u!114 &1681468284
 MonoBehaviour:
@@ -3229,7 +3228,7 @@ MonoBehaviour:
   isDead: 0
   canMove: 1
   canAttack: 0
-  canShoot: 1
+  voiceController: {fileID: 0}
 --- !u!50 &1681468285
 Rigidbody2D:
   serializedVersion: 4
@@ -3339,7 +3338,7 @@ Transform:
   m_GameObject: {fileID: 1681468282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.5, y: -2.415, z: 0}
+  m_LocalPosition: {x: -0.5100002, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4039,7 +4038,7 @@ Transform:
   m_GameObject: {fileID: 1931483400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: -1.799, z: 0}
+  m_LocalPosition: {x: -0.002, y: -1.08, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
