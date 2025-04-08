@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
@@ -47,7 +45,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        voiceController = GameObject.Find("VoiceController").GetComponent<VoiceController>();
+        //voiceController = GameObject.Find("VoiceController").GetComponent<VoiceController>();
+        voiceController = null;
+
+        
     }
 
     void Update()
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
             //增加过载
-            voiceController.AddVoice();
+            if (voiceController!= null){voiceController.AddVoice();}
         }else if (Input.GetMouseButtonDown(1) && canAttack){
             isAttack = true;
             //获取鼠标坐标
@@ -145,7 +146,7 @@ public class PlayerController : MonoBehaviour
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
             //增加过载
-            voiceController.AddVoice();
+            if (voiceController!= null){voiceController.AddVoice();}
         }else {
             isAttack = false;
         }

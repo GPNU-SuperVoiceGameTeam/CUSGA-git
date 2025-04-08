@@ -3175,7 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c8c5afe3db5aa40882db2ddea5598c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 5913630231894718401}
   playerSpriteRenderer: {fileID: 0}
   offsetRight: {x: 2.3, y: 1.5, z: -10}
   offsetLeft: {x: -2.3, y: 1.5, z: -10}
@@ -37659,7 +37659,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348038829558342179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f1c812efb09373489b151d70faa5e1a, type: 3}
   m_Name: 
@@ -37687,6 +37687,7 @@ GameObject:
   - component: {fileID: 7942691028964900858}
   - component: {fileID: 3887607411213165115}
   - component: {fileID: 7942691028964900859}
+  - component: {fileID: 7942691028964900860}
   m_Layer: 0
   m_Name: SquirrelBoss
   m_TagString: Enemy
@@ -37748,7 +37749,8 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1150431683115513125}
   groundCheckSize: {x: 0.5, y: 0.1}
-  bulletPrefab: {fileID: 4996511050308043321, guid: eb07844003c7b4949a65bf94199f1983, type: 3}
+  lowBulletPrefab: {fileID: 0}
+  highBulletPrefab: {fileID: 0}
   shootForce: 3
   keepTime: 1
   health: 3
@@ -37761,7 +37763,7 @@ MonoBehaviour:
   isDead: 0
   canMove: 1
   canAttack: 1
-  canShoot: 1
+  voiceController: {fileID: 0}
 --- !u!4 &2047468734812560154
 Transform:
   m_ObjectHideFlags: 0
@@ -37936,7 +37938,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -38206,7 +38208,7 @@ Transform:
   m_GameObject: {fileID: 1348038829558342179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71, y: 24.1, z: 0}
+  m_LocalPosition: {x: 67.25, y: 30.18, z: 0}
   m_LocalScale: {x: 2.0354, y: 2.0354, z: 2.0354}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38252,6 +38254,27 @@ MonoBehaviour:
   currentHP: 3
   canTakeDamage: 1
   isHit: 0
+--- !u!114 &7942691028964900860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348038829558342179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387e6f8f61f5a5e448da10bed3960cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 10
+  airAttackInterval: 1
+  patrolRange: 5
+  airborneChildState: 0
+  TreejumpForce: 0
+  jumpForce: 0
+  diveTime: 0
+  isHitable: 0
+  Etransform: {fileID: 0}
 --- !u!4 &7973475368559755111
 Transform:
   m_ObjectHideFlags: 0
