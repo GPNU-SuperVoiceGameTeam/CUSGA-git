@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck; // 地面检测点
     public Vector2 groundCheckSize = new Vector2(1f, 0.1f);//地面检测范围
     [Header("声波")]
-    public GameObject bulletPrefab;//声波预设体
+    public GameObject lowBulletPrefab;//低频声波预设体
+    public GameObject highBulletPrefab;//高频声波预设体
     
-    public float shootForce = 5.0f;//射击力度
-    public float keepTime = 2.0f;//声波持续时间
+    public float shootForce = 3.0f;//射击力度
+    public float keepTime = 1.0f;//声波持续时间
 
     [Header("属性")]
     public int health = 3; //生命值
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
     public bool isDead;
     public bool canMove = true;
     public bool canAttack;
-    public bool canShoot = true;
 
     [Header("主角行动状态")]
     private string state_type = "isMoveAble";//isMoveAble,cantMoveAble
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     #region 以下为私有属性
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    private VoiceController voiceBar;
+    public VoiceController voiceController;
     #endregion
 
     void Start()
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        //voiceBar = GameObject.Find("VoiceController").GetComponent<VoiceController>();
+        voiceController = GameObject.Find("VoiceController").GetComponent<VoiceController>();
     }
 
     void Update()
@@ -112,12 +112,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
             isAttack = true;
-            //获取鼠标坐标
+            // //获取鼠标坐标
             Vector2 mousePosition = Input.mousePosition;
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
             Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
             //实例化声波
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(lowBulletPrefab, transform.position, Quaternion.identity);
             BattleWave battleWave = bullet.GetComponent<BattleWave>();
             battleWave.Initialize(keepTime);
             //声波方向
@@ -127,8 +127,26 @@ public class PlayerController : MonoBehaviour
             //发射声波
             rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
             //增加过载
-            // voiceBar.AddVoice();
-        }else{
+            voiceController.AddVoice();
+        }else if (Input.GetMouseButtonDown(1) && canAttack){
+            isAttack = true;
+            //获取鼠标坐标
+            Vector2 mousePosition = Input.mousePosition;
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
+            Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
+            //实例化声波
+            GameObject bullet = Instantiate(highBulletPrefab, transform.position, Quaternion.identity);
+            BattleWave battleWave = bullet.GetComponent<BattleWave>();
+            battleWave.Initialize(keepTime);
+            //声波方向
+            Vector2 direction = (worldPosition - position2D).normalized;
+            bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            //发射声波
+            rb.AddForce(direction * shootForce, ForceMode2D.Impulse);
+            //增加过载
+            voiceController.AddVoice();
+        }else {
             isAttack = false;
         }
     }
