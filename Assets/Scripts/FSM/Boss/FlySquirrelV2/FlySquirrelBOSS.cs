@@ -24,6 +24,8 @@ public class FlySquirrelBOSS : Enemy
     [Header("空中状态参数")]
     public float flySpeed =10f ;
     public float airAttackInterval = 0.4f;//空中攻击间隔
+    public float BoomAcornAttackInterval = 1f;//爆炸坚果攻击间隔
+
     public float patrolRange = 5f; // 左右巡逻范围
 
     public AirborneBossChildState airborneChildState;
@@ -40,11 +42,17 @@ public class FlySquirrelBOSS : Enemy
 
     [Header("通用参数")]
     public bool isHitable;
+
+    public GameObject Target; // 目标对象
     private NPCBattleValueManager nbvm;
     private Rigidbody2D rb;
     private Animator animator;
 
     public Transform Etransform;
+
+    public GameObject acornPrefab; // 松果预制体
+    public GameObject boomAcornPrefab; // 爆炸坚果预制体
+    public Transform acornSpawnPoint; // 松果发射点
 
     [Header("状态机")]
 

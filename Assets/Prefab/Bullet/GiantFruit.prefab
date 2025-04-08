@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4558426651728316046}
   - component: {fileID: 1419149103436408687}
   - component: {fileID: 1731902785346524433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GiantFruit
   m_TagString: flyLeaf
   m_Icon: {fileID: 0}

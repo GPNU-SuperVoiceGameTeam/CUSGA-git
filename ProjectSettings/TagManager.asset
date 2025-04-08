@@ -12,6 +12,7 @@ TagManager:
   - Ladder
   - Trap
   - SpawnPoint
+  - TreePlatform
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ground
   - Board
   - Player
-  - 
+  - Bullet
   - 
   - 
   - 
