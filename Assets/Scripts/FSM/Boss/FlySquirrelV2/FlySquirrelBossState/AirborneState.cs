@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class AirborneState : EnemyState
 {
+    /*一阶段，空中阶段：（除空中阶段有螺旋桨，其余阶段去掉螺旋桨）
+    在空中快速往下丢松果，一段时间后，自动下落到随机一棵树上
+    前4s，来回移动，不跟随主角，每0.4s往下丢一颗普通松果，
+    4s后，跟随主角x轴移动，每1s往下丢一颗爆炸松果，爆炸半径为1。持续6秒
+    之后，降落到随机一颗树上
+    总共10s
+     */
     public FlySquirrelBOSS fsb;
     private Vector3 patrolLeftBoundary;
     private Vector3 patrolRightBoundary;
 
     private float attackTimer = 0f;
+    private float trans2TreeStateTimer = 0f;
 
     private bool state2followSwitch = false;
     private float state2followTimer = 0f;
@@ -28,12 +36,14 @@ public class AirborneState : EnemyState
         fsb.airborneChildState = FlySquirrelBOSS.AirborneBossChildState.onflying;
         patrolLeftBoundary = (Vector2)fsb.transform.position + new Vector2(-fsb.patrolRange, 0);
         patrolRightBoundary = (Vector2)fsb.transform.position + new Vector2(fsb.patrolRange, 0);
+        fsb.rb.gravityScale = 0f; // 飞行状态重力为零
 
 
     }
 
     public override void ExitState()
     {
+        
 
     }
     
@@ -56,6 +66,15 @@ public class AirborneState : EnemyState
             followPlayerPatrol();
             BoomAcornAttack();
             break;
+        }
+
+        if (trans2TreeStateTimer < fsb.trans2TreeStateTime)
+        {
+            trans2TreeStateTimer += Time.deltaTime;
+        }
+        else
+        {
+            fsb.stateMachine.ChangeState(fsb.onTreeState);
         }
 
 

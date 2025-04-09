@@ -28,10 +28,18 @@ public class FlySquirrelBOSS : Enemy
 
     public float patrolRange = 5f; // 左右巡逻范围
 
+    public float trans2TreeStateTime = 10f;
+
     public AirborneBossChildState airborneChildState;
 
     [Header("树上状态参数")]
     public float TreejumpForce;
+    public float platformeDetectionRadius = 50f; // 检测周围平台的半径
+    public float minJumpHeight = 2f;   // 最小跳跃高度
+    public float maxJumpHeight = 4f;   // 最大跳跃高度
+    public float jumpDuration = 1f;    // 跳跃持续时间(秒)
+    public float minWaitTime = 1f;     // 最小等待时间(秒)
+    public float maxWaitTime = 3f;    // 最大等待时间(秒)
 
 
     [Header("地面状态参数")]
@@ -43,9 +51,11 @@ public class FlySquirrelBOSS : Enemy
     [Header("通用参数")]
     public bool isHitable;
 
+    private float attackTimer; // 攻击计时器
+
     public GameObject Target; // 目标对象
     private NPCBattleValueManager nbvm;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator animator;
 
     public Transform Etransform;
@@ -77,9 +87,9 @@ public class FlySquirrelBOSS : Enemy
     {
         Etransform = transform;
         InitState();
-        nbvm = GetComponent<NPCBattleValueManager>();
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        nbvm = gameObject.GetComponent<NPCBattleValueManager>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
         
     }
 
@@ -106,6 +116,27 @@ public class FlySquirrelBOSS : Enemy
     #endregion
 
     #region 功能函数
+
+    public virtual void BoomAcornAttack()// 爆炸坚果攻击
+    {
+            // 创建松果
+            GameObject boomAcorn = Object.Instantiate(boomAcornPrefab, acornSpawnPoint.position, Quaternion.identity);
+
+            // 设置松果的旋转
+            boomAcorn.GetComponent<Rigidbody2D>().angularVelocity = 500f; // 设置松果的旋转速度
+
+            // 计算朝向玩家的方向
+            Vector2 direction = (Target.transform.position - acornSpawnPoint.position).normalized;
+
+            // 给松果添加力使其朝向玩家
+            Rigidbody2D acornRigidbody = boomAcorn.GetComponent<Rigidbody2D>();
+            acornRigidbody.gravityScale = 0f; // 取消重力
+            if (acornRigidbody != null)
+            {
+                acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+            }
+
+    }
 
 
 

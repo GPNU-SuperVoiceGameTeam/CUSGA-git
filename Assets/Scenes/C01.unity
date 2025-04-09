@@ -244,7 +244,9 @@ GameObject:
   m_Component:
   - component: {fileID: 80028756}
   - component: {fileID: 80028755}
-  m_Layer: 0
+  - component: {fileID: 80028758}
+  - component: {fileID: 80028757}
+  m_Layer: 10
   m_Name: TreePlatform (2)
   m_TagString: TreePlatform
   m_Icon: {fileID: 0}
@@ -318,6 +320,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 345046249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &80028757
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80028754}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!61 &80028758
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80028754}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &83403009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2698,7 +2764,9 @@ GameObject:
   m_Component:
   - component: {fileID: 934620899}
   - component: {fileID: 934620898}
-  m_Layer: 0
+  - component: {fileID: 934620901}
+  - component: {fileID: 934620900}
+  m_Layer: 10
   m_Name: TreePlatform
   m_TagString: TreePlatform
   m_Icon: {fileID: 0}
@@ -2772,6 +2840,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 345046249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &934620900
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934620897}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!61 &934620901
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934620897}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &938951067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,7 +5018,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1810937508}
   - component: {fileID: 1810937507}
-  m_Layer: 0
+  - component: {fileID: 1810937510}
+  - component: {fileID: 1810937509}
+  m_Layer: 10
   m_Name: TreePlatform (1)
   m_TagString: TreePlatform
   m_Icon: {fileID: 0}
@@ -4960,6 +5094,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 345046249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1810937509
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810937506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!251 &1810937510
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810937506}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1830046759
 GameObject:
   m_ObjectHideFlags: 0
@@ -37967,13 +38165,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7942691028964900857}
+  - component: {fileID: 7942691028964900860}
   - component: {fileID: 5218897836324086811}
   - component: {fileID: 3938810334284591195}
   - component: {fileID: 1209291001086001181}
   - component: {fileID: 7942691028964900858}
   - component: {fileID: 3887607411213165115}
   - component: {fileID: 7942691028964900859}
-  - component: {fileID: 7942691028964900860}
   m_Layer: 0
   m_Name: SquirrelBoss
   m_TagString: Enemy
@@ -38224,11 +38422,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 768
@@ -38494,7 +38692,7 @@ Transform:
   m_GameObject: {fileID: 1348038829558342179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.25, y: 30.18, z: 0}
+  m_LocalPosition: {x: 69.51, y: 30.15, z: 0}
   m_LocalScale: {x: 2.0354, y: 2.0354, z: 2.0354}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38556,12 +38754,20 @@ MonoBehaviour:
   airAttackInterval: 0.4
   BoomAcornAttackInterval: 1
   patrolRange: 5
+  trans2TreeStateTime: 10
   airborneChildState: 0
   TreejumpForce: 0
+  platformeDetectionRadius: 100
+  minJumpHeight: 2
+  maxJumpHeight: 4
+  jumpDuration: 1
+  minWaitTime: 1
+  maxWaitTime: 2
   jumpForce: 0
   diveTime: 0
   isHitable: 0
   Target: {fileID: 6320247968378395546}
+  rb: {fileID: 3938810334284591195}
   Etransform: {fileID: 0}
   acornPrefab: {fileID: 7929791082012395024, guid: b343820f39bbf9446abcca6d2f4bdcd0, type: 3}
   boomAcornPrefab: {fileID: 7929791082012395024, guid: 1fc68a625e80f514a96a424fa91b91b7, type: 3}
