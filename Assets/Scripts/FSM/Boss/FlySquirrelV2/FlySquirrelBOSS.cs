@@ -56,6 +56,7 @@ public class FlySquirrelBOSS : Enemy
     public float EnterVertigotime = 2f;
 
     public float flowerAttackInterval = 2f; // 花攻击间隔
+    public float flowerAttackShootInterval = 0.4f; // 花攻击射击子弹间隔时间
     public float normalAttackInterval = 2f; // 普通攻击间隔
 
     public float OnGroundStateMaxTime = 15f; // 地面状态最大持续时间
@@ -187,6 +188,24 @@ public class FlySquirrelBOSS : Enemy
                 acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
             }
 
+    }
+
+    public virtual void FlowerAcornAttack()// 向四周发射普通坚果
+    {
+            // 向四周发射普通坚果
+            for (int i = 0; i < 8; i++)
+            {
+                Vector2 direction = Quaternion.Euler(0f, 0f, 32f * i) * Vector2.right;
+                Vector3 spawnPosition = acornSpawnPoint.position + new Vector3(direction.x, direction.y, 0f) * 2f;
+                GameObject Acorn = Object.Instantiate(acornPrefab, spawnPosition, Quaternion.identity);
+                Acorn.GetComponent<Rigidbody2D>().angularVelocity = 500f; // 设置松果的旋转速度
+                Rigidbody2D acornRigidbody = Acorn.GetComponent<Rigidbody2D>();
+                acornRigidbody.gravityScale = 0f; // 取消重力
+                if (acornRigidbody != null)
+                {
+                    acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+                }
+            }
     }
 
 

@@ -38813,8 +38813,10 @@ MonoBehaviour:
   jumpHeight: 0.5
   EnterVertigotime: 2
   flowerAttackInterval: 2
+  flowerAttackShootInterval: 0.4
   normalAttackInterval: 2
   OnGroundStateMaxTime: 15
+  AttackVertigoDuration: 2
   onGroundChildState: 0
   diveTime: 0
   isHitable: 0

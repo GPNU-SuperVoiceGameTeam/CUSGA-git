@@ -9,8 +9,13 @@ public class onGround_FlowerAttackState : EnemyState
     private bool notAttackSwitch = true;
 
     private bool StateComplete = false;
+    private bool hasAttacked = false;
+
+    private float changerTimer = 0f;
 
     private Vector2 tempTargetPos;
+
+    private Coroutine continueFlowerAttackCoroutine;
     // Boss往主角位置跳跃，砸向主角。跳到目标位置后，向周围洒数颗松果。停止2s
 
     public onGround_FlowerAttackState(Enemy enemy) : base(enemy)
@@ -22,11 +27,18 @@ public class onGround_FlowerAttackState : EnemyState
         //StateComplete = false;
         isJumping = true;
         tempTargetPos = fsb.Target.transform.position;
+
+
+        notAttackSwitch = true;
+        StateComplete = false;
+        hasAttacked = false;
+        changerTimer = 0f;
         
     }
 
     public override void ExitState()
     {
+        fsb.StopCoroutine(continueFlowerAttackCoroutine);
         
     }
 
@@ -37,8 +49,24 @@ public class onGround_FlowerAttackState : EnemyState
         if (!notAttackSwitch)
         {
             //fsb.FlowerAcornAttack();
-            fsb.BoomAcornAttack();
-            fsb.stateMachine.ChangeState(fsb.onGroundState);
+            if (!hasAttacked)
+            {
+                //fsb.FlowerAcornAttack();
+                continueFlowerAttackCoroutine = fsb.StartCoroutine(continueFlowerAttack());
+                hasAttacked = true;
+            }
+            //fsb.stateMachine.ChangeState(fsb.onGroundState);
+
+            if (changerTimer < fsb.AttackVertigoDuration)
+            {
+                changerTimer += Time.deltaTime;
+            }
+            else
+            {
+                StateChange();
+                changerTimer = 0f;
+                
+            }
 
         }
         fsb.OnGroundStateTimeCount();
@@ -60,5 +88,14 @@ public class onGround_FlowerAttackState : EnemyState
             {
                 fsb.stateMachine.ChangeState(fsb.onGround_normalAttackState);
             }
+    }
+
+    private IEnumerator continueFlowerAttack()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(fsb.flowerAttackShootInterval);
+            fsb.FlowerAcornAttack();
+        }
     }
 }

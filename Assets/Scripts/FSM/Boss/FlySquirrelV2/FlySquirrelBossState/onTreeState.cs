@@ -18,6 +18,8 @@ public class onTreeState : EnemyState
     private Vector2 startPosition;
     private Vector2 targetPosition;
     private float jumpHeight;
+
+    private Coroutine jumpRoutine;
     public onTreeState(Enemy enemy) : base(enemy)
     {
         fsb=enemy as FlySquirrelBOSS;
@@ -29,7 +31,7 @@ public class onTreeState : EnemyState
         JumpBetweenRandomPlatforms();
         
         // 开始随机跳跃协程
-        fsb.StartCoroutine(RandomJumpRoutine());
+        jumpRoutine = fsb.StartCoroutine(RandomJumpRoutine());
         fsb.rb.gravityScale = 1f;
 
         //启用与平台的碰撞
@@ -43,7 +45,7 @@ public class onTreeState : EnemyState
 
     public override void ExitState()
     {
-        fsb.StopCoroutine(RandomJumpRoutine());
+        fsb.StopCoroutine(jumpRoutine);
 
         // 禁用与平台的碰撞
         foreach (Transform platform in allnearbyPlatforms)
@@ -61,7 +63,7 @@ public class onTreeState : EnemyState
         {
             fsb.stateMachine.ChangeState(fsb.onGroundState);
         }
-        fsb.OnGroundStateTimeCount();
+        
 
     }
 
