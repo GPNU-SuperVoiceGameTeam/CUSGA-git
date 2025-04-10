@@ -2766,6 +2766,7 @@ GameObject:
   - component: {fileID: 934620898}
   - component: {fileID: 934620901}
   - component: {fileID: 934620900}
+  - component: {fileID: 934620902}
   m_Layer: 10
   m_Name: TreePlatform
   m_TagString: TreePlatform
@@ -2848,7 +2849,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934620897}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2890,6 +2891,51 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &934620902
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934620897}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -38556,7 +38602,7 @@ Transform:
   m_GameObject: {fileID: 6320247968378395546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.2, y: 23.3, z: 0}
+  m_LocalPosition: {x: 63.69, y: 23.44, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -38763,10 +38809,17 @@ MonoBehaviour:
   jumpDuration: 1
   minWaitTime: 1
   maxWaitTime: 2
-  jumpForce: 0
+  GroundjumpDuration: 2
+  jumpHeight: 0.5
+  EnterVertigotime: 2
+  flowerAttackInterval: 2
+  normalAttackInterval: 2
+  OnGroundStateMaxTime: 15
+  onGroundChildState: 0
   diveTime: 0
   isHitable: 0
   Target: {fileID: 6320247968378395546}
+  nbvm: {fileID: 0}
   rb: {fileID: 3938810334284591195}
   Etransform: {fileID: 0}
   acornPrefab: {fileID: 7929791082012395024, guid: b343820f39bbf9446abcca6d2f4bdcd0, type: 3}

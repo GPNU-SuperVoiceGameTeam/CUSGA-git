@@ -11,6 +11,7 @@ public class onTreeState : EnemyState
     */
     public FlySquirrelBOSS fsb;
     private List<Transform> nearbyPlatforms = new List<Transform>();
+    private List<Transform> allnearbyPlatforms = new List<Transform>();
     private Transform currentPlatform;
     private bool isJumping = false;
     private float jumpProgress = 0f;
@@ -30,6 +31,12 @@ public class onTreeState : EnemyState
         // 开始随机跳跃协程
         fsb.StartCoroutine(RandomJumpRoutine());
         fsb.rb.gravityScale = 1f;
+
+        //启用与平台的碰撞
+        foreach (Transform platform in allnearbyPlatforms)
+        {
+            Physics2D.IgnoreCollision(fsb.GetComponent<Collider2D>(), platform.GetComponent<Collider2D>(), false);
+        }
         
 
     }
@@ -38,11 +45,23 @@ public class onTreeState : EnemyState
     {
         fsb.StopCoroutine(RandomJumpRoutine());
 
+        // 禁用与平台的碰撞
+        foreach (Transform platform in allnearbyPlatforms)
+        {
+            Physics2D.IgnoreCollision(fsb.GetComponent<Collider2D>(), platform.GetComponent<Collider2D>(), true);
+        }
+
     }
     
     public override void FrameUpdate()
     {
         TreePlatformJumpAndAttack();
+
+        if(fsb.nbvm.isHit == true)
+        {
+            fsb.stateMachine.ChangeState(fsb.onGroundState);
+        }
+        fsb.OnGroundStateTimeCount();
 
     }
 
@@ -96,12 +115,13 @@ public class onTreeState : EnemyState
                 nearbyPlatforms.Add(platform.transform);
             }
         }
+        allnearbyPlatforms = nearbyPlatforms;
         if (currentPlatform == null ||nearbyPlatforms.Contains(currentPlatform))
         {
             nearbyPlatforms.Remove(currentPlatform);
         }
     }
-        void JumpBetweenRandomPlatforms()
+    void JumpBetweenRandomPlatforms()
     {
         FindNearbyPlatforms();
         if (nearbyPlatforms.Count < 2)
