@@ -64,7 +64,25 @@ public class NPCBattleValueManager : MonoBehaviour
                 TakeDamage(1);
                 Destroy(collision);
             }
-            else
+            return;
+
+            case NPCType.Boss://Boss碰撞检测
+            return;
+
+            default:
+            return;
+        }
+    }
+
+        private void OnTriggerExit2D(Collider2D collision)
+    {
+        switch (npcType)
+        {
+            case NPCType.Player://玩家碰撞检测
+            return;
+
+            case NPCType.NormalEnemy://普通敌人碰撞检测
+            if (collision.gameObject.CompareTag("Wave"))
             {
                 isHit = false;
             }
