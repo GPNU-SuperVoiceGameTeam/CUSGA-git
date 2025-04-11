@@ -63,6 +63,8 @@ public class NPCBattleValueManager : MonoBehaviour
                 isHit = true;
                 TakeDamage(1);
                 Destroy(collision);
+                Invoke("Enemy_InvokedIsHit", 0.2f);
+                
             }
             return;
 
@@ -155,6 +157,11 @@ public class NPCBattleValueManager : MonoBehaviour
         void Enemy_Die()
     {
         Destroy(gameObject);
+    }
+
+    void Enemy_InvokedIsHit()
+    {
+        isHit = false;
     }
     
     #endregion

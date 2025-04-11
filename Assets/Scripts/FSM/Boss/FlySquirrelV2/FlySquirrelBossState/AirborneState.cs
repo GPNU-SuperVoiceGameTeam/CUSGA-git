@@ -18,11 +18,11 @@ public class AirborneState : EnemyState
 
     private float attackTimer = 0f;
     private float trans2TreeStateTimer = 0f;
-
-    private bool state2followSwitch = false;
     private float state2followTimer = 0f;
 
     private float state2followMaxTime = 4f;
+
+    private float currentflyHigh;
 
 
     private bool isMovingRight = true;
@@ -33,10 +33,17 @@ public class AirborneState : EnemyState
 
     public override void EnterState()
     {
+        currentflyHigh = fsb.Target.transform.position.y + fsb.flyHeight;
         fsb.airborneChildState = FlySquirrelBOSS.AirborneBossChildState.onflying;
-        patrolLeftBoundary = (Vector2)fsb.transform.position + new Vector2(-fsb.patrolRange, 0);
-        patrolRightBoundary = (Vector2)fsb.transform.position + new Vector2(fsb.patrolRange, 0);
+        patrolLeftBoundary = fsb.AirpatrolLeftBoundary;
+        patrolRightBoundary = fsb.AirpatrolRightBoundary;
         fsb.rb.gravityScale = 0f; // 飞行状态重力为零
+        fsb.nbvm.canTakeDamage = false; // 不能受伤
+
+        attackTimer = 0f;
+        trans2TreeStateTimer = 0f;
+        state2followTimer = 0f;
+        state2followMaxTime = 4f;
 
 
     }
@@ -47,7 +54,7 @@ public class AirborneState : EnemyState
 
     }
     
-    public override void FrameUpdate()
+    public override void FrameUpdate() 
     {
         switch (fsb.airborneChildState)
         {
@@ -58,7 +65,7 @@ public class AirborneState : EnemyState
             if (state2followTimer >= state2followMaxTime)
             {
                 fsb.airborneChildState = FlySquirrelBOSS.AirborneBossChildState.onfollow;
-                state2followSwitch = true;
+                
             }
             break;
             
@@ -91,6 +98,7 @@ public class AirborneState : EnemyState
         // 正常行走巡逻
         if (isMovingRight)
         {
+
             // 向右移动
             fsb.transform.position = Vector2.MoveTowards(fsb.transform.position, patrolRightBoundary, fsb.flySpeed * Time.deltaTime);
             if (fsb.transform.position.x >= patrolRightBoundary.x)

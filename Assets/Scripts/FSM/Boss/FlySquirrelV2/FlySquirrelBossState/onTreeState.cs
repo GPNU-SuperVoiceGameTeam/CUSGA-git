@@ -29,6 +29,7 @@ public class onTreeState : EnemyState
     {
         FindNearbyPlatforms();
         JumpBetweenRandomPlatforms();
+        fsb.nbvm.canTakeDamage = true;
         
         // 开始随机跳跃协程
         jumpRoutine = fsb.StartCoroutine(RandomJumpRoutine());

@@ -13,6 +13,7 @@ public class onGround_normalAttackState : EnemyState
     private float changerTimer = 0f;
 
     private Vector2 tempTargetPos;
+    private Vector2 startPosition;
     // Boss往主角位置跳跃，砸向主角。跳到目标位置后，向周围洒数颗松果。停止2s
 
     public onGround_normalAttackState(Enemy enemy) : base(enemy)
@@ -24,6 +25,7 @@ public class onGround_normalAttackState : EnemyState
         //StateComplete = false;
         isJumping = true;
         tempTargetPos = fsb.Target.transform.position;
+        startPosition = fsb.transform.position;
         StateComplete = false;
         notAttackSwitch = true;
         hasAttacked = false;
@@ -39,7 +41,7 @@ public class onGround_normalAttackState : EnemyState
     public override void FrameUpdate()
     {
         Debug.Log(tempTargetPos);
-        notAttackSwitch = isJumping = fsb.JumpToTarget(tempTargetPos, isJumping);
+        notAttackSwitch = isJumping = fsb.JumpToTarget(tempTargetPos,startPosition, isJumping);
         if (!notAttackSwitch)
         {
             //fsb.FlowerAcornAttack();
