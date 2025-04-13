@@ -84906,8 +84906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce0be96bd9ae044b97d8980bb45841d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
-  CurrentHP: 30
+  MaxHP: 20
+  CurrentHP: 20
   Attack: 1
   canTakeDamage: 1
   AIAttackInterval: 1
@@ -84960,7 +84960,7 @@ MonoBehaviour:
   leafAttackDuration: 4
   leafSpawndistance: 20
   GiantAcornDuration: 6
-  GiantAcornInitHeight: 20
+  GiantAcornInitHeight: 15
   UndergroundStateMaxTime: 12
   isHitable: 0
   SpawnPos: {x: 0, y: 0}
