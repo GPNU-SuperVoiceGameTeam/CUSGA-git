@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2807367224957282151}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.307, y: -0.254, z: 0}
+  m_LocalPosition: {x: -0.16, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 5106194830645281414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,7 +79,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47468adb39dca66499e4b8e8b24b4442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: 0
   enemy: {fileID: 6385312380422167933}
 --- !u!1 &6385312380422167933
 GameObject:
@@ -135,6 +136,7 @@ GameObject:
   - component: {fileID: 8971569350412472069}
   - component: {fileID: 6548337388525682499}
   - component: {fileID: 9213119902645017957}
+  - component: {fileID: 3055836820674008093}
   m_Layer: 0
   m_Name: Squirrel01
   m_TagString: Untagged
@@ -273,7 +275,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -303,3 +305,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62740946, y: 1.0832384}
   m_EdgeRadius: 0
+--- !u!114 &3055836820674008093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385312380422167933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce0be96bd9ae044b97d8980bb45841d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHP: 5
+  CurrentHP: 5
+  Attack: 0
+  canTakeDamage: 1
+  AIAttackInterval: 1
+  npcType: 2
+  isHit: 0

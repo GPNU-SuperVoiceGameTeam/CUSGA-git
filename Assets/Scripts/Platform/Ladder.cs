@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     private float vertical;//垂直输入
-    private float speed = 3f;//爬梯子速度
+    public float speed = 3f;//爬梯子速度
     private bool isLadder;//是否站在梯子上
     private bool isClimbing;//是否在爬梯子的状态
      private PlayerController playerController;

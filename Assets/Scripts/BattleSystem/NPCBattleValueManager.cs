@@ -16,13 +16,13 @@ public class NPCBattleValueManager : MonoBehaviour
     [Header("战斗数值")]
     public float MaxHP = 5;
     public float CurrentHP = 5;
-    public float Attack = 1;
+    public int Attack = 1;
 
     public bool canTakeDamage = true;
     
     [Header("位移数值")]
-    public float MoveSpeed = 5;
-    public float JumpForce = 180;
+    // public float MoveSpeed = 5;
+    // public float JumpForce = 180;
 
     [Header("AI数值")]
     public float AIAttackInterval = 1;//攻击间隔
@@ -58,7 +58,7 @@ public class NPCBattleValueManager : MonoBehaviour
             return;
 
             case NPCType.NormalEnemy://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("Wave"))
+            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
             {
                 isHit = true;
                 TakeDamage(1);
@@ -84,7 +84,7 @@ public class NPCBattleValueManager : MonoBehaviour
             return;
 
             case NPCType.NormalEnemy://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("Wave"))
+            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
             {
                 isHit = false;
             }
@@ -146,7 +146,6 @@ public class NPCBattleValueManager : MonoBehaviour
         {
             CurrentHP -= damage;
             isHit = true;
-            //canTakeDamage = false;
         }
         if (CurrentHP <= 0)
         {

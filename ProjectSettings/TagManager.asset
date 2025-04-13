@@ -13,6 +13,8 @@ TagManager:
   - Trap
   - SpawnPoint
   - TreePlatform
+  - lowWave
+  - highWave
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - Player
   - Bullet
   - TreePlatform
-  - 
+  - Enemy
   - 
   - 
   - 

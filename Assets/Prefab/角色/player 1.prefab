@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c8c5afe3db5aa40882db2ddea5598c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5913630232276628945}
+  playerTransform: {fileID: 0}
   playerSpriteRenderer: {fileID: 0}
   offsetRight: {x: 2.3, y: 1.5, z: -10}
   offsetLeft: {x: -2.3, y: 1.5, z: -10}
@@ -352,10 +352,17 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1150431682885056309}
   groundCheckSize: {x: 0.5, y: 0.1}
-  bulletPrefab: {fileID: 4996511050308043321, guid: eb07844003c7b4949a65bf94199f1983, type: 3}
+  spawnPoint: {x: 0, y: 0}
+  playerPrefab: {fileID: 0}
+  lowBulletPrefab: {fileID: 0}
+  highBulletPrefab: {fileID: 0}
+  specialBulletPrefab: []
+  specialBullet: 0
   shootForce: 3
   keepTime: 1
-  health: 3
+  attackCooldown: 0.5
+  maxHealth: 5
+  health: 5
   moveSpeed: 6
   jumpForce: 10
   upGravity: 2
@@ -365,7 +372,10 @@ MonoBehaviour:
   isDead: 0
   canMove: 1
   canAttack: 0
-  canShoot: 1
+  lowWaveUnlock: 0
+  highWaveUnlock: 0
+  lightWaveUnlock: 0
+  voiceController: {fileID: 0}
 --- !u!61 &8945192495866434311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -455,6 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b785c08a02ed24b91527d6f716f1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
   rb: {fileID: 6262312462156599035}
 --- !u!114 &2480851620380864060
 MonoBehaviour:

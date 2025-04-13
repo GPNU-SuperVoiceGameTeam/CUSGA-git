@@ -79,14 +79,14 @@ public class FlySquirrelBOSS : Enemy
 
     public float leafAttackStartTime = 1f; // 叶子攻击开始时间
 
-    public float leafAttackInterval = 0.5f; // 叶子攻击间隔
-    public float leafAttackMaxSpeed = 15f; // 叶子最大飞行速度
-    public float leafAttackMinSpeed = 7f; // 叶子最小飞行速度
+    public float leafAttackInterval = 1f; // 叶子攻击间隔
+    public float leafAttackMaxSpeed = 10f; // 叶子最大飞行速度
+    public float leafAttackMinSpeed = 5f; // 叶子最小飞行速度
     public float leafAttackDuration = 4f; //叶子攻击持续时间
     public float leafSpawndistance = 20f; // 叶子生成距离
 
-    public float GiantAcornDuration = 4f; // 巨大坚果开始时间
-    public float GiantAcornInitHeight = 10f; // 巨大坚果生成高度
+    public float GiantAcornDuration = 6f; // 巨大坚果开始时间
+    public float GiantAcornInitHeight = 20f; // 巨大坚果生成高度
 
     public float UndergroundStateMaxTime = 6f; // 地下状态最大持续时间
     
@@ -165,6 +165,8 @@ public class FlySquirrelBOSS : Enemy
     // Update is called once per frame
     void Update()
     {
+        float direction = Target.transform.position.x - transform.position.x;
+        transform.localScale = new Vector2(-Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x), transform.localScale.y);
         stateMachine.currentState.FrameUpdate();
         
     }
@@ -203,7 +205,7 @@ public class FlySquirrelBOSS : Enemy
             acornRigidbody.gravityScale = 0f; // 取消重力
             if (acornRigidbody != null)
             {
-                acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+                acornRigidbody.AddForce(direction * 8f, ForceMode2D.Impulse);
             }
 
     }
@@ -225,7 +227,7 @@ public class FlySquirrelBOSS : Enemy
             acornRigidbody.gravityScale = 0f; // 取消重力
             if (acornRigidbody != null)
             {
-                acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+                acornRigidbody.AddForce(direction * 12f, ForceMode2D.Impulse);
             }
 
     }
@@ -233,7 +235,7 @@ public class FlySquirrelBOSS : Enemy
     public virtual void FlowerAcornAttack()// 向四周发射普通坚果
     {
             // 向四周发射普通坚果
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Vector2 direction = Quaternion.Euler(0f, 0f, 30f * i) * Vector2.right;
                 Vector3 spawnPosition = acornSpawnPoint.position + new Vector3(direction.x, direction.y, 0f) * 2f;
@@ -243,7 +245,7 @@ public class FlySquirrelBOSS : Enemy
                 acornRigidbody.gravityScale = 0f; // 取消重力
                 if (acornRigidbody != null)
                 {
-                    acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+                    acornRigidbody.AddForce(direction * 5f, ForceMode2D.Impulse);
                 }
             }
     }
@@ -263,7 +265,7 @@ public class FlySquirrelBOSS : Enemy
         acornRigidbody.gravityScale = 0f; // 取消重力
         if (acornRigidbody != null)
         {
-            acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+            acornRigidbody.AddForce(direction * 2f, ForceMode2D.Impulse);
         }
 
     }

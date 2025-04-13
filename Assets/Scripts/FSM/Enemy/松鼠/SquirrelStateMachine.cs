@@ -15,6 +15,7 @@ public class SquirrelStateMachine : MonoBehaviour
     public float patrolSpeed = 2f; // 巡逻速度
     public float patrolRange = 5f; // 巡逻范围
     public float attackCooldown = 1f; // 攻击冷却时间，设置为每秒攻击一次
+    public float shootForce = 10f;
     public GameObject acornPrefab; // 松果预制体
     public Transform acornSpawnPoint; // 松果发射点
     public Transform player; // 玩家引用
@@ -86,7 +87,7 @@ public class SquirrelStateMachine : MonoBehaviour
             acornRigidbody.gravityScale = 0f; // 取消重力
             if (acornRigidbody != null)
             {
-                acornRigidbody.AddForce(direction * 10f, ForceMode2D.Impulse);
+                acornRigidbody.AddForce(direction * shootForce, ForceMode2D.Impulse);
             }
 
             // 更新下一次攻击时间

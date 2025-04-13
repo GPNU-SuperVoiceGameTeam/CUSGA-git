@@ -1,23 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanPressF_Controller : MonoBehaviour
 {
     public GameObject press;
-    public GameObject dialogue;
+    public PlayerController playerController;
     void Start()
     {
         press.SetActive(false);
-        dialogue.SetActive(false);
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F)){
-            dialogue.SetActive(true);
-        }
-    }
-
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player"){
@@ -31,4 +22,5 @@ public class CanPressF_Controller : MonoBehaviour
             press.SetActive(false);
         }
     }
+
 }

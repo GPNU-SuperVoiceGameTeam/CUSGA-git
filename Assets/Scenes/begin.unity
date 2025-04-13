@@ -177,8 +177,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 100525966}
-  selectedCommands: []
+  - {fileID: 100525980}
+  selectedCommands:
+  - {fileID: 100525979}
   variables: []
   description: 
   stepPause: 0
@@ -529,7 +530,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 816.5902
     y: 104.49229
-    width: 92.352936
+    width: 94.70587
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -891,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   press: {fileID: 2121125317}
-  dialogue: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!1 &480382526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1854,7 @@ GameObject:
   - component: {fileID: 928312869}
   - component: {fileID: 928312868}
   - component: {fileID: 928312867}
+  - component: {fileID: 928312870}
   m_Layer: 0
   m_Name: "\u5496\u5561\u95E8"
   m_TagString: Untagged
@@ -1873,7 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   press: {fileID: 1897717462}
-  dialogue: {fileID: 1253286068}
+  playerController: {fileID: 1681468284}
 --- !u!61 &928312868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1936,6 +1938,19 @@ Transform:
   - {fileID: 1897717464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928312870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928312866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee867dfbd5d84a4b88c2795095ebb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1253286068}
 --- !u!1 &987832452
 GameObject:
   m_ObjectHideFlags: 1
@@ -2190,7 +2205,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.088134766, y: -4.846318}
+  m_Offset: {x: -0.088134766, y: -4.8559594}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2201,7 +2216,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.935688, y: 0.88605785}
+  m_Size: {x: 19.935688, y: 0.86677456}
   m_EdgeRadius: 0
 --- !u!212 &1099710402
 SpriteRenderer:
@@ -2530,7 +2545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1253286069
 Transform:
   m_ObjectHideFlags: 0
@@ -3143,8 +3158,6 @@ GameObject:
   - component: {fileID: 1681468285}
   - component: {fileID: 1681468284}
   - component: {fileID: 1681468283}
-  - component: {fileID: 1681468290}
-  - component: {fileID: 1681468291}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -3215,10 +3228,15 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1931483401}
   groundCheckSize: {x: 0.5, y: 0.1}
-  bulletPrefab: {fileID: 2511210226717183635, guid: cf417793390342449a7d36cbdd6de4d5, type: 3}
+  lowBulletPrefab: {fileID: 4996511050308043321, guid: eb07844003c7b4949a65bf94199f1983, type: 3}
+  highBulletPrefab: {fileID: 3866869840617722249, guid: 7fa4ec877cc11204984904c95b7822a1, type: 3}
+  specialBulletPrefab: []
+  specialBullet: 0
   shootForce: 5
   keepTime: 2
-  health: 3
+  attackCooldown: 0.5
+  maxHealth: 5
+  health: 5
   moveSpeed: 8
   jumpForce: 10
   upGravity: 2
@@ -3228,6 +3246,9 @@ MonoBehaviour:
   isDead: 0
   canMove: 1
   canAttack: 0
+  lowWaveUnlock: 0
+  highWaveUnlock: 0
+  lightWaveUnlock: 0
   voiceController: {fileID: 0}
 --- !u!50 &1681468285
 Rigidbody2D:
@@ -3338,7 +3359,7 @@ Transform:
   m_GameObject: {fileID: 1681468282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5100002, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: -0.44, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3346,42 +3367,6 @@ Transform:
   - {fileID: 1723390633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1681468290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681468282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56152d3f2d543dd4899d860370ef251f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
---- !u!320 &1681468291
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681468282}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: fceea80eb2a519840a94d518005e8bc4, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 0}
-    value: {fileID: 1681468286}
-  - key: {fileID: 0}
-    value: {fileID: 1681468286}
-  - key: {fileID: 0}
-    value: {fileID: 1681468286}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &1719386209
 GameObject:
   m_ObjectHideFlags: 0
