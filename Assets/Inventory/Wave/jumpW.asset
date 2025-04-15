@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f971c4e8c5b19f4cacbf1f7dd8e8638, type: 3}
+  m_Name: jumpW
+  m_EditorClassIdentifier: 
+  type: 0
+  itemName: "\u8DF3\u8DC3\u58F0\u6CE2"
+  itemImage: {fileID: 21300000, guid: f5bfd43d3c684c144acae86afa6f4091, type: 3}
+  itemInfo: "+20\u58F0\u6CE2\u503C\n\u5229\u7528\u58F0\u6CE2\u63D0\u4F9B\u4E00\u6B21\u8DF3\u8DC3\u673A\u4F1A"
+  isUnlocked: 0
+  isEquipped: 0

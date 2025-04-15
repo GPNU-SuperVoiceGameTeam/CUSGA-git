@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Pendulum : MonoBehaviour
 {
-    public Transform pivotPoint; // °Ú´¸µÄ¹Ì¶¨µã
-    public float swingAngle = 45f; // °Ú¶¯µÄ×î´ó½Ç¶È
-    public float swingSpeed = 1f; // °Ú¶¯µÄËÙ¶È
+    public Transform pivotPoint; // æ‘†é”¤çš„å›ºå®šç‚¹
+    public float swingAngle = 45f; // æ‘†åŠ¨çš„æœ€å¤§è§’åº¦
+    public float swingSpeed = 1f; // æ‘†åŠ¨çš„é€Ÿåº¦
 
     private float initialAngle;
     private float currentAngle;
@@ -17,11 +17,11 @@ public class Pendulum : MonoBehaviour
 
     void Update()
     {
-        // ¼ÆËã°Ú¶¯½Ç¶È
+        // è®¡ç®—æ‘†åŠ¨è§’åº¦
         currentAngle = initialAngle + Mathf.Sin(Time.time * swingSpeed) * swingAngle;
-        // ÉèÖÃ°Ú´¸µÄĞı×ª
+        // è®¾ç½®æ‘†é”¤çš„æ—‹è½¬
         transform.rotation = Quaternion.Euler(0, 0, currentAngle);
-        // ¸ù¾İĞı×ª¸üĞÂ°Ú´¸µÄÎ»ÖÃ
+        // æ ¹æ®æ—‹è½¬æ›´æ–°æ‘†é”¤çš„ä½ç½®
         Vector3 pivotPosition = pivotPoint.position;
         float radius = Vector3.Distance(transform.position, pivotPosition);
         float angleInRadians = currentAngle * Mathf.Deg2Rad;

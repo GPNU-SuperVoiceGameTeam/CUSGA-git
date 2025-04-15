@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
         guardWave
     }
     public Animator anim;
-    public BattleWaveController battleWaveController;
+    public BattleWaveVoicer battleWaveVoicer;
     //地面检测
     public LayerMask groundLayer; // 地面层，用于检测是否在地面上
     public Transform groundCheck; // 地面检测点
@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     public bool isAttack;
     public bool isDead;
     public bool canMove = true;
+    [Header("背包")]
+    public bool canOpenBackpack;
+    public GameObject backpack;
     [Header("解锁")]
     public bool canAttack;
     public bool lowWaveUnlock;
@@ -72,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        openBackpack();
         if(canMove){
             switch (state_type)
             {
@@ -79,6 +83,7 @@ public class PlayerController : MonoBehaviour
                     Move();
                     Jump();
                     Attack();
+                    
                     break;
                 case "cantMoveAble":
                     break;
@@ -151,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 // 发射声波
                 gunRb.AddForce(direction * shootForce, ForceMode2D.Impulse);
                 int lowWaveVoice = Random.Range(0, 3);
-                battleWaveController.music[lowWaveVoice].GetComponent<AudioSource>().Play();
+                battleWaveVoicer.music[lowWaveVoice].GetComponent<AudioSource>().Play();
                 // 增加过载
                 voiceController.AddVoice(10);
                 nextAttackTime = Time.time + attackCooldown; // 更新下一次攻击时间
@@ -198,6 +203,27 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isAttack = false;
+            }
+        }
+    }
+
+    public void openBackpack()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // 切换背包的显示状态
+            backpack.SetActive(!backpack.activeSelf);
+
+            // 根据背包的显示状态设置 canAttack 和 canMove
+            if (backpack.activeSelf)
+            {
+                canAttack = false;
+                canMove = false;
+            }
+            else
+            {
+                canAttack = true;
+                canMove = true;
             }
         }
     }
