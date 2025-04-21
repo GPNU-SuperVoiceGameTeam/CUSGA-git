@@ -19,7 +19,6 @@ public class PlayerCheck : MonoBehaviour
                     enemy.GetComponent<SquirrelStateMachine>().currentState = SquirrelStateMachine.State.Attack;
                     break;
                 case EnemyName.Spider:
-                    enemy.GetComponent<SpiderStateMachine>().currentState = SpiderStateMachine.State.Attack;
                     break;
             }
         }

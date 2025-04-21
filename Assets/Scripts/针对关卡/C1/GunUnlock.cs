@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunUnlock : MonoBehaviour
@@ -8,9 +6,10 @@ public class GunUnlock : MonoBehaviour
     public GameObject UI;
     public PlayerController playerController;
     public GameObject tip;
-    void OnTriggerStay2D(Collider2D collision)
+    public bool isEnter;
+    void Update()
     {
-        if(collision.CompareTag("Player")){
+        if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
                 UI.SetActive(true);
                 playerController.canAttack = true;
@@ -20,6 +19,12 @@ public class GunUnlock : MonoBehaviour
                 tip.SetActive(true);
                 Destroy(gameObject);
             }
+        }
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player")){
+            isEnter = true;
         }
     }
 }

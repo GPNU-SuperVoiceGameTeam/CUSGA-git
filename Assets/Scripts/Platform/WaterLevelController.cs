@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WaterLevelController : MonoBehaviour
 {
-    public float dropSpeed = 1f;
-    public float minYPosition = -5f;
+    public float dropSpeed = 0.01f;
+    public float minYPosition = -1f;
 
     public void DecreaseWaterLevel()
     {

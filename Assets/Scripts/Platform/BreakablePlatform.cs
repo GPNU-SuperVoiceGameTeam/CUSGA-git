@@ -2,20 +2,25 @@ using UnityEngine;
 
 public class BreakablePlatform : MonoBehaviour
 {
-    public float breakDelay = 0f; // ÆÆËéÑÓ³ÙÊ±¼ä£¬µ¥Î»£ºÃë
+    public float breakDelay = 0.2f; // å¹³å°å¡Œé™·çš„å»¶è¿Ÿæ—¶é—´
+    public float restoreDelay = 2.0f; // å¹³å°æ¢å¤çš„å»¶è¿Ÿæ—¶é—´
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // µ÷ÓÃÆÆËé·½·¨£¬¿ÉÉèÖÃÑÓ³Ù
-            Invoke("BreakPlatform", breakDelay);
+            Invoke("BreakPlatform", breakDelay); // å»¶è¿Ÿè°ƒç”¨å¡Œé™·æ–¹æ³•
         }
     }
 
     void BreakPlatform()
     {
-        // ÕâÀï¿ÉÒÔÌí¼ÓÆÆËé¶¯»­»òÒôĞ§
-        Destroy(gameObject);
+        gameObject.SetActive(false); // å¡Œé™·å¹³å°
+        Invoke("RestorePlatform", restoreDelay); // å»¶è¿Ÿè°ƒç”¨æ¢å¤å¹³å°çš„æ–¹æ³•
+    }
+
+    void RestorePlatform()
+    {
+        gameObject.SetActive(true); // æ¢å¤å¹³å°
     }
 }

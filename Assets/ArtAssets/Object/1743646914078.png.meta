@@ -4494,7 +4494,7 @@ TextureImporter:
       name: w04
       rect:
         serializedVersion: 2
-        x: 320
+        x: 322
         y: 384
         width: 64
         height: 64
@@ -4533,7 +4533,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: w00
+      name: w0004
       rect:
         serializedVersion: 2
         x: 448
@@ -6671,10 +6671,10 @@ TextureImporter:
       1743646914078_97: -1263718832
       1743646914078_98: 1992148271
       1743646914078_99: -564339279
-      w00: -1930004599
       w0001: 376702996
       w0002: 1597409396
       w0003: 319633064
+      w0004: -1930004599
       w0005: -1603935031
       w0006: -1866818577
       w0007: -1274486004

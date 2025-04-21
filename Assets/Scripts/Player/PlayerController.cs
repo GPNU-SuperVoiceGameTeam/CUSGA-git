@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 public class PlayerController : MonoBehaviour
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
         maxHealth = 5;
         health = maxHealth;
     }
-
     void Update()
     {
         openBackpack();
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGround && Input.GetButtonDown("Jump"))
+        if (isGround && Input.GetButton("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.Play("PlayerJump", 0, 0f);
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 voiceController.AddVoice(10);
                 nextAttackTime = Time.time + attackCooldown; // 更新下一次攻击时间
             }
-            else if (Input.GetMouseButtonDown(2)||Input.GetKeyDown(KeyCode.V) && canAttack)
+            else if (Input.GetMouseButtonDown(2)||Input.GetKeyDown(KeyCode.LeftShift) && canAttack)
             {
                 isAttack = true;
                 switch (specialBullet)
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     public void openBackpack()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             // 切换背包的显示状态
             backpack.SetActive(!backpack.activeSelf);

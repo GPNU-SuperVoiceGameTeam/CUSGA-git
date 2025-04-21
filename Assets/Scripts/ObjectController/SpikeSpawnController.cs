@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikeSpawnController : MonoBehaviour
 {
-    public SpikeController spikeController;
+    private SpikeController spikeController;
     public GameObject spike;
     void Start()
     {

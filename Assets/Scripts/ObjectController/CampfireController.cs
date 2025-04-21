@@ -3,12 +3,19 @@ using UnityEngine;
 public class CampfireController : MonoBehaviour
 {
     public PlayerController player;
-    void OnTriggerStay2D(Collider2D collision)
+    public bool isEnter;
+    void Update()
     {
-        if(collision.CompareTag("Player")){
+        if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
                 player.health = player.maxHealth;
             }
+        }
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player")){
+            isEnter = true;
         }
     }
 }

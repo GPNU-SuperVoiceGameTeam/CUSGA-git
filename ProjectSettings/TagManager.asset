@@ -15,6 +15,7 @@ TagManager:
   - TreePlatform
   - lowWave
   - highWave
+  - Destroy
   layers:
   - Default
   - TransparentFX

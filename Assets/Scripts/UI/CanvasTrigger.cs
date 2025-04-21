@@ -7,7 +7,7 @@ public class CanvasTrigger : MonoBehaviour
     private int tipIndex = 0;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z)){
+        if(Input.GetKeyDown(KeyCode.C)){
             if(tipIndex + 1 >= tip.Length){
                 for(int i = 0; i < tip.Length; i++){
                     tip[i].SetActive(false);

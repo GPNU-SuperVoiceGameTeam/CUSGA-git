@@ -347,16 +347,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  battleWaveVoicer: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 1150431682885056309}
   groundCheckSize: {x: 0.5, y: 0.1}
-  spawnPoint: {x: 0, y: 0}
-  playerPrefab: {fileID: 0}
-  lowBulletPrefab: {fileID: 0}
-  highBulletPrefab: {fileID: 0}
-  specialBulletPrefab: []
+  lowBulletPrefab: {fileID: 4996511050308043321, guid: eb07844003c7b4949a65bf94199f1983, type: 3}
+  highBulletPrefab: {fileID: 3866869840617722249, guid: 7fa4ec877cc11204984904c95b7822a1, type: 3}
+  specialBulletPrefab:
+  - {fileID: 3369673854565135556, guid: 73032c71451dd7644b05ee22900cefa5, type: 3}
+  - {fileID: 5629738007824169190, guid: 41a5a14a0c97de041b44ed5173d11d69, type: 3}
   specialBullet: 0
   shootForce: 3
   keepTime: 1
@@ -371,10 +372,13 @@ MonoBehaviour:
   isAttack: 0
   isDead: 0
   canMove: 1
+  canOpenBackpack: 0
+  backpack: {fileID: 0}
   canAttack: 0
   lowWaveUnlock: 0
   highWaveUnlock: 0
   lightWaveUnlock: 0
+  jumpWaveUnlock: 0
   voiceController: {fileID: 0}
 --- !u!61 &8945192495866434311
 BoxCollider2D:
@@ -408,7 +412,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.033116817, y: -0.020152092}
+  m_Offset: {x: -0.033116817, y: -0.011875033}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -419,7 +423,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0034943, y: 2.1102438}
+  m_Size: {x: 1.0034943, y: 2.0936897}
   m_EdgeRadius: 0
 --- !u!114 &5350886654046408967
 MonoBehaviour:

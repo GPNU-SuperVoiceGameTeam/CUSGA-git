@@ -4,29 +4,21 @@ public class SpiderStateMachine : MonoBehaviour
 {
     public enum State
     {
-        Patrol,
-        Attack
+        Patrol
     }
-    public Collider2D PlayerCheck;
     public State currentState;
     public float patrolSpeed = 2f; // 巡逻速度
     public float patrolRange = 5f; // 巡逻范围
-    public Transform player; // 玩家引用
     private bool isMovingRight = true; // 是否向右移动
 
     public Transform patrolLeft;// 巡逻左边界
     public Transform patrolRight;// 巡逻右边界
-
     void Update()
     {
         switch (currentState)
         {
             case State.Patrol:
                 patrolSpeed = 2;
-                Patrol();
-                break;
-            case State.Attack:
-                patrolSpeed = 4;
                 Patrol();
                 break;
         }
