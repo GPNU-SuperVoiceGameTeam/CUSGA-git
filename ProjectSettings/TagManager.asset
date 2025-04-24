@@ -16,6 +16,7 @@ TagManager:
   - lowWave
   - highWave
   - Destroy
+  - SpiderWeb
   layers:
   - Default
   - TransparentFX
