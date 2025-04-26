@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8400957729588644999}
   m_Layer: 0
   m_Name: "\u86DB\u7F51"
-  m_TagString: Untagged
+  m_TagString: SpiderWeb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnter: 0
-  player: {fileID: 7910523020513352107, guid: 74d6ec2028513154097675c533d4d698, type: 3}
 --- !u!61 &8400957729588644999
 BoxCollider2D:
   m_ObjectHideFlags: 0

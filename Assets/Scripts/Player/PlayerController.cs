@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     public int health; //生命值
     public float moveSpeed = 8f; // 移动速度
     public float jumpForce = 16f; // 跳跃力度
+    public AnimationCurve movementCurve;//运动曲线
+    private float CurrentSpeed;
+    private float AddTime;
     
 
     public float upGravity;//跳跃时重力大小
@@ -58,11 +61,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("主角行动状态")]
     private string state_type = "isMoveAble";//isMoveAble,cantMoveAble
+    public bool isbeWebControl = false;
 
     #region 以下为私有属性
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     public VoiceController voiceController;
+    private float moveInput;
+    float originalMoveSpeed;
+    float originalUpGravity;
+    float originalDownGravity;
+    float originalJumpForce;
     #endregion
     void Start()
     {
@@ -72,6 +81,10 @@ public class PlayerController : MonoBehaviour
         // spawnPoint = transform.position;
         maxHealth = 5;
         health = maxHealth;
+        originalMoveSpeed = moveSpeed;
+        originalUpGravity = upGravity;
+        originalDownGravity = downGravity;
+        originalJumpForce = jumpForce;
     }
     void Update()
     {
@@ -89,6 +102,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
+        ChangePlayerSpeed(isbeWebControl);
     }
 
     public void Move()
@@ -97,9 +111,14 @@ public class PlayerController : MonoBehaviour
         isGround = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
         // 获取输入
         if(canMove){
-            float moveInput = Input.GetAxis("Horizontal");
+            moveInput = Input.GetAxis("Horizontal");
             // 移动玩家
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+            //曲线型移动
+            CurrentSpeed = Judement_CurveAddUpSpeed();
+            rb.velocity = new Vector2(moveInput * CurrentSpeed, rb.velocity.y);
+
+            //rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
             if (moveInput < 0) //根据输入翻转玩家
             {
@@ -265,6 +284,23 @@ public class PlayerController : MonoBehaviour
     //     }
 
     // }
+    float Judement_CurveAddUpSpeed()//用曲线设定玩家移动速度
+    {
+        if(moveInput != 0)
+        {
+            CurrentSpeed = moveSpeed*movementCurve.Evaluate(AddTime);
+            AddTime +=Time.deltaTime;
+            return CurrentSpeed;
+
+        }
+        else
+        {
+            AddTime = 0;
+            return 0;
+
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
@@ -310,5 +346,42 @@ public class PlayerController : MonoBehaviour
     private void GuardWave(){
 
     }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("SpiderWeb"))
+        {
+            isbeWebControl = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("SpiderWeb"))
+        {
+            isbeWebControl = false;
+        }
+    }
+
+    void ChangePlayerSpeed(bool isInSlowZone)
+    {
+        if (isInSlowZone)
+        {
+            moveSpeed = 1;
+            upGravity = 5;
+            downGravity = 0.01f;
+            jumpForce = 5;
+        }
+        else
+        {
+            moveSpeed = originalMoveSpeed;
+            upGravity = originalUpGravity;
+            downGravity = originalDownGravity;
+            jumpForce = originalJumpForce;
+        }
+    }
+
+
+    
     #endregion
 }

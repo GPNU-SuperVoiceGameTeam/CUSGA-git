@@ -26,6 +26,8 @@ public class WebSpeedDecrease : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+            isEnter = false;
+            ChangePlayerSpeed(false);
         }
         else if (other.CompareTag("Platform"))
         {
@@ -33,23 +35,23 @@ public class WebSpeedDecrease : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isEnter = true;
-            ChangePlayerSpeed(true);
-        }
-    }
+    // void OnTriggerStay2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Player"))
+    //     {
+    //         isEnter = true;
+    //         ChangePlayerSpeed(true);
+    //     }
+    // }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isEnter = false;
-            ChangePlayerSpeed(false);
-        }
-    }
+    // void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         isEnter = false;
+    //         ChangePlayerSpeed(false);
+    //     }
+    // }
 
     void ChangePlayerSpeed(bool isInSlowZone)
     {
@@ -68,6 +70,15 @@ public class WebSpeedDecrease : MonoBehaviour
             player.upGravity = originalUpGravity;
             player.downGravity = originalDownGravity;
             player.jumpForce = originalJumpForce;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (isEnter)
+        {
+            isEnter = false;
+            ChangePlayerSpeed(false);
         }
     }
 }
