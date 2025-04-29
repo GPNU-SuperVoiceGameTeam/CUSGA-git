@@ -37,7 +37,10 @@ public class FruitBehavior : MonoBehaviour
         {
             Destroy(gameObject);
             player.TakeDamage(damage);
-
+        }
+        if(collision.CompareTag("highWave")){
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
     IEnumerator DestroyAfterTime()

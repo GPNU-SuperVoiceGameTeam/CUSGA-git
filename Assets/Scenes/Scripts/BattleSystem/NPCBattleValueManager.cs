@@ -14,6 +14,7 @@ public class NPCBattleValueManager : MonoBehaviour
         Boss
     }
     //储存数值的脚本，主角与NPC通用
+    public BattleWaveVoicer voicer;
     [Header("战斗数值")]
     public float MaxHP = 5;
     public float CurrentHP = 5;
@@ -35,6 +36,7 @@ public class NPCBattleValueManager : MonoBehaviour
     [Header("私有变量")]
     private Rigidbody2D rb;
     public bool isHit = false;
+    Vector2 originalVelocity;
 
     #endregion
 
@@ -62,17 +64,36 @@ public class NPCBattleValueManager : MonoBehaviour
             return;
 
             case NPCType.NormalEnemy_noCollision://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
+            if (collision.gameObject.CompareTag("lowWave"))
             {
                 isHit = true;
+                originalVelocity = rb.velocity;
                 TakeDamage(1);
+                
                 Destroy(collision);
+                if(isHit && collision.transform.position.x>transform.position.x){
+                    rb.AddForce(new Vector2(-3, 0), ForceMode2D.Impulse);
+                }else if(isHit && collision.transform.position.x<transform.position.x){
+                    rb.AddForce(new Vector2(3, 0), ForceMode2D.Impulse);
+                }
                 Invoke("Enemy_InvokedIsHit", 0.2f);
+                StartCoroutine(RestoreVelocityAfterKnockback(0.2f));
+                
+            }
+            IEnumerator RestoreVelocityAfterKnockback(float delay)
+            {
+                yield return new WaitForSeconds(delay);
+
+                // 恢复玩家的原始速度
+                rb.velocity = originalVelocity;
+
+                // 恢复 isHit 状态
+                isHit = false;
             }
             return;
             
             case NPCType.NormalEnemy_withCollision://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
+            if (collision.gameObject.CompareTag("lowWave"))
             {
                 isHit = true;
                 TakeDamage(1);
@@ -99,14 +120,14 @@ public class NPCBattleValueManager : MonoBehaviour
             return;
 
             case NPCType.NormalEnemy_noCollision://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
+            if (collision.gameObject.CompareTag("lowWave"))
             {
                 isHit = false;
             }
             return;
 
             case NPCType.NormalEnemy_withCollision://普通敌人碰撞检测
-            if (collision.gameObject.CompareTag("lowWave")||collision.gameObject.CompareTag("highWave"))
+            if (collision.gameObject.CompareTag("lowWave"))
             {
                 isHit = false;
             }

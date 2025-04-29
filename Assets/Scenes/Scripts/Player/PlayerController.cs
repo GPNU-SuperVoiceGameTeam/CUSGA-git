@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 // 发射声波
                 gunRb.AddForce(direction * shootForce, ForceMode2D.Impulse);
                 int lowWaveVoice = Random.Range(0, 3);
-                battleWaveVoicer.music[lowWaveVoice].GetComponent<AudioSource>().Play();
+                battleWaveVoicer.Attack[lowWaveVoice].GetComponent<AudioSource>().Play();
                 // 增加过载
                 voiceController.AddVoice(10);
                 nextAttackTime = Time.time + attackCooldown; // 更新下一次攻击时间
@@ -193,6 +193,7 @@ public class PlayerController : MonoBehaviour
                 Rigidbody2D gunRb = bullet.GetComponent<Rigidbody2D>();
                 // 发射声波
                 gunRb.AddForce(direction * shootForce, ForceMode2D.Impulse);
+                battleWaveVoicer.Attack[3].GetComponent<AudioSource>().Play();
                 // 增加过载
                 voiceController.AddVoice(10);
                 nextAttackTime = Time.time + attackCooldown; // 更新下一次攻击时间

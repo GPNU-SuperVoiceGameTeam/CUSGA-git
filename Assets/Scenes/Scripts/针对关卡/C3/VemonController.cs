@@ -24,5 +24,9 @@ public class VemonController : MonoBehaviour
         {
             Destroy(gameObject); // 销毁毒液
         }
+        if(collision.CompareTag("highWave")){
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }

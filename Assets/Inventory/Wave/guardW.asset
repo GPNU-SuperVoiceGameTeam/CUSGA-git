@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 2
   itemName: "\u62A4\u76FE\u58F0\u6CE2"
   itemImage: {fileID: 21300000, guid: 0ea8cd6669595a74d945b0ed8cdfc6f0, type: 3}
-  itemInfo: "-80\u58F0\u6CE2\u503C\n\u751F\u6210\u4E00\u4E2A\u6301\u7EED1s\u7684\u62A4\u76FE\uFF0C\u62B5\u6321\u4E00\u6B21\u4F24\u5BB3"
+  itemInfo: "-60\u58F0\u6CE2\u503C\n\u751F\u6210\u4E00\u4E2A\u6301\u7EED1s\u7684\u62A4\u76FE\uFF0C\u62B5\u6321\u4E00\u6B21\u4F24\u5BB3"
   isUnlocked: 0
   isEquipped: 0

@@ -15,5 +15,9 @@ public class LeafController : MonoBehaviour
             Destroy(gameObject);
             player.TakeDamage(1);
         }
+        if(collision.CompareTag("highWave")){
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }

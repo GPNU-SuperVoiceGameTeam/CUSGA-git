@@ -40,7 +40,7 @@ public class SpiderEgg : MonoBehaviour
         if (isDestroyed) return;
 
         // 检测是否是玩家攻击
-        if (collision.gameObject.CompareTag("lowWave") || collision.gameObject.CompareTag("highWave"))
+        if (collision.gameObject.CompareTag("highWave"))
         {
             // 增加攻击次数
             hitCount++;

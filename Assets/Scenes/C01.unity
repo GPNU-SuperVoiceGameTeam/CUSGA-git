@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -441,8 +440,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 35.074448, y: 2.6975498, z: 0}
-    m_Extent: {x: 26.69855, y: 18.94895, z: 0}
+    m_Center: {x: 35.0745, y: 2.6974497, z: 0}
+    m_Extent: {x: 26.6978, y: 18.949951, z: 0}
   m_PointLightInnerAngle: 360.00003
   m_PointLightOuterAngle: 360.00003
   m_PointLightInnerRadius: 20
@@ -7076,8 +7075,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 2.7680492, y: 31.698599, z: 0}
-    m_Extent: {x: 60.15645, y: 42.327, z: 0}
+    m_Center: {x: 2.7684994, y: 31.698349, z: 0}
+    m_Extent: {x: 60.157097, y: 42.327248, z: 0}
   m_PointLightInnerAngle: 360.00003
   m_PointLightOuterAngle: 360.00003
   m_PointLightInnerRadius: 20
@@ -8593,8 +8592,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 63.10735, y: -1.39395, z: 0}
-    m_Extent: {x: 7.1025505, y: 7.25135, z: 0}
+    m_Center: {x: 63.107147, y: -1.39375, z: 0}
+    m_Extent: {x: 7.102148, y: 7.25095, z: 0}
   m_PointLightInnerAngle: 360.00003
   m_PointLightOuterAngle: 360.00003
   m_PointLightInnerRadius: 20
@@ -10531,8 +10530,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 164.00905, y: 26.093851, z: 0}
-    m_Extent: {x: 110.78584, y: 38.428352, z: 0}
+    m_Center: {x: 164.0086, y: 26.09445, z: 0}
+    m_Extent: {x: 110.7866, y: 38.427948, z: 0}
   m_PointLightInnerAngle: 360.00003
   m_PointLightOuterAngle: 360.00003
   m_PointLightInnerRadius: 20
@@ -89609,6 +89608,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3650487510200437219, guid: a76a29a55aeb1c1459f9df545b004885, type: 3}
+      propertyPath: sceneTo
+      value: C0201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650487510200437219, guid: a76a29a55aeb1c1459f9df545b004885, type: 3}
       propertyPath: fadeImage
       value: 
       objectReference: {fileID: 2085417766}
@@ -89942,9 +89945,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 766345912}
     - target: {fileID: 7910523020513352107, guid: 74d6ec2028513154097675c533d4d698, type: 3}
+      propertyPath: specialBulletPrefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910523020513352107, guid: 74d6ec2028513154097675c533d4d698, type: 3}
       propertyPath: movementCurve.m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7910523020513352107, guid: 74d6ec2028513154097675c533d4d698, type: 3}
+      propertyPath: specialBulletPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 9216283946485204524, guid: f4e03998505134c4ea1a91ef76ba0e86, type: 3}
     - target: {fileID: 7910523020513352107, guid: 74d6ec2028513154097675c533d4d698, type: 3}
       propertyPath: movementCurve.m_Curve.Array.data[0].time
       value: 0.0020866394
