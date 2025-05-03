@@ -18,7 +18,6 @@ public class BossBegin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bossTimeline.Play();
-        
     }
 
     private void OnTimelinePlayed(PlayableDirector director)

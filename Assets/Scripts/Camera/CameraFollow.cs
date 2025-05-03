@@ -23,10 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     void Awake()
     {
-        playerTransform = GameObject.Find("player").transform;
-        playerObject = GameObject.Find("player");
-        playerSpriteRenderer = playerObject.GetComponent<SpriteRenderer>();
-
+        
     }
 
     void Update()

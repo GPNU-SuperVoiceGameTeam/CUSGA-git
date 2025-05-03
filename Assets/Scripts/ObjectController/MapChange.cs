@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MapChange : MonoBehaviour
 {
+    public BattleWaveVoicer battleWaveVoicer;
     public string sceneTo;
     private bool isReady;
     public Image fadeImage; // 引用一个黑色的Image组件
@@ -27,6 +28,7 @@ public class MapChange : MonoBehaviour
             {
                 fadeTimer = fadeDuration;
                 isFading = false;
+                battleWaveVoicer.music[4].GetComponent<AudioSource>().Play();
                 SceneManager.LoadScene(sceneTo); // 加载新场景
             }
 

@@ -6,7 +6,6 @@ public class onGround_normalAttackState : EnemyState
 {
     public FlySquirrelBOSS fsb;
     public bool isJumping;
-    private bool StateComplete = false;
     private bool notAttackSwitch = true;
     private bool hasAttacked = false;
 
@@ -26,7 +25,6 @@ public class onGround_normalAttackState : EnemyState
         isJumping = true;
         tempTargetPos = fsb.Target.transform.position;
         startPosition = fsb.transform.position;
-        StateComplete = false;
         notAttackSwitch = true;
         hasAttacked = false;
         changerTimer = 0f;

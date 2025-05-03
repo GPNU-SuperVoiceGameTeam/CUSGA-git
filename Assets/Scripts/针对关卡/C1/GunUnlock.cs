@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GunUnlock : MonoBehaviour
 {
+    public BattleWaveVoicer battleWaveVoicer;
     public GameObject gun;
     public GameObject UI;
     public PlayerController playerController;
@@ -11,6 +12,7 @@ public class GunUnlock : MonoBehaviour
     {
         if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
+                battleWaveVoicer.Object[1].GetComponent<AudioSource>().Play();
                 UI.SetActive(true);
                 playerController.canAttack = true;
                 playerController.lowWaveUnlock = true;

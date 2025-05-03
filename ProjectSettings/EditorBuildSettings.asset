@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Main.unity
+    guid: 99e033abd2370b64ca145c15e4651ca8
+  - enabled: 1
+    path: Assets/Scenes/before_begin.unity
+    guid: c94b455adcf421b41864eb78634707f8
   - enabled: 1
     path: Assets/Scenes/begin.unity
     guid: dd15ae3323d362a48a7239a821c872bf
   - enabled: 1
-    path: Assets/Scenes/fallStreet.unity
-    guid: ce0177cbff7411b4698b45158dd6eece
-  - enabled: 1
     path: Assets/Scenes/C01.unity
     guid: 5453b7f646ad85e4aa3bf6de66d4827e
   - enabled: 1
+    path: Assets/Scenes/C02/C0201.unity
+    guid: d8538ce586c256c498ecd31eb0cd5196
+  - enabled: 1
     path: Assets/Scenes/C03/C0301.unity
     guid: ee4b7a105c60f74449508f6b29f98cce
-  - enabled: 1
-    path: Assets/Scenes/before_begin.unity
-    guid: c94b455adcf421b41864eb78634707f8
   m_configObjects: {}

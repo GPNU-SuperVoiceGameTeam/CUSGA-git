@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GuardWave_get : MonoBehaviour
 {
+    public BattleWaveVoicer battleWaveVoicer;
     public PlayerController playerController;
     public GameObject tip;
     public Item item;
@@ -13,6 +14,7 @@ public class GuardWave_get : MonoBehaviour
     {
         if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
+                battleWaveVoicer.Object[1].GetComponent<AudioSource>().Play();
                 playerController.guardWaveUnlock = true;
                 item.isUnlocked = true;
                 tip.SetActive(true);

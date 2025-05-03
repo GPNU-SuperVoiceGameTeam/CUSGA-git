@@ -3,7 +3,6 @@ using UnityEngine;
 public class BossVineAttack : MonoBehaviour
 {
     private PolygonCollider2D vinecollider2D;
-    private float timer = 0f;
 
     [SerializeField] private float preDelay = 1f;     // 等待时间开始伸长
     [SerializeField] private float extendDuration = 1f; // 伸长时间
@@ -14,9 +13,6 @@ public class BossVineAttack : MonoBehaviour
     private Vector3 targetExtendScale = new Vector3(1, -1, 1);
     private Vector3 targetRetractScale = new Vector3(1, -0.3f, 1);
 
-    private bool isExtending = false;
-    private bool isRetracting = false;
-
     void Awake()
     {
         vinecollider2D = GetComponent<PolygonCollider2D>();
@@ -26,7 +22,7 @@ public class BossVineAttack : MonoBehaviour
 
     public void Initialize()
     {
-        vinecollider2D.isTrigger = true; // 初始无伤害
+        vinecollider2D.enabled = false; // 初始无伤害
         StartCoroutine(ManageVine());
     }
 
@@ -47,7 +43,7 @@ public class BossVineAttack : MonoBehaviour
         transform.localScale = targetExtendScale;
 
         // Step 3: 开启碰撞检测，有伤害
-        vinecollider2D.isTrigger = false;
+        vinecollider2D.enabled = true;
 
         // Step 4: 持续1秒
         yield return new WaitForSeconds(activeDuration);
@@ -64,11 +60,11 @@ public class BossVineAttack : MonoBehaviour
         transform.localScale = targetRetractScale;
 
         // Step 6: 关闭碰撞，再销毁
-        vinecollider2D.isTrigger = true;
+        vinecollider2D.enabled = false;
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player")){
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);

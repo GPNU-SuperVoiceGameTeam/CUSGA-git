@@ -9,7 +9,9 @@ public class SpikeController : MonoBehaviour
         if(collision.gameObject.CompareTag("Player")){
             playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.TakeDamage(1);
-            collision.transform.position = spawnPoint.transform.position;
+            if(playerController.health > 0){
+                collision.transform.position = spawnPoint.transform.position;
+            }
         }
     }
 }

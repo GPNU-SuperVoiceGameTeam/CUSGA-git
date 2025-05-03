@@ -9,13 +9,15 @@ public class MusicChange : MonoBehaviour
 
     private AudioSource originalAudioSource;
     private AudioSource newAudioSource;
+    public float musicVolume;
 
-    private bool isSwitching = false; // 标记是否正在切换音乐
+    public bool isSwitching = false; // 标记是否正在切换音乐
 
     private void Start()
     {
         originalAudioSource = originalMusic.GetComponent<AudioSource>();
         newAudioSource = newMusic.GetComponent<AudioSource>();
+        
     }
     void Update()
     {
@@ -24,10 +26,9 @@ public class MusicChange : MonoBehaviour
             if(originalAudioSource.volume <= 0){
                 originalMusic.SetActive(false);
                 newMusic.SetActive(true);
-                if(newAudioSource.volume < 1){
+                if(newAudioSource.volume < musicVolume){
                     newAudioSource.volume += Time.deltaTime * 1f;
                 }
-                
             }
         }
     }
@@ -37,5 +38,17 @@ public class MusicChange : MonoBehaviour
         if(collision.CompareTag("Player")){
             isSwitching = true;
         }
+    }
+    public void SwitchBackToOriginalMusic()
+    {
+        isSwitching = false; // 确保不会同时进行两个方向的切换
+        newAudioSource.volume -= Time.deltaTime * 0.5f;
+            if(newAudioSource.volume <= 0){
+                newMusic.SetActive(false);
+                originalMusic.SetActive(true);
+                if(originalAudioSource.volume < musicVolume){
+                    originalAudioSource.volume += Time.deltaTime * 1f;
+                }
+            }
     }
 }

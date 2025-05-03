@@ -171,4 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a4d2e1b9005649baeb8aa7a075a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleWaveVoicer: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
   player: {fileID: 0}

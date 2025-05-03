@@ -25,10 +25,8 @@ public class BookFlip : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // 获取玩家位置并决定翻转方向
-            float direction = GetFlipDirection(other.transform.position);
-            targetRotation = Quaternion.Euler(0, 0, direction * flipAngle);
             isFlipped = true;
+            
         }
     }
 
@@ -41,7 +39,9 @@ public class BookFlip : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        float direction = GetFlipDirection(player.transform.position);
+        targetRotation = Quaternion.Euler(0, 0, direction * flipAngle);
         if (isFlipped)
         {
             // 翻转到目标角度

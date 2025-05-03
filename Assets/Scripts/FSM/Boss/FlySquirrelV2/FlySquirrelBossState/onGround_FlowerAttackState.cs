@@ -7,8 +7,6 @@ public class onGround_FlowerAttackState : EnemyState
     public FlySquirrelBOSS fsb;
     public bool isJumping;
     private bool notAttackSwitch = true;
-
-    private bool StateComplete = false;
     private bool hasAttacked = false;
 
     private float changerTimer = 0f;
@@ -32,7 +30,6 @@ public class onGround_FlowerAttackState : EnemyState
 
 
         notAttackSwitch = true;
-        StateComplete = false;
         hasAttacked = false;
         changerTimer = 0f;
         

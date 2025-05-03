@@ -65,7 +65,6 @@ public class dialogueController : MonoBehaviour
     private CanvasGroup canvasGroup; // 对话框的 CanvasGroup 组件
     private bool isFadingIn = false; // 是否正在淡入
     private float fadeTimer = 0f; // 淡入计时器
-    private bool isTextVisible = false; // 文字是否已显示
 
     void Start()
     {
@@ -144,7 +143,6 @@ public class dialogueController : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
-        isTextVisible = true;
     }
 
     void HideText()
@@ -154,7 +152,6 @@ public class dialogueController : MonoBehaviour
         {
             child.gameObject.SetActive(false);
         }
-        isTextVisible = false;
     }
 
     void OnTriggerStay2D(Collider2D collision)

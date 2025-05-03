@@ -38,6 +38,7 @@ public class NPCBattleValueManager : MonoBehaviour
 
     #endregion
 
+    public BattleWaveVoicer battleWaveVoicer;  
     private PlayerController player;
 
     void Start()
@@ -164,6 +165,7 @@ public class NPCBattleValueManager : MonoBehaviour
     #region 普通敌人函数区域
     public void TakeDamage(int damage)
     {
+        battleWaveVoicer.battle[0].GetComponent<AudioSource>().Play();
         if (canTakeDamage)
         {
             CurrentHP -= damage;

@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1d5079b67b15408e4b61ee3eeac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleWaveVoicer: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
   canPassThroughPlatforms: 0
   damage: 1
 --- !u!61 &6110516516067782175

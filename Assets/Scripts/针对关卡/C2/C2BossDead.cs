@@ -6,6 +6,7 @@ public class C2BossDead : MonoBehaviour
 {
     public GameObject Boss;
     public GameObject portal;
+    public MusicChange musicChange;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class C2BossDead : MonoBehaviour
     {
         if(Boss == null){
             portal.SetActive(true);
+            musicChange.SwitchBackToOriginalMusic();
         }
     }
 }

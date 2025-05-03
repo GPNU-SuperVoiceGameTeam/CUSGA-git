@@ -28,7 +28,7 @@ public class VineTrigger : MonoBehaviour
                     // 立即设置为突出状态
                     gameObject.transform.localScale = new Vector2(1, -1.5f);
                     timer = 0;
-                    gameObject.GetComponent<PolygonCollider2D>().isTrigger = false;
+                    gameObject.GetComponent<PolygonCollider2D>().enabled = true;
                     state = VineState.Extended;
                 }
                 break;
@@ -40,16 +40,14 @@ public class VineTrigger : MonoBehaviour
                     // 立即设置为缩回状态
                     gameObject.transform.localScale = new Vector2(1, -0.6f);
                     timer = 0;
-                    gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+                    gameObject.GetComponent<PolygonCollider2D>().enabled = false;
                     state = VineState.Retracted;
                 }
                 break;
         }
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player"){
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.CompareTag("Player")){
             player.TakeDamage(1);
         }
     }

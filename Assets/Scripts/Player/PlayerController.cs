@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {   public enum specialBulletType{
         jumpWave,
         lightWave,
         guardWave
     }
+    public RebornPoint rebornPoint;
     public Animator anim;
     public BattleWaveVoicer battleWaveVoicer;
     //地面检测
@@ -98,11 +99,12 @@ public class PlayerController : MonoBehaviour
                     Move();
                     Jump();
                     Attack();
-                    
                     break;
                 case "cantMoveAble":
                     break;
             }
+        }else{
+            Reborn();
         }
         ChangePlayerSpeed(isbeWebControl);
     }
@@ -120,8 +122,6 @@ public class PlayerController : MonoBehaviour
             CurrentSpeed = Judement_CurveAddUpSpeed();
             rb.velocity = new Vector2(moveInput * CurrentSpeed, rb.velocity.y);
 
-            //rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-
             if (moveInput < 0) //根据输入翻转玩家
             {
             spriteRenderer.flipX = true;
@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGround && Input.GetButton("Jump"))
         {
+            battleWaveVoicer.music[5].GetComponent<AudioSource>().Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.Play("PlayerJump", 0, 0f);
         }
@@ -195,6 +196,7 @@ public class PlayerController : MonoBehaviour
                 Rigidbody2D gunRb = bullet.GetComponent<Rigidbody2D>();
                 // 发射声波
                 gunRb.AddForce(direction * shootForce, ForceMode2D.Impulse);
+                battleWaveVoicer.music[3].GetComponent<AudioSource>().Play();
                 // 增加过载
                 voiceController.AddVoice(10);
                 nextAttackTime = Time.time + attackCooldown; // 更新下一次攻击时间
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
                         }
                         break;
                     case specialBulletType.guardWave:
-                        if(guardWaveUnlock){
+                        if(guardWaveUnlock && voiceController.voice >= 60){
                             GuardWave();
                         }
                         break;
@@ -257,7 +259,8 @@ public class PlayerController : MonoBehaviour
     
 
     public void TakeDamage(int damage)
-    {
+    {   
+        battleWaveVoicer.battle[1].GetComponent<AudioSource>().Play();
         if(isInvincible){
             return;
         }else{
@@ -273,26 +276,30 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        Destroy(gameObject);
-        UnityEngine.Debug.Log("玩家死亡");
-        // Respawn();
+        canMove = false;
+        canAttack = false;
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        anim.Play("PlayerDead", 0, 0f);
     }
-
-    // public void Respawn(){
-    //     transform.position = spawnPoint;
-    //     health = maxHealth;
-    //     Instantiate(playerPrefab, transform.position, Quaternion.identity);
-    //     isDead = false;
-
-    // }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if(collision.gameObject.tag == "Enmey"){
-    //         TakeDamage(1);
-    //     }
-
-    // }
+    public void Reborn(){
+        if(isDead){
+            if(Input.GetKeyDown(KeyCode.R)){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // rebornPoint.OnPlayerDeath();
+                // health = maxHealth;
+                // transform.position = rebornPoint.spawnPoint.position;
+                // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                // rebornPoint.GenerateReactiveItems();
+                // isDead = false;
+                // canMove = true;
+                // canAttack = true;
+                // rb.isKinematic = false;
+                // anim.Play("PlayerIdle", 0, 0f);
+            }
+        }
+    }
     float Judement_CurveAddUpSpeed()//用曲线设定玩家移动速度
     {
         if(moveInput != 0)

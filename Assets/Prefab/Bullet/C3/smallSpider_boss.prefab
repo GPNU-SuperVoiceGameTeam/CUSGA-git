@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1793358970538122939
 Transform:
   m_ObjectHideFlags: 0
@@ -212,13 +212,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce0be96bd9ae044b97d8980bb45841d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 3
-  CurrentHP: 3
+  MaxHP: 1
+  CurrentHP: 1
   Attack: 1
   canTakeDamage: 1
   AIAttackInterval: 1
   npcType: 3
   isHit: 0
+  battleWaveVoicer: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
 --- !u!61 &7367422120280517718
 BoxCollider2D:
   m_ObjectHideFlags: 0

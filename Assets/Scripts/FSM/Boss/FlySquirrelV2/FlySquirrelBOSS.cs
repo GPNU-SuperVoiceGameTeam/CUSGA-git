@@ -116,7 +116,6 @@ public class FlySquirrelBOSS : Enemy
     public GameObject giantAcornPrefab; // 巨大坚果预制体
     public Transform acornSpawnPoint; // 松果发射点
 
-    private bool isJumping = false;
     private float jumpProgress = 0f;
 
     public Collider2D fsbCollider; // 飞鼠碰撞体

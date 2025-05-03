@@ -15,7 +15,7 @@ public class VemonController : MonoBehaviour
         // 如果碰到玩家
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.health -= 1; // 扣血
+            player.TakeDamage(1);
             Destroy(gameObject); // 销毁毒液
         }
 

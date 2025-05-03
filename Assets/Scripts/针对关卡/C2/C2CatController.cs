@@ -6,9 +6,11 @@ public class C2CatController : MonoBehaviour
 {
     public int hasCollected = 0;
     private bool isEnter;
+    public BattleWaveVoicer battleWaveVoicer;
     public GameObject notEnough;
     public GameObject doorClose;
     public GameObject doorOpen;
+    public AudioSource cat;
     void Start()
     {
         notEnough.SetActive(false);
@@ -19,10 +21,12 @@ public class C2CatController : MonoBehaviour
     {
         if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
+                cat.Play();
                 if(hasCollected != 4){
                     notEnough.SetActive(true);
                 }else{
                     doorClose.SetActive(false);
+                    battleWaveVoicer.Object[0].GetComponent<AudioSource>().Play();
                     doorOpen.SetActive(true);
                 }
             }

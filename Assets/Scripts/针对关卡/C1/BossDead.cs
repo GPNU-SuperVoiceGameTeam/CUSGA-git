@@ -6,6 +6,7 @@ public class BossDead : MonoBehaviour
     public GameObject boss;
     public PlayableDirector bossTimeline;
     public GameObject jumpWave;
+    public MusicChange musicChange;
     private void Start()
     {
         if (bossTimeline != null)
@@ -18,6 +19,7 @@ public class BossDead : MonoBehaviour
     {
         if(boss == null){
             bossTimeline.Play();
+            musicChange.SwitchBackToOriginalMusic();
         }
     }
     private void OnTimelinePlayed(PlayableDirector director)

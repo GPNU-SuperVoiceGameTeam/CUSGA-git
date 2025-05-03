@@ -35,24 +35,6 @@ public class WebSpeedDecrease : MonoBehaviour
         }
     }
 
-    // void OnTriggerStay2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Player"))
-    //     {
-    //         isEnter = true;
-    //         ChangePlayerSpeed(true);
-    //     }
-    // }
-
-    // void OnTriggerExit2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Player"))
-    //     {
-    //         isEnter = false;
-    //         ChangePlayerSpeed(false);
-    //     }
-    // }
-
     void ChangePlayerSpeed(bool isInSlowZone)
     {
         if (player == null) return;
