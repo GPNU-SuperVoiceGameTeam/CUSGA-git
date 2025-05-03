@@ -345,6 +345,7 @@ public class PlayerController : MonoBehaviour
         // 发射声波
         gunRb.AddForce(direction * jumpWaveShootForce, ForceMode2D.Impulse);
         rb.AddForce(-direction * 10, ForceMode2D.Impulse);
+        battleWaveVoicer.music[6].GetComponent<AudioSource>().Play();
     }
     #endregion
     #region 护盾声波

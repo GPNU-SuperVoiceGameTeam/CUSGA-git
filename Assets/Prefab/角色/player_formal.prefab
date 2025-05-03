@@ -5675,7 +5675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
       propertyPath: music.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
       propertyPath: music.Array.data[4]
@@ -5685,6 +5685,10 @@ PrefabInstance:
       propertyPath: music.Array.data[5]
       value: 
       objectReference: {fileID: 8946467567811410036}
+    - target: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
+      propertyPath: music.Array.data[6]
+      value: 
+      objectReference: {fileID: 4326209560435216869}
     - target: {fileID: 8703394478276492617, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5751,6 +5755,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d199f754ca89c24da9939bf5a42f3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4326209560435216869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6024225866763671455, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
+  m_PrefabInstance: {fileID: 8039929389133645434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8946467567811410036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1421921373659037198, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}

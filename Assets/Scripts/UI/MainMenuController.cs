@@ -105,5 +105,9 @@ public class MainMenuController : MonoBehaviour
     private void SetFullscreenMode(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+        if (!isFullscreen)
+        {
+            Screen.SetResolution(1024, 768, false);
+        }
     }
 }
