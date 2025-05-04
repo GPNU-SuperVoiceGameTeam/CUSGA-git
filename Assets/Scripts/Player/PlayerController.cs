@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         originalUpGravity = upGravity;
         originalDownGravity = downGravity;
         originalJumpForce = jumpForce;
-        musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
+        //musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
     }
     void Update()
     {

@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -902,6 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 219343844}
   - component: {fileID: 219343843}
+  - component: {fileID: 219343845}
   m_Layer: 0
   m_Name: begin
   m_TagString: Untagged
@@ -1020,6 +1022,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &219343845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219343842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1997328baa550145b96748adae5dc9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  volume: 0
 --- !u!1 &233801409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,12 +2839,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!81 &1002571190
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3507,6 +3523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996831ce64a96143890fd98b3953df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactiveItemPrefabs: []
   spawnPoint: {fileID: 1204727888}
 --- !u!4 &1204727888
 Transform:
@@ -3940,8 +3957,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00024998188, y: -0.000100016594, z: 0}
-    m_Extent: {x: 1.00045, y: 1.0009, z: 0}
+    m_Center: {x: -0.00054997206, y: -0.00044998527, z: 0}
+    m_Extent: {x: 0.99985, y: 1.00025, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
