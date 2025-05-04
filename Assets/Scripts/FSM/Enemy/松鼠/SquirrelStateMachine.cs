@@ -34,6 +34,18 @@ public class SquirrelStateMachine : MonoBehaviour
 
     void Update()
     {
+        bool playerDetected = PlayerCheck.IsTouchingLayers(LayerMask.GetMask("Player"));
+
+        if (playerDetected)
+        {
+            currentState = State.Attack;
+            LookAtPlayer(); // 面向玩家
+        }
+        else
+        {
+            currentState = State.Patrol;
+        }
+
         switch (currentState)
         {
             case State.Patrol:
@@ -51,6 +63,7 @@ public class SquirrelStateMachine : MonoBehaviour
         if (isMovingRight)
         {
             // 向右移动
+            transform.localScale = new Vector3(-1, 1, 1);
             transform.position = Vector2.MoveTowards(transform.position, patrolRightBoundary, patrolSpeed * Time.deltaTime);
             if (transform.position.x >= patrolRightBoundary.x)
             {
@@ -60,6 +73,7 @@ public class SquirrelStateMachine : MonoBehaviour
         else
         {
             // 向左移动
+            transform.localScale = new Vector3(1, 1, 1);
             transform.position = Vector2.MoveTowards(transform.position, patrolLeftBoundary, patrolSpeed * Time.deltaTime);
             if (transform.position.x <= patrolLeftBoundary.x)
             {
@@ -92,6 +106,22 @@ public class SquirrelStateMachine : MonoBehaviour
 
             // 更新下一次攻击时间
             nextAttackTime = Time.time + attackCooldown;
+        }
+    }
+    void LookAtPlayer()
+    {
+        if (player == null) return;
+
+        // 如果玩家在右边，松鼠向右；否则向左
+        if (player.position.x > transform.position.x)
+        {
+            // 面向右
+            transform.localScale = new Vector3(-1, 1, 1); // 根据你的设置可能需要调整
+        }
+        else
+        {
+            // 面向左
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

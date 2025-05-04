@@ -9,6 +9,7 @@ public class BossDead : MonoBehaviour
     public MusicChange musicChange;
     private void Start()
     {
+        musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
         if (bossTimeline != null)
         {
             bossTimeline.played += OnTimelinePlayed;

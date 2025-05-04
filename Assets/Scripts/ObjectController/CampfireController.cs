@@ -5,10 +5,12 @@ public class CampfireController : MonoBehaviour
     public PlayerController player;
     public bool isEnter;
     public RebornPoint rebornPoint;
+    public GameObject audioClip;
     void Update()
     {
         if(isEnter){
             if(Input.GetKeyDown(KeyCode.F)){
+                audioClip.GetComponent<AudioSource>().Play();
                 player.health = player.maxHealth;
                 rebornPoint.spawnPoint.position = transform.position;
             }

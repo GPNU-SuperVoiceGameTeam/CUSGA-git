@@ -146,6 +146,9 @@ public class FlySquirrelBOSS : Enemy
     }
     void Start()
     {
+        if(Target == null){
+            Target = GameObject.FindGameObjectWithTag("Player");
+        }
         nbvm = gameObject.GetComponent<NPCBattleValueManager>();
         SpawnPos = transform.position;
         Etransform = transform;

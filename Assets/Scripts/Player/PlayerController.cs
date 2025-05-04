@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [Header("背包")]
     public bool canOpenBackpack;
     public GameObject backpack;
+    public bool isOpen;
     [Header("解锁")]
     public bool canAttack;
     public bool lowWaveUnlock;
@@ -75,6 +76,8 @@ public class PlayerController : MonoBehaviour
     float originalUpGravity;
     float originalDownGravity;
     float originalJumpForce;
+    private MusicChange musicChange;
+    public GameObject menu;
     #endregion
     void Start()
     {
@@ -88,9 +91,11 @@ public class PlayerController : MonoBehaviour
         originalUpGravity = upGravity;
         originalDownGravity = downGravity;
         originalJumpForce = jumpForce;
+        musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
     }
     void Update()
     {
+        OpenMenu();
         openBackpack();
         if(canMove){
             switch (state_type)
@@ -242,11 +247,13 @@ public class PlayerController : MonoBehaviour
             // 根据背包的显示状态设置 canAttack 和 canMove
             if (backpack.activeSelf)
             {
+                Time.timeScale = 0;
                 canAttack = false;
                 canMove = false;
             }
             else
             {
+                Time.timeScale = 1;
                 canAttack = true;
                 canMove = true;
             }
@@ -287,6 +294,7 @@ public class PlayerController : MonoBehaviour
         if(isDead){
             if(Input.GetKeyDown(KeyCode.R)){
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // musicChange.SwitchBackToOriginalMusic();
                 // rebornPoint.OnPlayerDeath();
                 // health = maxHealth;
                 // transform.position = rebornPoint.spawnPoint.position;
@@ -414,6 +422,23 @@ public class PlayerController : MonoBehaviour
             upGravity = originalUpGravity;
             downGravity = originalDownGravity;
             jumpForce = originalJumpForce;
+        }
+    }
+
+    void OpenMenu()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!isOpen){
+                isOpen = true;
+                Time.timeScale = 0;
+                menu.SetActive(true);
+            }else{
+                isOpen = false;
+                Time.timeScale = 1;
+                menu.SetActive(false);
+            }
+            
         }
     }
 

@@ -6,8 +6,10 @@ public class BossBegin : MonoBehaviour
     public GameObject boss;
     public GameObject boss_Show;
     public PlayableDirector bossTimeline;
+    private MusicChange musicChange;
     private void Start()
     {
+        musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
         if (bossTimeline != null)
         {
             bossTimeline.played += OnTimelinePlayed;
@@ -18,6 +20,7 @@ public class BossBegin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bossTimeline.Play();
+        musicChange.isSwitching = true;
     }
 
     private void OnTimelinePlayed(PlayableDirector director)

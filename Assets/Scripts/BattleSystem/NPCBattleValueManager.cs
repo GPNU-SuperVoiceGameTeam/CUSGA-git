@@ -40,11 +40,16 @@ public class NPCBattleValueManager : MonoBehaviour
 
     public BattleWaveVoicer battleWaveVoicer;  
     private PlayerController player;
+    public float flashTime = 0.2f;
+    private SpriteRenderer sr;
+    private Color originalColor;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        sr = GetComponent<SpriteRenderer>();
+        originalColor = sr.color;
     }
 
     
@@ -170,6 +175,7 @@ public class NPCBattleValueManager : MonoBehaviour
         {
             CurrentHP -= damage;
             isHit = true;
+            FlashColor(flashTime);
         }
         if (CurrentHP <= 0)
         {
@@ -182,9 +188,13 @@ public class NPCBattleValueManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Enemy_InvokedIsHit()
-    {
-        isHit = false;
+    void FlashColor(float time){
+        sr.color = Color.red;
+        Invoke("ResetColor", time);
+    }
+
+    void ResetColor(){
+        sr.color = originalColor;
     }
     
     #endregion
@@ -199,12 +209,6 @@ public class NPCBattleValueManager : MonoBehaviour
         {
             //camera.StopFollowing();
         }
-    }
-
-    private void Restart()//死亡后重新加载场景
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
 
