@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RebornPoint : MonoBehaviour
 {
-    public GameObject[] reactiveItemPrefabs;
+    // public GameObject[] reactiveItemPrefabs;
     public Transform spawnPoint;
     // private List<GameObject> currentReactiveItems = new List<GameObject>();
     // public Vector3 spawnPosition = new Vector3(0, 0, 0);

@@ -207,7 +207,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.666667, y: 10.666667}
+  m_Size: {x: 12.8, y: 12.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -257,6 +257,7 @@ MonoBehaviour:
   patrolSpeed: 2
   patrolRange: 5
   attackCooldown: 2
+  shootForce: 10
   acornPrefab: {fileID: 7929791082012395024, guid: b343820f39bbf9446abcca6d2f4bdcd0, type: 3}
   acornSpawnPoint: {fileID: 6215543751441196100}
   player: {fileID: 0}
@@ -296,8 +297,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.3333335, y: 5.3333335}
-    newSize: {x: 10.666667, y: 10.666667}
+    oldSize: {x: 4.266667, y: 4.266667}
+    newSize: {x: 12.8, y: 12.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -324,3 +325,5 @@ MonoBehaviour:
   AIAttackInterval: 1
   npcType: 2
   isHit: 0
+  battleWaveVoicer: {fileID: 0}
+  flashTime: 0.2

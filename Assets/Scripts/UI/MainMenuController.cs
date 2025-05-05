@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -23,37 +24,24 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
-        // 添加按钮点击事件监听器
-        startButton.onClick.AddListener(StartGame);
-        settingsButton.onClick.AddListener(OpenSettings);
-        exitButton.onClick.AddListener(ExitGame);
-        returnButton.onClick.AddListener(ReturnToMainMenu);
-
-        // 如果有设置面板，默认隐藏
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-
-        if (fullScreenToggle != null)
-        {
-            fullScreenToggle.isOn = Screen.fullScreen;
-            fullScreenToggle.onValueChanged.AddListener(SetFullscreenMode);
-        }
-        
-        // 确保fadeImage初始透明度为0（完全透明）
-        if(fadeImage != null)
-        {
-            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0f);
-        }
+        Time.timeScale = 1.0f;
+        settingsPanel.SetActive(false);
+        fullScreenToggle.isOn = Screen.fullScreen;
+        fullScreenToggle.onValueChanged.AddListener(SetFullscreenMode);
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0f);
     }
 
-    // 开始游戏：加载游戏场景（例如 "GameScene"）
-    private void StartGame()
+    public void StartGame()
     {   
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
+        
+        // SceneManager.LoadScene("before_begin");
         StartCoroutine(FadeOutAndLoadScene("before_begin"));
     }
 
     IEnumerator FadeOutAndLoadScene(string sceneName)
     {
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
         float fadeSpeed = 1.0f / fadeDuration;
         float alpha = 0f;
 
@@ -70,22 +58,25 @@ public class MainMenuController : MonoBehaviour
     }
 
     // 打开/关闭设置面板
-    private void OpenSettings()
+    public void OpenSettings()
     {
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
         if (settingsPanel != null){
             settingsPanel.SetActive(true);
         }           
     }
 
-    private void ReturnToMainMenu()
+    public void ReturnToMainMenu()
     {
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
     }
 
     // 退出游戏
-    private void ExitGame()
+    public void ExitGame()
     {
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -93,21 +84,20 @@ public class MainMenuController : MonoBehaviour
 #endif
     }
 
-    private void OnDestroy()
-    {
-        // 移除事件监听器防止内存泄漏
-        startButton.onClick.RemoveListener(StartGame);
-        settingsButton.onClick.RemoveListener(OpenSettings);
-        exitButton.onClick.RemoveListener(ExitGame);
-    }
-
     // 设置全屏模式
-    private void SetFullscreenMode(bool isFullscreen)
+    public void SetFullscreenMode(bool isFullscreen)
     {
-        Screen.fullScreen = isFullscreen;
-        if (!isFullscreen)
+        AudioEventController.RaiseOnPlayAudio(AudioType.Click);
+
+        if (isFullscreen)
         {
-            Screen.SetResolution(1024, 768, false);
+            // 设置为全屏，并指定分辨率为 1920x1080
+            Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
+        }
+        else
+        {
+            // 设置为窗口模式，分辨率为 1024x768
+            Screen.SetResolution(1024, 768, FullScreenMode.Windowed);
         }
     }
 }

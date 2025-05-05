@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -78,6 +75,7 @@ public class PlayerController : MonoBehaviour
     float originalJumpForce;
     private MusicChange musicChange;
     public GameObject menu;
+    public GameObject rebornText;
     #endregion
     void Start()
     {
@@ -289,10 +287,12 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         this.GetComponent<BoxCollider2D>().enabled = false;
         anim.Play("PlayerDead", 0, 0f);
+        rebornText.SetActive(true);
     }
     public void Reborn(){
         if(isDead){
             if(Input.GetKeyDown(KeyCode.R)){
+                rebornText.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 // musicChange.SwitchBackToOriginalMusic();
                 // rebornPoint.OnPlayerDeath();

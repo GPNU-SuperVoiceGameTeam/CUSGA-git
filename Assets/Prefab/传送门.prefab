@@ -94,7 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a0b274374ed3d4a975f7778d03e2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleWaveVoicer: {fileID: 0}
   sceneTo: C0301
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
 --- !u!114 &6380359346683574435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +263,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 9.6, y: 9.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

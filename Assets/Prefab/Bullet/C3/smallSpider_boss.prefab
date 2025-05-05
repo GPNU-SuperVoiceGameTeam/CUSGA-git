@@ -220,6 +220,7 @@ MonoBehaviour:
   npcType: 3
   isHit: 0
   battleWaveVoicer: {fileID: 5696497024296920658, guid: 3fdc010f47b3a5d41bdcac6dea847672, type: 3}
+  flashTime: 0.2
 --- !u!61 &7367422120280517718
 BoxCollider2D:
   m_ObjectHideFlags: 0
