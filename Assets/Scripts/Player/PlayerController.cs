@@ -383,7 +383,7 @@ public class PlayerController : MonoBehaviour
     #region 照明声波
     private void LightWave(){
         voiceController.AddVoice(10);
-        float lightWaveKeepTime = 3.0f;
+        float lightWaveKeepTime = 6.0f;
         GameObject bullet = Instantiate(specialBulletPrefab[1], transform.position, Quaternion.identity, transform);
         Light2D light2D = bullet.GetComponent<Light2D>();
         BattleWave battleWave = bullet.GetComponent<BattleWave>();
