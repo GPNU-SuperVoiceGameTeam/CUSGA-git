@@ -30,6 +30,15 @@ public class MusicChange : MonoBehaviour
                     newAudioSource.volume += Time.deltaTime * 1f;
                 }
             }
+        }else{
+            newAudioSource.volume -= Time.deltaTime * 0.5f;
+            if(newAudioSource.volume <= 0){
+                newMusic.SetActive(false);
+                originalMusic.SetActive(true);
+                if(originalAudioSource.volume < musicVolume){
+                    originalAudioSource.volume += Time.deltaTime * 1f;
+                }
+            }
         }
     }
 
@@ -42,13 +51,5 @@ public class MusicChange : MonoBehaviour
     public void SwitchBackToOriginalMusic()
     {
         isSwitching = false; // 确保不会同时进行两个方向的切换
-        newAudioSource.volume -= Time.deltaTime * 0.5f;
-            if(newAudioSource.volume <= 0){
-                newMusic.SetActive(false);
-                originalMusic.SetActive(true);
-                if(originalAudioSource.volume < musicVolume){
-                    originalAudioSource.volume += Time.deltaTime * 1f;
-                }
-            }
     }
 }

@@ -39,6 +39,7 @@ public class BossSpider : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player"); // 找到玩家对象
         // 初始状态
         lightSource.SetActive(false); // 关闭灯光
     }

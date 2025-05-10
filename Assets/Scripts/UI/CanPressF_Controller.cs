@@ -7,6 +7,7 @@ public class CanPressF_Controller : MonoBehaviour
     public PlayerController playerController;
     void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         press.SetActive(false);
     }
     void OnTriggerStay2D(Collider2D collision)

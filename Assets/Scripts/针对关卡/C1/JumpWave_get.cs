@@ -7,7 +7,11 @@ public class JumpWave_get : MonoBehaviour
     public GameObject tip;
     public Item item;
     public bool isEnter;
-
+    void Start()
+    {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        battleWaveVoicer = GameObject.FindGameObjectsWithTag("BattleWaveVoicer")[0].GetComponent<BattleWaveVoicer>();
+    }
     void Update()
     {
         if(isEnter){

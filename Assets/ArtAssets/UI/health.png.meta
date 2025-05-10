@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -101,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3360
-        width: 480
-        height: 480
+        y: 512
+        width: 1280
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67c6233bd261d5d42b710b506a44e7cf
-      internalID: -1754190105
+      spriteID: 83ceca38fb53d094fb906e06d76afc41
+      internalID: -552199351
       vertices: []
       indices: 
       edges: []
@@ -122,9 +122,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2880
-        width: 3840
-        height: 480
+        y: 384
+        width: 1280
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f17ca55167840a640ad82105c923bb2d
-      internalID: 660391185
+      spriteID: 38bea233278117846a86704ca68d0c90
+      internalID: 2066764257
       vertices: []
       indices: 
       edges: []
@@ -143,9 +143,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2400
-        width: 3840
-        height: 480
+        y: 256
+        width: 1280
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84c3d876182e0b94dbb7be7fead35c7a
-      internalID: 1468959910
+      spriteID: 8a1726f929a4df04a89fe51ac20b61ef
+      internalID: 1047295188
       vertices: []
       indices: 
       edges: []
@@ -164,9 +164,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1920
-        width: 3840
-        height: 480
+        y: 128
+        width: 1280
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bfcf807561b92e49ae745d22b59d16b
-      internalID: -296489151
+      spriteID: 439a69b6ce556ae4bb69370b46bfee1d
+      internalID: 1358080275
       vertices: []
       indices: 
       edges: []
@@ -185,9 +185,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1440
-        width: 3840
-        height: 480
+        y: 0
+        width: 1280
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,29 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0c05af538c7b8146b02e467373b2f10
-      internalID: -1227389940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: health_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 960
-        width: 3840
-        height: 480
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8409460f13a8b3642b9b35d65b50ffe4
-      internalID: 133398462
+      spriteID: 70ccc5cedb275c344a16ad4663fb7162
+      internalID: 1705935412
       vertices: []
       indices: 
       edges: []
@@ -233,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      health_0: -1754190105
-      health_1: 660391185
-      health_2: 1468959910
-      health_3: -296489151
-      health_4: -1227389940
-      health_5: 133398462
+      health_0: -552199351
+      health_1: 2066764257
+      health_2: 1047295188
+      health_3: 1358080275
+      health_4: 1705935412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

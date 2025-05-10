@@ -22,6 +22,7 @@ public class BossStateMachine : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = State.Attack;
         transform.position = platforms[0].position;
     }

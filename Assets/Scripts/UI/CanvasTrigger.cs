@@ -5,6 +5,10 @@ public class CanvasTrigger : MonoBehaviour
     public PlayerController player;
     public GameObject[] tip;
     private int tipIndex = 0;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.C)){

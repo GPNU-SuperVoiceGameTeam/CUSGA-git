@@ -35,30 +35,30 @@ public class HPController : MonoBehaviour
     {
         if (hp < 0) hp = 0;
         image.sprite = hpSprites[hp - 1]; // 更新血量图标
-        SetColor(); // 设置颜色
+        //SetColor(); // 设置颜色
     }
 
     // 根据血量设置颜色
-    public void SetColor()
-    {
-        switch (hp)
-        {
-            case 5:
-            case 4:
-                image.color = new Color(43f / 255f, 212f / 255f, 0f / 255f, 255f / 255f); // 绿色
-                break;
-            case 3:
-            case 2:
-                image.color = new Color(212f / 255f, 159f / 255f, 0f / 255f, 255f / 255f); // 橙色
-                break;
-            case 1:
-                image.color = Color.red; // 红色
-                break;
-            default:
-                break;
-        }
+    // public void SetColor()
+    // {
+    //     switch (hp)
+    //     {
+    //         case 5:
+    //         case 4:
+    //             image.color = new Color(43f / 255f, 212f / 255f, 0f / 255f, 255f / 255f); // 绿色
+    //             break;
+    //         case 3:
+    //         case 2:
+    //             image.color = new Color(212f / 255f, 159f / 255f, 0f / 255f, 255f / 255f); // 橙色
+    //             break;
+    //         case 1:
+    //             image.color = Color.red; // 红色
+    //             break;
+    //         default:
+    //             break;
+    //     }
         
-    }
+    // }
     // 播放填充动画的协程
     private IEnumerator FillAnimation()
     {

@@ -108,7 +108,7 @@ public class FlySquirrelBOSS : Enemy
     public Rigidbody2D rb;
     private Animator animator;
 
-    public Transform Etransform;
+    //public Transform Etransform;
 
     public GameObject acornPrefab; // 松果预制体
     public GameObject boomAcornPrefab; // 爆炸坚果预制体
@@ -151,7 +151,7 @@ public class FlySquirrelBOSS : Enemy
         }
         nbvm = gameObject.GetComponent<NPCBattleValueManager>();
         SpawnPos = transform.position;
-        Etransform = transform;
+        //Etransform = transform;
         float currentflyHigh = Target.transform.position.y + flyHeight;
         AirpatrolLeftBoundary = new Vector2(transform.position.x, 0) + new Vector2(-patrolRange, currentflyHigh);
         AirpatrolRightBoundary = new Vector2(transform.position.x, 0) + new Vector2(patrolRange, currentflyHigh);

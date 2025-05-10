@@ -37,7 +37,10 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve movementCurve;//运动曲线
     private float CurrentSpeed;
     private float AddTime;
-    
+    private float lastTimeOnGround = 0f;
+    public float coyoteTimeDuration = 0.15f; // 可调：缓冲时间长短
+    public float fallMultiplier = 2.5f; // 下落更快更自然
+    public float lowJumpMultiplier = 2f; // 松开跳跃键提前下落
 
     public float upGravity;//跳跃时重力大小
     public float downGravity;//下落时重力大小
@@ -73,7 +76,7 @@ public class PlayerController : MonoBehaviour
     float originalUpGravity;
     float originalDownGravity;
     float originalJumpForce;
-    private MusicChange musicChange;
+    public MusicChange musicChange;
     public GameObject menu;
     public GameObject rebornText;
     #endregion
@@ -82,17 +85,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        // spawnPoint = transform.position;
+        
         maxHealth = 5;
         health = maxHealth;
         originalMoveSpeed = moveSpeed;
         originalUpGravity = upGravity;
         originalDownGravity = downGravity;
         originalJumpForce = jumpForce;
-        //musicChange = GameObject.Find("MUSIC").GetComponent<MusicChange>();
+        musicChange = GameObject.FindGameObjectWithTag("MusicChange").GetComponent<MusicChange>();
+        // spawnPoint = transform.position;
     }
     void Update()
     {
+        if(isDead){
+            rb.velocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }else{
+        }
         OpenMenu();
         openBackpack();
         if(canMove){
@@ -138,26 +148,50 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGround && Input.GetButton("Jump"))
+        // 检测是否刚刚离地（可用于跳跃）
+        if (isGround)
+        {
+            lastTimeOnGround = Time.time; // 更新最后一次着陆时间
+        }
+
+        // 判断是否可以跳跃：原本条件 || 离开地面但仍在coyote time内
+        bool canJump = isGround || (Time.time - lastTimeOnGround) <= coyoteTimeDuration;
+
+        if (canJump && Input.GetButton("Jump"))
         {
             battleWaveVoicer.music[5].GetComponent<AudioSource>().Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.Play("PlayerJump", 0, 0f);
+
+            // 可选：重置最后着陆时间，防止多次跳跃
+            lastTimeOnGround = -coyoteTimeDuration; // 或者直接设为 -1
+        }
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isGround)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0f); // 清除垂直速度
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
 
-        //根据下降改变重力
-        
-        if(rb.velocity.y>0.1f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            rb.gravityScale = upGravity;
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        else if(rb.velocity.y < -0.1f)//&&!isfloating)
-        {
-            rb.gravityScale = downGravity;
-        }
-        
     }
+
+    
+    
     public void Attack()
     {
         // 获取鼠标坐标
@@ -237,7 +271,8 @@ public class PlayerController : MonoBehaviour
 
     public void openBackpack()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(canOpenBackpack){
+            if (Input.GetKeyDown(KeyCode.Tab))
         {
             // 切换背包的显示状态
             backpack.SetActive(!backpack.activeSelf);
@@ -256,6 +291,8 @@ public class PlayerController : MonoBehaviour
                 canMove = true;
             }
         }
+        }
+        
     }
 
     public void specialBulletSelect(specialBulletType type){
@@ -285,6 +322,7 @@ public class PlayerController : MonoBehaviour
         canAttack = false;
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.GetComponent<BoxCollider2D>().enabled = false;
         anim.Play("PlayerDead", 0, 0f);
         rebornText.SetActive(true);
@@ -293,18 +331,19 @@ public class PlayerController : MonoBehaviour
         if(isDead){
             if(Input.GetKeyDown(KeyCode.R)){
                 rebornText.SetActive(false);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                // musicChange.SwitchBackToOriginalMusic();
-                // rebornPoint.OnPlayerDeath();
-                // health = maxHealth;
-                // transform.position = rebornPoint.spawnPoint.position;
-                // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                // rebornPoint.GenerateReactiveItems();
-                // isDead = false;
-                // canMove = true;
-                // canAttack = true;
-                // rb.isKinematic = false;
-                // anim.Play("PlayerIdle", 0, 0f);
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                musicChange.SwitchBackToOriginalMusic();
+                rebornPoint.OnPlayerDeath();
+                health = maxHealth;
+                transform.position = rebornPoint.spawnPoint.position;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                rebornPoint.GenerateReactiveItems();
+                isDead = false;
+                canMove = true;
+                canAttack = true;
+                rb.isKinematic = false;
+                this.GetComponent<BoxCollider2D>().enabled = true;
+                anim.Play("PlayerIdle", 0, 0f);
             }
         }
     }
@@ -336,7 +375,7 @@ public class PlayerController : MonoBehaviour
     #region 特殊声波方法
     #region 跳跃声波
     private void jumpWave(){
-        voiceController.AddVoice(10);
+        voiceController.AddVoice(20);
         float jumpWaveKeepTime = 1.0f;
         float jumpWaveShootForce = 6.0f;
         // 获取鼠标坐标
@@ -352,7 +391,8 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D gunRb = bullet.GetComponent<Rigidbody2D>();
         // 发射声波
         gunRb.AddForce(direction * jumpWaveShootForce, ForceMode2D.Impulse);
-        rb.AddForce(-direction * 10, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(0, 0);
+        rb.AddForce(-direction * 15, ForceMode2D.Impulse);
         battleWaveVoicer.music[6].GetComponent<AudioSource>().Play();
     }
     #endregion

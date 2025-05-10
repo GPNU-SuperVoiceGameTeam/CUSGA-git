@@ -10,6 +10,7 @@ public class C2BossDead : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        musicChange = GameObject.FindGameObjectWithTag("MusicChange").GetComponent<MusicChange>();
         portal.SetActive(false);
     }
 

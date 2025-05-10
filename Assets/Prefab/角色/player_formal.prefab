@@ -520,10 +520,15 @@ MonoBehaviour:
   specialBulletPrefab:
   - {fileID: 3369673854565135556, guid: 73032c71451dd7644b05ee22900cefa5, type: 3}
   - {fileID: 5629738007824169190, guid: 41a5a14a0c97de041b44ed5173d11d69, type: 3}
+  - {fileID: 8906384097822879727, guid: 9da02e9a446b65042a435aae1b760d9a, type: 3}
   specialBullet: 0
-  shootForce: 5
-  keepTime: 1
-  attackCooldown: 1
+  shootForce: 10
+  keepTime: 0.5
+  attackCooldown: 0.8
+  maxJumpHoldTime: 0.4
+  minJumpVelocity: 8
+  maxJumpVelocity: 16
+  fallGravityMultiplier: 2.5
   maxHealth: 5
   health: 5
   moveSpeed: 6
@@ -534,6 +539,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  coyoteTimeDuration: 0.15
   upGravity: 2
   downGravity: 4
   isGround: 0

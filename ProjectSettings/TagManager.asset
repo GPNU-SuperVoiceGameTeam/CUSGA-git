@@ -17,6 +17,7 @@ TagManager:
   - highWave
   - Destroy
   - SpiderWeb
+  - MusicChange
   layers:
   - Default
   - TransparentFX
